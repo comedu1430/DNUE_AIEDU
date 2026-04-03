@@ -22,14 +22,11 @@ const SITE_MAP = [
   },
   {
     key: "research",
-    label: "RESEARCH",
+    label: "PUBLICATIONS",
     sections: [
-      { key: "all", label: "All" },
-      { key: "international-journal", label: "International Journal" },
-      { key: "international-conference", label: "International Conference" },
-      { key: "korean-journal", label: "Korean Journal" },
-      { key: "korean-conference", label: "Korean Conference" },
-      { key: "prizes", label: "Prizes" },
+      { key: "2026", label: "2026" },
+      { key: "2025", label: "2025" },
+      { key: "2024", label: "2024" },
     ],
   },
   {
@@ -172,77 +169,83 @@ const STUDENT_PROFILES = [
   },
 ];
 
-const RESEARCH_CARD_SETS = {
-  all: [
+const PUBLICATION_LISTS = {
+  "2026": [
     {
-      title: "Selected publications from journals, conferences, and academic presentations",
-      summary: "This section can present the overall publication archive of the AI Education major, including international and domestic outputs.",
-      variant: "left",
+      type: "International Journal",
+      title: "AI-based Teaching Design for Future Classrooms",
+      authors: "Faculty of the AI Education major",
+      venue: "Journal of AI Education Studies",
+      doi: "10.1234/jaies.2026.001",
+      url: "https://doi.org/10.1234/jaies.2026.001",
     },
     {
-      title: "Research outputs in AI education, curriculum design, and classroom innovation",
-      summary: "Items can later be organized by publication type to help visitors browse the academic profile of the major more clearly.",
-      variant: "right",
-    },
-  ],
-  "international-journal": [
-    {
-      title: "International journal publications",
-      summary: "Use this category for peer-reviewed journal articles published in international academic journals.",
-      variant: "left",
+      type: "Korean Journal",
+      title: "Digital Literacy and Classroom Innovation in Teacher Education",
+      authors: "Graduate School of AI Education",
+      venue: "Korean Journal of Educational Technology",
+      doi: "10.1234/kjet.2026.014",
+      url: "https://doi.org/10.1234/kjet.2026.014",
     },
     {
-      title: "Research articles with global academic visibility",
-      summary: "This area can highlight internationally indexed work related to AI education, digital literacy, and instructional design.",
-      variant: "right",
-    },
-  ],
-  "international-conference": [
-    {
-      title: "International conference papers",
-      summary: "Use this category for presentations and proceedings published through international conferences.",
-      variant: "left",
-    },
-    {
-      title: "Conference-based dissemination of current research",
-      summary: "This section can collect recent presentations and international academic exchange outcomes.",
-      variant: "right",
+      type: "International Conference",
+      title: "AI-supported Feedback Systems in Graduate Teacher Preparation",
+      authors: "AI Education Major Research Team",
+      venue: "Proceedings of the International Conference on Learning Innovation",
+      doi: "10.1234/icli.2026.087",
+      url: "https://doi.org/10.1234/icli.2026.087",
     },
   ],
-  "korean-journal": [
+  "2025": [
     {
-      title: "Korean journal publications",
-      summary: "Use this category for peer-reviewed articles published in domestic academic journals.",
-      variant: "left",
+      type: "International Conference",
+      title: "AI Curriculum Consulting Models for School Settings",
+      authors: "Faculty Research Team",
+      venue: "International Conference on AI in Education",
+      doi: "10.1234/icaie.2025.021",
+      url: "https://doi.org/10.1234/icaie.2025.021",
     },
     {
-      title: "Domestic scholarship in AI education",
-      summary: "This section can archive Korean journal articles that represent the major's research foundations and applied studies.",
-      variant: "right",
+      type: "Korean Conference",
+      title: "Practical Cases of AI-integrated Instruction in Graduate Teacher Education",
+      authors: "Graduate Students in AI Education",
+      venue: "Korean Society for Computer Education Conference",
+      doi: "10.1234/ksce.2025.055",
+      url: "https://doi.org/10.1234/ksce.2025.055",
+    },
+    {
+      type: "Korean Journal",
+      title: "Policy and Leadership Perspectives in AI Education",
+      authors: "AI Education Major Faculty",
+      venue: "Journal of Educational Policy and Innovation",
+      doi: "10.1234/jepi.2025.032",
+      url: "https://doi.org/10.1234/jepi.2025.032",
     },
   ],
-  "korean-conference": [
+  "2024": [
     {
-      title: "Korean conference papers",
-      summary: "Use this category for domestic conference presentations, proceedings, and related academic activities.",
-      variant: "left",
+      type: "International Journal",
+      title: "Research Trends in AI Education and Instructional Innovation",
+      authors: "Graduate School Research Group",
+      venue: "International Review of Digital Learning",
+      doi: "10.1234/irdl.2024.006",
+      url: "https://doi.org/10.1234/irdl.2024.006",
     },
     {
-      title: "Local academic engagement and presentation records",
-      summary: "This area can present conference outputs connected to the Korean academic community.",
-      variant: "right",
-    },
-  ],
-  prizes: [
-    {
-      title: "Awards and prizes",
-      summary: "Use this category for awards, recognitions, and major distinctions received by faculty and students.",
-      variant: "left",
+      type: "Korean Conference",
+      title: "Educational Applications of Data Science in AI Teacher Training",
+      authors: "Program Faculty and Researchers",
+      venue: "Korean Educational Data Conference",
+      doi: "10.1234/kedc.2024.044",
+      url: "https://doi.org/10.1234/kedc.2024.044",
     },
     {
-      title: "Academic and institutional recognition",
-      summary: "This section can highlight notable achievements that reflect the quality and impact of the program.",
-      variant: "right",
+      type: "Korean Journal",
+      title: "AI Literacy as a Core Competency in Graduate-Level Teacher Education",
+      authors: "AI Education Major",
+      venue: "Korean Journal of Teacher Education",
+      doi: "10.1234/kte.2024.019",
+      url: "https://doi.org/10.1234/kte.2024.019",
     },
   ],
 };
@@ -298,27 +301,17 @@ const PAGE_COPY = {
   },
   research: {
     title: "Publications",
-    headline: "Publication categories and academic outputs",
+    headline: "Yearly publication archive and academic outputs",
     subheadline: "",
     body: {
-      all: [
-        "This page can serve as the central publication archive for the AI Education major.",
-        "Journal articles, conference papers, and awards can be organized by category so that visitors can browse academic outputs at a glance.",
+      "2026": [
+        "A publication archive for 2026 can be organized here in a clean text-based format.",
       ],
-      "international-journal": [
-        "This category can be used for international journal articles related to AI education, digital pedagogy, instructional design, and educational innovation.",
+      "2025": [
+        "A publication archive for 2025 can be organized here in a clean text-based format.",
       ],
-      "international-conference": [
-        "This category can collect papers, proceedings, and presentations shared through international conferences and global academic events.",
-      ],
-      "korean-journal": [
-        "This category can organize domestic journal publications that reflect scholarly work in Korean academic contexts.",
-      ],
-      "korean-conference": [
-        "This category can present domestic conference papers, workshop presentations, and local academic exchange outcomes.",
-      ],
-      prizes: [
-        "This category can highlight awards, prizes, and recognitions received by faculty members and students.",
+      "2024": [
+        "A publication archive for 2024 can be organized here in a clean text-based format.",
       ],
       default: [
         "This page is intended to organize publication and achievement records in a clear and searchable way.",
@@ -581,19 +574,29 @@ function EditorialVisual() {
   );
 }
 
-function ResearchCards({ sectionKey }) {
-  const cards = RESEARCH_CARD_SETS[sectionKey] || RESEARCH_CARD_SETS.all;
+function PublicationList({ sectionKey }) {
+  const items = PUBLICATION_LISTS[sectionKey] || PUBLICATION_LISTS["2026"];
 
   return (
-    <div className="research-card-grid">
-      {cards.map((card) => (
-        <article key={card.title} className="research-card">
-          <div className={`research-card-art ${card.variant}`} aria-hidden="true">
-            <div className="research-card-ring outer" />
-            <div className="research-card-ring inner" />
-          </div>
-          <h4>{card.title}</h4>
-          <p>{card.summary}</p>
+    <div className="publication-list">
+      {items.map((item) => (
+        <article key={`${sectionKey}-${item.title}`} className="publication-item">
+          <p className="publication-type">{item.type}</p>
+          <h4>
+            <a href={item.url} target="_blank" rel="noreferrer">
+              {item.title}
+            </a>
+          </h4>
+          <p>{item.authors}</p>
+          <p>{item.venue}</p>
+          {item.doi ? (
+            <p className="publication-doi">
+              <span>DOI</span>
+              <a href={item.url} target="_blank" rel="noreferrer">
+                {item.doi}
+              </a>
+            </p>
+          ) : null}
         </article>
       ))}
     </div>
@@ -642,7 +645,7 @@ function InternalPage({ menuKey, sectionKey, onSectionSelect }) {
   const currentLabel = currentSection ? getSectionLabel(menuKey, currentSection) : "";
   const showVisual = menuKey === "about";
   const showProfiles = menuKey === "people";
-  const showResearchCards = menuKey === "research";
+  const showPublications = menuKey === "research";
   const useWidePeopleLayout = menuKey === "people" && currentSection === "faculty";
 
   if (!menu || !content) {
@@ -669,15 +672,15 @@ function InternalPage({ menuKey, sectionKey, onSectionSelect }) {
         ) : null}
       </div>
 
-      <div className={`content-shell internal-grid ${showVisual ? "" : "single-column"} ${showResearchCards ? "research-layout" : ""} ${useWidePeopleLayout ? "wide-people-layout" : ""}`}>
+      <div className={`content-shell internal-grid ${showVisual ? "" : "single-column"} ${showPublications ? "research-layout" : ""} ${useWidePeopleLayout ? "wide-people-layout" : ""}`}>
         <article className="internal-copy">
-          {!showResearchCards ? <h2>{currentLabel || content.headline}</h2> : null}
-          {!showResearchCards && content.subheadline ? <h3>{content.subheadline}</h3> : null}
-          {!showResearchCards ? content.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>) : null}
+          {!showPublications ? <h2>{currentLabel || content.headline}</h2> : null}
+          {!showPublications && content.subheadline ? <h3>{content.subheadline}</h3> : null}
+          {!showPublications ? content.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>) : null}
           {showProfiles ? <ProfileGrid sectionKey={currentSection} /> : null}
         </article>
         {showVisual ? <EditorialVisual /> : null}
-        {showResearchCards ? <ResearchCards sectionKey={currentSection} /> : null}
+        {showPublications ? <PublicationList sectionKey={currentSection} /> : null}
       </div>
     </section>
   );

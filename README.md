@@ -1,31 +1,42 @@
-# Model Studio
+# Graduate School Of AI Education Site
 
-Teachable Machine inspired clone rebuilt with React, Vite, and TensorFlow.js.
+Static React + Vite site for the Daegu National University of Education Graduate School of AI Education.
 
 ## Run locally
 
 ```bash
-cd /Users/almond/Documents/teachable-machine-clone
 npm install --legacy-peer-deps
 npm run dev
 ```
 
 Then open the local Vite URL shown in the terminal.
 
-## Included in this version
+## Deploy to GitHub Pages
 
-- React and Vite project structure for easier extension
-- A more Teachable Machine-like hero, project selector, and editor layout
-- Real TensorFlow.js image training using MobileNet embeddings
-- Real speech-commands transfer learning for microphone classification
-- Real MoveNet pose detection with a custom pose classifier
-- Webcam, microphone, and pose sample collection with live predictions
-- Editable class names, local project saving, and model export actions
-- Refined responsive layout, floating motion, and export or FAQ sections
+This repository includes a GitHub Actions workflow at `.github/workflows/deploy-pages.yml`.
 
-## Notes
+### One-time GitHub setup
 
-- Image mode performs real in-browser transfer learning through TensorFlow.js.
-- Audio mode uses `@tensorflow-models/speech-commands`, whose peer dependency range is older than the current TensorFlow.js line, so `npm install --legacy-peer-deps` is required.
-- Pose mode uses `@tensorflow-models/pose-detection` with MoveNet and also includes the supporting MediaPipe package for bundling compatibility.
-- `npm run build` and `npm run dev -- --host 127.0.0.1 --port 4173` were both verified in this environment after installing Node.js.
+1. Push this project to a GitHub repository.
+2. Open the repository on GitHub.
+3. Go to `Settings -> Pages`.
+4. Under `Build and deployment`, choose `GitHub Actions`.
+5. Push to the `main` branch.
+
+After that, every push to `main` will build and deploy the site automatically.
+
+## Editing content
+
+Right now the site content lives in `src/App.jsx`.
+
+If you want non-developers to update text more easily later, the next recommended step is:
+
+1. Move menus and page text into `src/content/site.json`
+2. Render the site from that JSON
+3. Let editors update only the content file on GitHub
+
+## Build check
+
+```bash
+npm run build
+```

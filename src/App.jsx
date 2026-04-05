@@ -86,6 +86,7 @@ const FACULTY_PROFILES = [
     office: "Sangnok Education Hall 407",
     email: "pwpark@dnue.ac.kr",
     phone: "053-620-1432",
+    image: "/panwoo-park.png",
     research: "Computer Education, AI Education, Distance Education",
     courses: [
       "AI Education Research Methodology: develops scientific reasoning, measurement tools, and analytical methods required for AI education research.",
@@ -99,6 +100,7 @@ const FACULTY_PROFILES = [
     office: "Sangnok Education Hall 408",
     email: "bluenull@dnue.ac.kr",
     phone: "053-620-1434",
+    image: "/inhwan-yoo.png",
     research: "Computer Education, AI Education",
     courses: [
       "SW/AI Education Topics: examines the theoretical background, current technologies, and international trends in SW-AI education.",
@@ -112,6 +114,7 @@ const FACULTY_PROFILES = [
     office: "Sangnok Education Hall 406",
     email: "bae@dnue.ac.kr",
     phone: "053-620-1435",
+    image: "/youngkwon-bae.png",
     research: "Computer Education, AI Education",
     courses: [
       "AI Digital Policy Seminar: investigates domestic and international AI and digital policies and discusses their implications for educational settings.",
@@ -125,6 +128,7 @@ const FACULTY_PROFILES = [
     office: "Sangnok Education Hall 403",
     email: "john@dnue.ac.kr",
     phone: "053-620-1431",
+    image: "/wooyeol-kim.png",
     research: "Computer Education, AI Education",
     courses: [
       "Advanced Research in Programming Languages: explores programming for computational problem solving through the perspective of programming language theory.",
@@ -138,6 +142,7 @@ const FACULTY_PROFILES = [
     office: "Sangnok Education Hall 402",
     email: "yhlee@dnue.ac.kr",
     phone: "053-620-1433",
+    image: "/youngho-lee.png",
     research: "Computer Education, AI Education",
     courses: [
       "AI Digital Literacy Research: analyzes AI digital literacy assessment tools from media, ethics, and tool-use perspectives for classroom application.",
@@ -150,6 +155,7 @@ const FACULTY_PROFILES = [
     office: "Sangnok Education Hall 404",
     email: "jkshim@dnue.ac.kr",
     phone: "053-620-1437",
+    image: "/jaekwon-shim.png",
     research: "Computer Education, AI Education",
     courses: [
       "AI Education Consulting Topics: examines consulting elements for innovative teaching and learning strategies across the design and delivery of AI education.",
@@ -158,94 +164,57 @@ const FACULTY_PROFILES = [
   },
 ];
 
-const STUDENT_PROFILES = [
-  {
-    name: "Graduate Students in AI Education",
-    position: "Master's and Doctoral Tracks",
-    office: "Graduate School of AI Education",
-    email: "graduate@dnue.ac.kr",
-    phone: "053-620-1430",
-    research: "AI literacy, curriculum design, classroom innovation, and educational data use",
-  },
-];
-
-const PUBLICATION_LISTS = {
+const STUDENT_PROFILES = {
   "2026": [
-    {
-      type: "International Journal",
-      title: "AI-based Teaching Design for Future Classrooms",
-      authors: "Faculty of the AI Education major",
-      venue: "Journal of AI Education Studies",
-      doi: "10.1234/jaies.2026.001",
-      url: "https://doi.org/10.1234/jaies.2026.001",
-    },
-    {
-      type: "Korean Journal",
-      title: "Digital Literacy and Classroom Innovation in Teacher Education",
-      authors: "Graduate School of AI Education",
-      venue: "Korean Journal of Educational Technology",
-      doi: "10.1234/kjet.2026.014",
-      url: "https://doi.org/10.1234/kjet.2026.014",
-    },
-    {
-      type: "International Conference",
-      title: "AI-supported Feedback Systems in Graduate Teacher Preparation",
-      authors: "AI Education Major Research Team",
-      venue: "Proceedings of the International Conference on Learning Innovation",
-      doi: "10.1234/icli.2026.087",
-      url: "https://doi.org/10.1234/icli.2026.087",
-    },
+    { name: "Jaeeon Park", lab: "Member of the Panwoo Park Lab" },
+    { name: "Kidong Kwon", lab: "Member of the Inhwan Yoo Lab" },
+    { name: "Horyeon Nam", lab: "Member of the Youngkwon Bae Lab" },
+    { name: "Eunjeong Lee", lab: "Member of the Youngho Lee Lab" },
+    { name: "Minseo Kim", lab: "Member of the Jaekwon Shim Lab" },
+    { name: "Jiwon Choi", lab: "Member of the Wooyeol Kim Lab" },
+    { name: "Hyerin Seo", lab: "Member of the Youngho Lee Lab" },
   ],
   "2025": [
-    {
-      type: "International Conference",
-      title: "AI Curriculum Consulting Models for School Settings",
-      authors: "Faculty Research Team",
-      venue: "International Conference on AI in Education",
-      doi: "10.1234/icaie.2025.021",
-      url: "https://doi.org/10.1234/icaie.2025.021",
-    },
-    {
-      type: "Korean Conference",
-      title: "Practical Cases of AI-integrated Instruction in Graduate Teacher Education",
-      authors: "Graduate Students in AI Education",
-      venue: "Korean Society for Computer Education Conference",
-      doi: "10.1234/ksce.2025.055",
-      url: "https://doi.org/10.1234/ksce.2025.055",
-    },
+    { name: "Incheol Kim", lab: "Member of the Panwoo Park Lab" },
+    { name: "Gukhwan Bae", lab: "Member of the Youngkwon Bae Lab" },
+    { name: "Jaeeun Ahn", lab: "Member of the Inhwan Yoo Lab" },
+    { name: "Youngtak Jeong", lab: "Member of the Wooyeol Kim Lab" },
+    { name: "Hyejeong Cho", lab: "Member of the Jaekwon Shim Lab" },
+    { name: "Minjeong Kang", lab: "Member of the Youngho Lee Lab" },
+    { name: "Jungeun Kim", lab: "Member of the Panwoo Park Lab" },
+    { name: "Daeryun Park", lab: "Member of the Inhwan Yoo Lab" },
+    { name: "Intae Hwang", lab: "Member of the Youngho Lee Lab" },
+  ],
+  "2024": [
+    { name: "Jinhee Oh", lab: "Member of the Panwoo Park Lab" },
+    { name: "Minji Lee", lab: "Member of the Inhwan Yoo Lab" },
+    { name: "Seunghyun Lee", lab: "Member of the Youngho Lee Lab" },
+    { name: "Yonghan Lee", lab: "Member of the Jaekwon Shim Lab" },
+    { name: "Jeongseo Lee", lab: "Member of the Youngkwon Bae Lab" },
+    { name: "Saesoon Lee", lab: "Member of the Wooyeol Kim Lab" },
+  ],
+};
+
+const PUBLICATION_LISTS = {
+  "2026": [],
+  "2025": [
     {
       type: "Korean Journal",
-      title: "Policy and Leadership Perspectives in AI Education",
-      authors: "AI Education Major Faculty",
-      venue: "Journal of Educational Policy and Innovation",
-      doi: "10.1234/jepi.2025.032",
-      url: "https://doi.org/10.1234/jepi.2025.032",
+      title: "The Impact of Prompt Formats on the Robustness of LLMs",
+      authors: "Lee Seung Hyun and Lee Youngho",
+      venue: "The Journal of Korean Association of Computer Education, 28(12), 1-12.",
+      doi: "10.32431/kace.2025.28.12.001",
+      url: "https://doi.org/10.32431/kace.2025.28.12.001",
     },
   ],
   "2024": [
     {
-      type: "International Journal",
-      title: "Research Trends in AI Education and Instructional Innovation",
-      authors: "Graduate School Research Group",
-      venue: "International Review of Digital Learning",
-      doi: "10.1234/irdl.2024.006",
-      url: "https://doi.org/10.1234/irdl.2024.006",
-    },
-    {
-      type: "Korean Conference",
-      title: "Educational Applications of Data Science in AI Teacher Training",
-      authors: "Program Faculty and Researchers",
-      venue: "Korean Educational Data Conference",
-      doi: "10.1234/kedc.2024.044",
-      url: "https://doi.org/10.1234/kedc.2024.044",
-    },
-    {
       type: "Korean Journal",
-      title: "AI Literacy as a Core Competency in Graduate-Level Teacher Education",
-      authors: "AI Education Major",
-      venue: "Korean Journal of Teacher Education",
-      doi: "10.1234/kte.2024.019",
-      url: "https://doi.org/10.1234/kte.2024.019",
+      title: "Designing an Automated Syllabus Assessment Framework Using a RAG-based LLM",
+      authors: "YongHan Lee and Jaekwoun Shim",
+      venue: "Journal of Convergence Science, Technology, and Society, 3(2), 59-67.",
+      doi: "10.56366/jcsts.2024.3.2.59",
+      url: "https://doi.org/10.56366/jcsts.2024.3.2.59",
     },
   ],
 };
@@ -430,24 +399,20 @@ function getPageContent(menuKey, sectionKey) {
 }
 
 function getProfiles(sectionKey) {
-  if (sectionKey === "faculty") {
-    return FACULTY_PROFILES;
-  }
-  if (sectionKey === "students") {
-    return STUDENT_PROFILES;
-  }
   return FACULTY_PROFILES;
 }
 
-function Brand({ dark, onHome }) {
+function Brand({ dark, onHome, textOnly = false, markOnly = false, homeText = false }) {
   return (
-    <button className="brand" type="button" aria-label="Home" onClick={onHome}>
-      <span className={`brand-mark ${dark ? "is-dark" : "is-light"}`} aria-hidden="true" />
-      <span className="brand-text">
-        Daegu National University of Education
-        <br />
-        Graduate School of AI Education
-      </span>
+    <button className={`brand ${textOnly ? "is-text-only" : ""} ${markOnly ? "is-mark-only" : ""} ${homeText ? "is-home-text" : ""}`} type="button" aria-label="Home" onClick={onHome}>
+      {!textOnly ? <span className={`brand-mark ${dark ? "is-dark" : "is-light"}`} aria-hidden="true" /> : null}
+      {!markOnly ? (
+        <span className="brand-text">
+          Daegu National University of Education
+          <br />
+          Graduate School of AI Education
+        </span>
+      ) : null}
     </button>
   );
 }
@@ -455,7 +420,7 @@ function Brand({ dark, onHome }) {
 function Header({ dark, isHome, onHome, onNavigate, onOpenMenu, desktopMenuKey, onToggleDesktopMenu }) {
   return (
     <header className={`top-header ${dark ? "is-dark" : "is-light"} ${isHome ? "is-home" : "is-inner"}`}>
-      <Brand dark={dark} onHome={onHome} />
+      <Brand dark={dark} onHome={onHome} homeText={isHome} />
       <nav
         className="desktop-nav"
         aria-label="Primary"
@@ -523,32 +488,84 @@ function HeroSummaryList({ title, items }) {
 
 function HomePage() {
   return (
-    <section className="landing-page">
-      <video className="landing-bg-video" autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
-        <source src="https://gsds.snu.ac.kr/wp-content/uploads/2023/03/Sequence-013.mp4" type="video/mp4" />
-      </video>
-      <div className="landing-overlay" />
-      <div className="landing-copy">
-        <h1>
-          Daegu National University of Education
-          <br />
-          Graduate School of AI Education
-        </h1>
-        <p>
-          The AI Education major prepares specialists who can cultivate creative and convergent talent for the age of artificial intelligence
-          while building both theoretical understanding and practical capability for innovation in school education.
-        </p>
-        <a className="learn-more" href="#content">
-          LEARN MORE
-        </a>
-      </div>
-      <div className="hero-summary-bar">
-        <div className="hero-summary-grid">
-          <HeroSummaryList title="NEWS" items={NEWS_ITEMS} />
-          <HeroSummaryList title="RESEARCH HIGHLIGHTS" items={RESEARCH_ITEMS} />
+    <div className="home-stack">
+      <section className="landing-page">
+        <LandingBackdrop />
+        <div className="landing-overlay" />
+        <div className="landing-hero reveal-on-scroll is-visible">
+          <div className="landing-copy">
+            <div className="landing-type-lockup">
+              <h1>
+                Research, Pedagogy, and AI Innovation
+                <br />
+                for Future Learning Environments.
+              </h1>
+            </div>
+            <p className="landing-description">
+              Advanced doctoral study and research for AI pedagogy, educational data,
+              <br />
+              and future classroom innovation across schools, learning design, educational systems.
+            </p>
+            <a className="learn-more" href="#home-publications">
+              PUBLICATIONS
+            </a>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <section className="home-publications reveal-on-scroll" id="home-publications">
+        <div className="content-shell home-publications-inner">
+          <div className="home-publications-head">
+            <p>Publications</p>
+          </div>
+          <div className="home-publications-grid">
+            {["2026", "2025", "2024"].map((year) => {
+              const items = PUBLICATION_LISTS[year] || [];
+              return (
+                <article key={year} className="home-publication-card">
+                  <div className="home-publication-year">{year}</div>
+                  {items.length === 0 ? (
+                    <div className="home-publication-empty">
+                      <p>No publications yet</p>
+                    </div>
+                  ) : (
+                    <div className="home-publication-items">
+                      {items.map((item) => (
+                        <a
+                          key={`${year}-${item.title}`}
+                          className="home-publication-entry"
+                          href={item.url}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <p className="home-publication-type">{item.type}</p>
+                          <h3>{item.title}</h3>
+                          <p className="home-publication-meta">{item.authors}</p>
+                          <p className="home-publication-meta">{item.venue}</p>
+                          {item.doi ? <p className="home-publication-meta home-publication-doi">DOI {item.doi}</p> : null}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function LandingBackdrop() {
+  return (
+    <div className="landing-lightfield" aria-hidden="true">
+      <iframe
+        className="landing-spline"
+        src="https://my.spline.design/displacelines-LS4TQIxZI0gVrTKi0K58h1m1/"
+        frameBorder="0"
+        title="Landing background"
+      />
+    </div>
   );
 }
 
@@ -576,6 +593,17 @@ function EditorialVisual() {
 
 function PublicationList({ sectionKey }) {
   const items = PUBLICATION_LISTS[sectionKey] || PUBLICATION_LISTS["2026"];
+
+  if (items.length === 0) {
+    return (
+      <div className="publication-list">
+        <article className="publication-item">
+          <p className="publication-type">No publications yet</p>
+          <h4>No publication entries have been added for {sectionKey}.</h4>
+        </article>
+      </div>
+    );
+  }
 
   return (
     <div className="publication-list">
@@ -611,7 +639,11 @@ function ProfileGrid({ sectionKey }) {
     <div className={`profile-grid ${isFaculty ? "faculty-profile-grid" : ""}`}>
       {profiles.map((profile) => (
         <article key={`${sectionKey}-${profile.name}`} className={`profile-card ${isFaculty ? "faculty-profile-card" : ""}`}>
-          <div className="profile-image" aria-hidden="true" />
+          <div
+            className={`profile-image ${profile.image ? "has-photo" : ""}`}
+            style={profile.image ? { backgroundImage: `url(${profile.image})` } : undefined}
+            aria-hidden="true"
+          />
           <div className="profile-content">
             <h4>{profile.name}</h4>
             <p>{profile.position}</p>
@@ -638,6 +670,35 @@ function ProfileGrid({ sectionKey }) {
   );
 }
 
+function StudentYearGroups() {
+  const years = ["2024", "2025", "2026"];
+
+  return (
+    <div className="student-year-groups">
+      {years.map((year) => (
+        <section key={year} className="student-year-group">
+          <h3>{year}</h3>
+          <div className="profile-grid student-profile-grid">
+            {STUDENT_PROFILES[year].map((profile) => (
+              <article key={`${year}-${profile.name}`} className="profile-card">
+                <div
+                  className={`profile-image ${profile.image ? "has-photo" : ""}`}
+                  style={profile.image ? { backgroundImage: `url(${profile.image})` } : undefined}
+                  aria-hidden="true"
+                />
+                <div className="profile-content">
+                  <h4>{profile.name}</h4>
+                  <p>{profile.lab}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  );
+}
+
 function InternalPage({ menuKey, sectionKey, onSectionSelect }) {
   const menu = getMenu(menuKey);
   const content = getPageContent(menuKey, sectionKey);
@@ -646,7 +707,7 @@ function InternalPage({ menuKey, sectionKey, onSectionSelect }) {
   const showVisual = menuKey === "about";
   const showProfiles = menuKey === "people";
   const showPublications = menuKey === "research";
-  const useWidePeopleLayout = menuKey === "people" && currentSection === "faculty";
+  const useWidePeopleLayout = menuKey === "people" && (currentSection === "faculty" || currentSection === "students");
 
   if (!menu || !content) {
     return null;
@@ -654,7 +715,7 @@ function InternalPage({ menuKey, sectionKey, onSectionSelect }) {
 
   return (
     <section className="internal-page" id="content">
-      <div className="internal-header-block">
+      <div className="internal-header-block reveal-on-scroll">
         <h1>{content.title}</h1>
         {menu.sections.length > 0 ? (
           <div className="section-tabs" role="tablist" aria-label={`${content.title} sections`}>
@@ -672,12 +733,13 @@ function InternalPage({ menuKey, sectionKey, onSectionSelect }) {
         ) : null}
       </div>
 
-      <div className={`content-shell internal-grid ${showVisual ? "" : "single-column"} ${showPublications ? "research-layout" : ""} ${useWidePeopleLayout ? "wide-people-layout" : ""}`}>
+      <div className={`content-shell internal-grid reveal-on-scroll ${showVisual ? "" : "single-column"} ${showPublications ? "research-layout" : ""} ${useWidePeopleLayout ? "wide-people-layout" : ""}`}>
         <article className="internal-copy">
           {!showPublications ? <h2>{currentLabel || content.headline}</h2> : null}
           {!showPublications && content.subheadline ? <h3>{content.subheadline}</h3> : null}
           {!showPublications ? content.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>) : null}
-          {showProfiles ? <ProfileGrid sectionKey={currentSection} /> : null}
+          {showProfiles && currentSection === "faculty" ? <ProfileGrid sectionKey={currentSection} /> : null}
+          {menuKey === "people" && currentSection === "students" ? <StudentYearGroups /> : null}
         </article>
         {showVisual ? <EditorialVisual /> : null}
         {showPublications ? <PublicationList sectionKey={currentSection} /> : null}
@@ -690,27 +752,7 @@ function Footer({ isHome, onNavigate }) {
   return (
     <footer className={`site-footer ${isHome ? "is-home" : "is-inner"}`}>
       <div className="footer-main-tone">
-        <div className="content-shell footer-grid">
-          <div className="footer-sitemap">
-            {SITE_MAP.map((group) => (
-              <div key={group.key} className="footer-column">
-                <button type="button" className="footer-heading" onClick={() => onNavigate(group.key, "")}>
-                  {group.label}
-                </button>
-                {group.sections.length > 0 ? (
-                  <ul>
-                    {group.sections.map((section) => (
-                      <li key={section.key}>
-                        <button type="button" className="footer-link" onClick={() => onNavigate(group.key, section.key)}>
-                          {section.label}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-              </div>
-            ))}
-          </div>
+        <div className="content-shell footer-grid reveal-on-scroll">
           <div className="footer-signature">
             <button className="footer-signature-home" type="button" onClick={() => onNavigate("home", "")} aria-label="Home">
               <span className={`footer-signature-mark ${isHome ? "is-dark" : "is-light"}`} aria-hidden="true" />
@@ -722,8 +764,6 @@ function Footer({ isHome, onNavigate }) {
             </button>
             <div className="footer-meta">
               <p>Daegu National University of Education Graduate School of AI Education © 2026. All rights reserved.</p>
-              <p>Privacy Policy</p>
-              <p>Video Information Processing Policy</p>
             </div>
           </div>
         </div>
@@ -831,6 +871,33 @@ export default function App() {
     document.addEventListener("pointerdown", handlePointerDown);
     return () => document.removeEventListener("pointerdown", handlePointerDown);
   }, []);
+
+  useEffect(() => {
+    const nodes = document.querySelectorAll(".reveal-on-scroll");
+    if (!nodes.length) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
+    );
+
+    nodes.forEach((node) => {
+      if (!node.classList.contains("is-visible")) {
+        observer.observe(node);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, [currentPage, activeSection, menuOpen]);
 
   return (
     <div className="app-shell" ref={shellRef}>

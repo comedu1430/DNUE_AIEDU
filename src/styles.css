@@ -112,23 +112,15 @@ button {
   width: 42px;
   height: 42px;
   flex: 0 0 auto;
-  background-color: currentColor;
-  -webkit-mask-image: url("/dnue-mark.svg");
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  -webkit-mask-size: contain;
-  mask-image: url("/dnue-mark.svg");
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: contain;
+  object-fit: contain;
 }
 
 .brand-mark.is-dark {
-  color: #111318;
+  filter: brightness(0) saturate(100%);
 }
 
 .brand-mark.is-light {
-  color: var(--text);
+  filter: brightness(0) saturate(100%);
 }
 
 .brand-text {
@@ -968,23 +960,15 @@ button {
 .footer-signature-mark {
   width: 74px;
   height: 74px;
-  background-color: currentColor;
-  -webkit-mask-image: url("/dnue-mark.svg");
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  -webkit-mask-size: contain;
-  mask-image: url("/dnue-mark.svg");
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: contain;
+  object-fit: contain;
 }
 
 .footer-signature-mark.is-dark {
-  color: var(--text);
+  filter: brightness(0) saturate(100%);
 }
 
 .footer-signature-mark.is-light {
-  color: var(--text);
+  filter: brightness(0) saturate(100%);
 }
 
 .footer-signature-title {

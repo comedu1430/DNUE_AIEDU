@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
+const asset = (path) => `${import.meta.env.BASE_URL}${path}`;
+
 const SITE_MAP = [
   {
     key: "about",
@@ -86,7 +88,7 @@ const FACULTY_PROFILES = [
     office: "Sangnok Education Hall 407",
     email: "pwpark@dnue.ac.kr",
     phone: "053-620-1432",
-    image: "/panwoo-park.png",
+    image: asset("panwoo-park.png"),
     research: "Computer Education, AI Education, Distance Education",
     courses: [
       "AI Education Research Methodology: develops scientific reasoning, measurement tools, and analytical methods required for AI education research.",
@@ -100,7 +102,7 @@ const FACULTY_PROFILES = [
     office: "Sangnok Education Hall 408",
     email: "bluenull@dnue.ac.kr",
     phone: "053-620-1434",
-    image: "/inhwan-yoo.png",
+    image: asset("inhwan-yoo.png"),
     research: "Computer Education, AI Education",
     courses: [
       "SW/AI Education Topics: examines the theoretical background, current technologies, and international trends in SW-AI education.",
@@ -114,7 +116,7 @@ const FACULTY_PROFILES = [
     office: "Sangnok Education Hall 406",
     email: "bae@dnue.ac.kr",
     phone: "053-620-1435",
-    image: "/youngkwon-bae.png",
+    image: asset("youngkwon-bae.png"),
     research: "Computer Education, AI Education",
     courses: [
       "AI Digital Policy Seminar: investigates domestic and international AI and digital policies and discusses their implications for educational settings.",
@@ -128,7 +130,7 @@ const FACULTY_PROFILES = [
     office: "Sangnok Education Hall 403",
     email: "john@dnue.ac.kr",
     phone: "053-620-1431",
-    image: "/wooyeol-kim.png",
+    image: asset("wooyeol-kim.png"),
     research: "Computer Education, AI Education",
     courses: [
       "Advanced Research in Programming Languages: explores programming for computational problem solving through the perspective of programming language theory.",
@@ -142,7 +144,7 @@ const FACULTY_PROFILES = [
     office: "Sangnok Education Hall 402",
     email: "yhlee@dnue.ac.kr",
     phone: "053-620-1433",
-    image: "/youngho-lee.png",
+    image: asset("youngho-lee.png"),
     research: "Computer Education, AI Education",
     courses: [
       "AI Digital Literacy Research: analyzes AI digital literacy assessment tools from media, ethics, and tool-use perspectives for classroom application.",
@@ -155,7 +157,7 @@ const FACULTY_PROFILES = [
     office: "Sangnok Education Hall 404",
     email: "jkshim@dnue.ac.kr",
     phone: "053-620-1437",
-    image: "/jaekwon-shim.png",
+    image: asset("jaekwon-shim.png"),
     research: "Computer Education, AI Education",
     courses: [
       "AI Education Consulting Topics: examines consulting elements for innovative teaching and learning strategies across the design and delivery of AI education.",
@@ -405,7 +407,7 @@ function getProfiles(sectionKey) {
 function Brand({ dark, onHome, textOnly = false, markOnly = false }) {
   return (
     <button className={`brand ${textOnly ? "is-text-only" : ""} ${markOnly ? "is-mark-only" : ""}`} type="button" aria-label="Home" onClick={onHome}>
-      {!textOnly ? <span className={`brand-mark ${dark ? "is-dark" : "is-light"}`} aria-hidden="true" /> : null}
+      {!textOnly ? <img className={`brand-mark ${dark ? "is-dark" : "is-light"}`} src={asset("dnue-mark.svg")} alt="" aria-hidden="true" /> : null}
       {!markOnly ? (
         <span className="brand-text">
           Daegu National University of Education
@@ -769,7 +771,7 @@ function Footer({ isHome, onNavigate }) {
         <div className="content-shell footer-grid reveal-on-scroll">
           <div className="footer-signature">
             <button className="footer-signature-home" type="button" onClick={() => onNavigate("home", "")} aria-label="Home">
-              <span className={`footer-signature-mark ${isHome ? "is-dark" : "is-light"}`} aria-hidden="true" />
+              <img className={`footer-signature-mark ${isHome ? "is-dark" : "is-light"}`} src={asset("dnue-mark.svg")} alt="" aria-hidden="true" />
               <span className="footer-signature-title">
                 Daegu National University of Education
                 <br />

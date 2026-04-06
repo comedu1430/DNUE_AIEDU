@@ -1194,7 +1194,7 @@ button {
   }
 
   .faculty-profile-card .profile-image.has-photo {
-    background-size: contain;
+    background-size: cover;
     background-position: center top;
     background-color: #eef0f4;
   }

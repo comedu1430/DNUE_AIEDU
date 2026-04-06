@@ -495,6 +495,11 @@ function HomePage() {
         <div className="landing-hero reveal-on-scroll is-visible">
           <div className="landing-copy">
             <div className="landing-type-lockup">
+              <p className="landing-kicker">
+                Daegu National University of Education
+                <br />
+                Graduate School of AI Education
+              </p>
               <h1>
                 Research, Pedagogy, and AI Innovation
                 <br />

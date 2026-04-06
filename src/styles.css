@@ -262,16 +262,14 @@ button {
   transform: scale(1);
   transform-origin: center;
   pointer-events: none;
-  opacity: 0.78;
-  filter: saturate(0.5) brightness(1.07) contrast(0.78) blur(0.24px);
+  opacity: 0.84;
+  filter: saturate(0.58) brightness(1.04) contrast(0.82);
 }
 
 .landing-overlay {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(180deg, rgba(243, 243, 239, 0.28), rgba(243, 243, 239, 0.18) 22%, rgba(243, 243, 239, 0.12) 48%, rgba(243, 243, 239, 0.22) 78%, rgba(243, 243, 239, 0.36) 100%),
-    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01) 58%);
+  background: linear-gradient(180deg, rgba(243, 243, 239, 0.18), rgba(243, 243, 239, 0.16) 32%, rgba(243, 243, 239, 0.22) 100%);
 }
 
 .landing-hero {
@@ -294,6 +292,15 @@ button {
 .landing-type-lockup {
   max-width: 1100px;
   margin: 0 auto;
+}
+
+.landing-kicker {
+  margin: 0 0 20px;
+  font-size: clamp(18px, 1.5vw, 26px);
+  line-height: 1.22;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  color: rgba(17, 19, 24, 0.9);
 }
 
 .landing-copy h1 {
@@ -1112,6 +1119,11 @@ button {
     font-size: clamp(30px, 8vw, 46px);
   }
 
+  .landing-kicker {
+    margin-bottom: 14px;
+    font-size: clamp(15px, 3.8vw, 20px);
+  }
+
   .landing-description {
     max-width: none;
     font-size: 16px;
@@ -1325,6 +1337,24 @@ button {
 
   .submenu-link {
     font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .faculty-profile-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .faculty-profile-card .profile-image {
+    aspect-ratio: 4 / 5.4;
+    min-height: 180px;
+  }
+
+  .faculty-profile-card .profile-image.has-photo {
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-color: #eef0f4;
   }
 }
 

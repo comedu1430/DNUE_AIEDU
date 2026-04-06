@@ -1199,7 +1199,7 @@ button {
   }
 
   .faculty-profile-card .profile-image.has-photo .profile-photo {
-    object-fit: contain;
+    object-fit: cover;
   }
 
   .student-profile-grid .profile-card {
@@ -1342,15 +1342,7 @@ button {
   }
 
   .faculty-profile-card .profile-image.has-photo {
-    background-size: contain;
-    background-position: center top;
-    background-repeat: no-repeat;
     background-color: #eef0f4;
-  }
-
-  .faculty-profile-card .profile-image.is-square-photo {
-    aspect-ratio: 1 / 1;
-    min-height: 0;
   }
 }
 

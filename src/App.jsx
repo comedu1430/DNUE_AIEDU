@@ -203,7 +203,7 @@ const PUBLICATION_LISTS = {
     {
       type: "Korean Journal",
       title: "The Impact of Prompt Formats on the Robustness of LLMs",
-      authors: "SeungHyun Lee and YoungHo Lee",
+      authors: "Seunghyun Lee and Youngho Lee",
       venue: "The Journal of Korean Association of Computer Education, 28(12), 1-12.",
       doi: "10.32431/kace.2025.28.12.001",
       url: "https://doi.org/10.32431/kace.2025.28.12.001",
@@ -213,7 +213,7 @@ const PUBLICATION_LISTS = {
     {
       type: "Korean Journal",
       title: "Designing an Automated Syllabus Assessment Framework Using a RAG-based LLM",
-      authors: "YongHan Lee and Jaekwoun Shim",
+      authors: "Younghan Lee and Jaekwon Shim",
       venue: "Journal of Convergence Science, Technology, and Society, 3(2), 59-67.",
       doi: "10.56366/jcsts.2024.3.2.59",
       url: "https://doi.org/10.56366/jcsts.2024.3.2.59",

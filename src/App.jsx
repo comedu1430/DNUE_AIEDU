@@ -402,9 +402,9 @@ function getProfiles(sectionKey) {
   return FACULTY_PROFILES;
 }
 
-function Brand({ dark, onHome, textOnly = false, markOnly = false, homeText = false }) {
+function Brand({ dark, onHome, textOnly = false, markOnly = false }) {
   return (
-    <button className={`brand ${textOnly ? "is-text-only" : ""} ${markOnly ? "is-mark-only" : ""} ${homeText ? "is-home-text" : ""}`} type="button" aria-label="Home" onClick={onHome}>
+    <button className={`brand ${textOnly ? "is-text-only" : ""} ${markOnly ? "is-mark-only" : ""}`} type="button" aria-label="Home" onClick={onHome}>
       {!textOnly ? <span className={`brand-mark ${dark ? "is-dark" : "is-light"}`} aria-hidden="true" /> : null}
       {!markOnly ? (
         <span className="brand-text">
@@ -420,7 +420,7 @@ function Brand({ dark, onHome, textOnly = false, markOnly = false, homeText = fa
 function Header({ dark, isHome, onHome, onNavigate, onOpenMenu, desktopMenuKey, onToggleDesktopMenu }) {
   return (
     <header className={`top-header ${dark ? "is-dark" : "is-light"} ${isHome ? "is-home" : "is-inner"}`}>
-      <Brand dark={dark} onHome={onHome} homeText={isHome} />
+      <Brand dark={dark} onHome={onHome} />
       <nav
         className="desktop-nav"
         aria-label="Primary"

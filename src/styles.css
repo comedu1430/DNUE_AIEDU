@@ -138,12 +138,6 @@ button {
   font-weight: 400;
 }
 
-.brand.is-home-text .brand-text {
-  font-size: 17px;
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-}
-
 .desktop-nav {
   margin-left: auto;
   margin-right: 0;

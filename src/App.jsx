@@ -564,6 +564,16 @@ function HomePage() {
 function LandingBackdrop() {
   const [isLoaded, setIsLoaded] = useState(false);
 
+  useEffect(() => {
+    setIsLoaded(false);
+  }, []);
+
+  const handleLoad = () => {
+    window.setTimeout(() => {
+      setIsLoaded(true);
+    }, 180);
+  };
+
   return (
     <div className="landing-lightfield" aria-hidden="true">
       <iframe
@@ -571,7 +581,7 @@ function LandingBackdrop() {
         src="https://my.spline.design/displacelines-LS4TQIxZI0gVrTKi0K58h1m1/"
         frameBorder="0"
         title="Landing background"
-        onLoad={() => setIsLoaded(true)}
+        onLoad={handleLoad}
       />
     </div>
   );
@@ -647,11 +657,9 @@ function ProfileGrid({ sectionKey }) {
     <div className={`profile-grid ${isFaculty ? "faculty-profile-grid" : ""}`}>
       {profiles.map((profile) => (
         <article key={`${sectionKey}-${profile.name}`} className={`profile-card ${isFaculty ? "faculty-profile-card" : ""}`}>
-          <div
-            className={`profile-image ${profile.image ? "has-photo" : ""}`}
-            style={profile.image ? { backgroundImage: `url(${profile.image})` } : undefined}
-            aria-hidden="true"
-          />
+          <div className={`profile-image ${profile.image ? "has-photo" : ""}`} aria-hidden="true">
+            {profile.image ? <img className="profile-photo" src={profile.image} alt="" loading="lazy" /> : null}
+          </div>
           <div className="profile-content">
             <h4>{profile.name}</h4>
             <p>{profile.position}</p>
@@ -689,11 +697,9 @@ function StudentYearGroups() {
           <div className="profile-grid student-profile-grid">
             {STUDENT_PROFILES[year].map((profile) => (
               <article key={`${year}-${profile.name}`} className="profile-card">
-                <div
-                  className={`profile-image ${profile.image ? "has-photo" : ""}`}
-                  style={profile.image ? { backgroundImage: `url(${profile.image})` } : undefined}
-                  aria-hidden="true"
-                />
+                <div className={`profile-image ${profile.image ? "has-photo" : ""}`} aria-hidden="true">
+                  {profile.image ? <img className="profile-photo" src={profile.image} alt="" loading="lazy" /> : null}
+                </div>
                 <div className="profile-content">
                   <h4>{profile.name}</h4>
                   <p>{profile.lab}</p>

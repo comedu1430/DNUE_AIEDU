@@ -1347,6 +1347,11 @@ button {
     background-repeat: no-repeat;
     background-color: #eef0f4;
   }
+
+  .faculty-profile-card .profile-image.is-square-photo {
+    aspect-ratio: 1 / 1;
+    min-height: 0;
+  }
 }
 
 @keyframes menuPanelIn {

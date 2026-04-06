@@ -145,6 +145,7 @@ const FACULTY_PROFILES = [
     email: "yhlee@dnue.ac.kr",
     phone: "053-620-1433",
     image: asset("youngho-lee.png"),
+    imageClassName: "is-square-photo",
     research: "Computer Education, AI Education",
     courses: [
       "AI Digital Literacy Research: analyzes AI digital literacy assessment tools from media, ethics, and tool-use perspectives for classroom application.",
@@ -203,7 +204,7 @@ const PUBLICATION_LISTS = {
     {
       type: "Korean Journal",
       title: "The Impact of Prompt Formats on the Robustness of LLMs",
-      authors: "Lee Seung Hyun and Lee Youngho",
+      authors: "SeungHyun Lee and Youngho LEE",
       venue: "The Journal of Korean Association of Computer Education, 28(12), 1-12.",
       doi: "10.32431/kace.2025.28.12.001",
       url: "https://doi.org/10.32431/kace.2025.28.12.001",
@@ -659,7 +660,7 @@ function ProfileGrid({ sectionKey }) {
     <div className={`profile-grid ${isFaculty ? "faculty-profile-grid" : ""}`}>
       {profiles.map((profile) => (
         <article key={`${sectionKey}-${profile.name}`} className={`profile-card ${isFaculty ? "faculty-profile-card" : ""}`}>
-          <div className={`profile-image ${profile.image ? "has-photo" : ""}`} aria-hidden="true">
+          <div className={`profile-image ${profile.image ? "has-photo" : ""} ${profile.imageClassName ?? ""}`} aria-hidden="true">
             {profile.image ? <img className="profile-photo" src={profile.image} alt="" loading="lazy" /> : null}
           </div>
           <div className="profile-content">

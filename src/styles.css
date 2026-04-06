@@ -1190,7 +1190,13 @@ button {
 
   .faculty-profile-card .profile-image,
   .student-profile-grid .profile-image {
-    aspect-ratio: 1 / 1.08;
+    aspect-ratio: 5 / 6.6;
+  }
+
+  .faculty-profile-card .profile-image.has-photo {
+    background-size: contain;
+    background-position: center top;
+    background-color: #eef0f4;
   }
 
   .student-profile-grid .profile-card {

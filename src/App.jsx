@@ -566,7 +566,6 @@ function LandingBackdrop() {
 
   return (
     <div className="landing-lightfield" aria-hidden="true">
-      <div className={`landing-fallback ${isLoaded ? "is-hidden" : ""}`} />
       <iframe
         className={`landing-spline ${isLoaded ? "is-loaded" : ""}`}
         src="https://my.spline.design/displacelines-LS4TQIxZI0gVrTKi0K58h1m1/"

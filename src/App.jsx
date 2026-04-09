@@ -1,6 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 const asset = (path) => `${import.meta.env.BASE_URL}${path}`;
+const slugify = (value) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+const personAnchorId = ({ section, name, year = "" }) =>
+  `${section}-${year ? `${year}-` : ""}${slugify(name)}`;
+const studentCvSlug = (name, year) => `${slugify(name)}-${year}`;
 
 const SITE_MAP = [
   {
@@ -32,40 +40,23 @@ const SITE_MAP = [
     ],
   },
   {
+    key: "labs",
+    label: "LABS",
+    sections: [],
+  },
+  {
     key: "academics",
     label: "ACADEMICS",
     sections: [
       { key: "admission", label: "Admissions" },
-      { key: "notices", label: "Program Notices" },
       { key: "graduation", label: "Graduation Requirements" },
-      { key: "completion", label: "Completion Guide" },
       { key: "curriculum", label: "Curriculum" },
-      { key: "certificate", label: "Professional Competencies" },
-      { key: "resources", label: "Resources" },
-      { key: "integrated", label: "Interdisciplinary Extension" },
     ],
   },
   {
     key: "news",
     label: "NEWS",
-    sections: [
-      { key: "school-news", label: "Department News" },
-      { key: "seminars", label: "Seminars" },
-      { key: "media", label: "Media" },
-      { key: "announcements", label: "Announcements" },
-    ],
-  },
-  {
-    key: "bk21",
-    label: "PROJECT",
-    sections: [
-      { key: "welcome", label: "Overview" },
-      { key: "vision", label: "Vision" },
-      { key: "members", label: "Participants" },
-      { key: "projects", label: "Project Notices" },
-      { key: "achievements", label: "Achievements" },
-      { key: "bk-resources", label: "Resources" },
-    ],
+    sections: [],
   },
 ];
 
@@ -171,10 +162,9 @@ const STUDENT_PROFILES = {
     { name: "Jaeeon Park", lab: "Member of the Panwoo Park Lab" },
     { name: "Kidong Kwon", lab: "Member of the Inhwan Yoo Lab" },
     { name: "Horyeon Nam", lab: "Member of the Youngkwon Bae Lab" },
+    { name: "Jeongeun Choi", lab: "Member of the Wooyeol Kim Lab" },
     { name: "Eunjeong Lee", lab: "Member of the Youngho Lee Lab" },
-    { name: "Minseo Kim", lab: "Member of the Jaekwon Shim Lab" },
-    { name: "Jiwon Choi", lab: "Member of the Wooyeol Kim Lab" },
-    { name: "Hyerin Seo", lab: "Member of the Youngho Lee Lab" },
+    { name: "Jaeeun Yoon", lab: "Member of the Jaekwon Shim Lab" },
   ],
   "2025": [
     { name: "Incheol Kim", lab: "Member of the Panwoo Park Lab" },
@@ -197,16 +187,147 @@ const STUDENT_PROFILES = {
   ],
 };
 
+const LAB_CARDS = [
+  {
+    title: "Panwoo Park Lab",
+    keywords: ["AI Education Research", "Distance Learning", "Curriculum Design"],
+    description: "Research on AI education methodology, curriculum consulting, and comparative studies of AI instruction across learning environments.",
+  },
+  {
+    title: "Inhwan Yoo Lab",
+    keywords: ["SW/AI Education", "Data Science", "Instructional Design"],
+    description: "Work focused on SW-AI education topics, data-driven learning design, and AI-based teaching and learning methodologies.",
+  },
+  {
+    title: "Youngkwon Bae Lab",
+    keywords: ["AI Policy", "Digital Innovation", "Educational Content"],
+    description: "Research on digital innovation planning, AI policy in education, and the development of AI-supported educational content.",
+  },
+  {
+    title: "Wooyeol Kim Lab",
+    keywords: ["Programming Languages", "Leadership", "Project Research"],
+    description: "Explores advanced programming language research, AI digital leadership, and collaborative project-based inquiry in education.",
+  },
+  {
+    title: "Youngho Lee Lab",
+    keywords: ["AI Literacy", "AI Programming", "Classroom Practice"],
+    description: "Focused on AI digital literacy, AI programming practices, and practical classroom applications of AI in school settings.",
+  },
+  {
+    title: "Jaekwon Shim Lab",
+    keywords: ["AI Consulting", "AIDT Research", "Learning Ecology"],
+    description: "Investigates AI education consulting, AI-based teaching and learning platforms, and the design of future learning ecosystems.",
+  },
+];
+
+const STUDENT_CV_PROFILES = Object.entries(STUDENT_PROFILES).flatMap(([year, profiles]) =>
+  profiles.map((profile) => ({
+    ...profile,
+    year,
+    slug: studentCvSlug(profile.name, year),
+    title: "Curriculum Vitae",
+    email: `${slugify(profile.name).replace(/-/g, ".")}@dnue.ac.kr`,
+    keywords: ["AI Pedagogy", "Educational Data", "Future Learning"],
+    education: [
+      "Graduate School of AI Education, Daegu National University of Education",
+      `PhD Student Cohort ${year}`,
+    ],
+    researchInterests: [
+      "AI pedagogy and instructional innovation",
+      "Educational data and future classroom design",
+      "School-based applications of artificial intelligence",
+    ],
+    activities: [
+      "Participation in doctoral seminars and collaborative research activities",
+      "Development of research interests aligned with the direction of the lab",
+    ],
+    presentedPapers: [],
+  }))
+);
+
 const PUBLICATION_LISTS = {
-  "2026": [],
+  "2026": [
+    {
+      type: "Korean Journal",
+      title: "Comparative Analysis of AI Models for Enhancing Collaborative Learning Support Systems: Focusing on Korean Speech Recognition and Feedback",
+      authors: "Gukhwan Bae, Youngho Lee, and Panwoo Park",
+      venue: "Journal of the Korean Association of Information Education, 30(1), 125-135.",
+      doi: "",
+      url: "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003309150",
+    },
+    {
+      type: "Korean Journal",
+      title: "Exploring AI Education Improvement Strategies Based on the Concept of Context Engineering in the 2022 Revised Curriculum",
+      authors: "Inhwan Yoo and Minjeong Kang",
+      venue: "The Journal of the Korean Association of Computer Education, 30(1), 137-147.",
+      doi: "",
+      url: "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003309156",
+    },
+    {
+      type: "Korean Journal",
+      title: "Exploring AI Programming Education Methods Using AI Agents and Educational Robots",
+      authors: "Inhwan Yoo and Daeryun Park",
+      venue: "The Journal of the Korean Association of Computer Education, 30(1), 149-159.",
+      doi: "",
+      url: "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003309158",
+    },
+    {
+      type: "Korean Journal",
+      title: "A Study on the Development of a Teacher Training System to Enhance Digital Educational Competency",
+      authors: "Jeongseo Lee and Wooyeol Kim",
+      venue: "Journal of Consulting Convergence Research, 6(1), 2-7.",
+      doi: "10.55479/JCCR.2026.6.1.2",
+      url: "https://doi.org/10.55479/JCCR.2026.6.1.2",
+    },
+  ],
   "2025": [
     {
       type: "Korean Journal",
       title: "The Impact of Prompt Formats on the Robustness of LLMs",
       authors: "Seunghyun Lee and Youngho Lee",
-      venue: "The Journal of Korean Association of Computer Education, 28(12), 1-12.",
+      venue: "The Journal of the Korean Association of Computer Education, 28(12), 1-12.",
       doi: "10.32431/kace.2025.28.12.001",
       url: "https://doi.org/10.32431/kace.2025.28.12.001",
+    },
+    {
+      type: "Korean Journal",
+      title: "Research on Developing and Applying a Korean-based Lightweight LLM for Schools",
+      authors: "Gukhwan Bae, Youngho Lee, and Panwoo Park",
+      venue: "Journal of the Korean Association of Information Education, 29(4), 459-470.",
+      doi: "",
+      url: "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003236175",
+    },
+    {
+      type: "Korean Journal",
+      title: "Development and Implementation of IB PYP-based Unit of Inquiry and Machine Learning Education Program",
+      authors: "Hyejeong Cho and Inhwan Yoo",
+      venue: "Journal of Elementary Education, 41(3), 1-20.",
+      doi: "10.23103/dnueje.2025.41.3.1",
+      url: "https://doi.org/10.23103/dnueje.2025.41.3.1",
+    },
+    {
+      type: "Korean Journal",
+      title: "Development of an AI Chatbot for Teaching Reading to Elementary School Students",
+      authors: "Seunguk Jeong and Panwoo Park",
+      venue: "Intelligence Information Convergence and Future Education, 4(28), 1-7.",
+      doi: "",
+      url: "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003278172",
+    },
+    {
+      type: "Korean Journal",
+      title: "Policies and Case Studies of Major Countries for Artificial Intelligence-based Education",
+      authors: "Panwoo Park",
+      venue: "Journal of the Korean Association of Information Education, 29(2), 133-140.",
+      doi: "",
+      url: "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003201860",
+    },
+    {
+      type: "Korean Journal",
+      title: "A Study on the Design and Development of an AI Based Group Chat System for Collaborative Learning",
+      authors: "Youngho Lee",
+      venue: "Intelligence Information Convergence and Future Education, 4(31), 1-8.",
+      doi: "",
+      url: "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003280651",
     },
   ],
   "2024": [
@@ -268,6 +389,14 @@ const PAGE_COPY = {
       default: [
         "This page introduces the faculty and academic members who shape the AI Education major.",
       ],
+    },
+  },
+  labs: {
+    title: "Labs",
+    headline: "Research groups and thematic lab directions",
+    subheadline: "",
+    body: {
+      default: [],
     },
   },
   research: {
@@ -440,7 +569,7 @@ function Header({ dark, isHome, onHome, onNavigate, onOpenMenu, desktopMenuKey, 
               }}
             >
               <button className="desktop-nav-link" type="button" onClick={() => onNavigate(menu.key, "")}>
-                {menu.label}
+                <span>{menu.label}</span>
               </button>
               {menu.sections.length > 0 ? (
                 <div className="desktop-dropdown">
@@ -611,8 +740,19 @@ function EditorialVisual() {
   );
 }
 
-function PublicationList({ sectionKey }) {
+function PublicationList({ sectionKey, query, searchMode }) {
   const items = PUBLICATION_LISTS[sectionKey] || PUBLICATION_LISTS["2026"];
+  const normalizedQuery = query.trim().toLowerCase();
+  const allItems = Object.entries(PUBLICATION_LISTS).flatMap(([year, yearItems]) =>
+    yearItems.map((item) => ({ ...item, year }))
+  );
+  const filteredItems = normalizedQuery
+    ? allItems.filter((item) =>
+        (searchMode === "authors" ? item.authors : item.title)
+          .toLowerCase()
+          .includes(normalizedQuery)
+      )
+    : items.map((item) => ({ ...item, year: sectionKey }));
 
   if (items.length === 0) {
     return (
@@ -625,10 +765,22 @@ function PublicationList({ sectionKey }) {
     );
   }
 
+  if (filteredItems.length === 0) {
+    return (
+      <div className="publication-list">
+        <article className="publication-item">
+          <p className="publication-type">No matching results</p>
+          <h4>No publications matched “{query}”.</h4>
+        </article>
+      </div>
+    );
+  }
+
   return (
     <div className="publication-list">
-      {items.map((item) => (
-        <article key={`${sectionKey}-${item.title}`} className="publication-item">
+      {filteredItems.map((item) => (
+        <article key={`${item.year}-${item.title}`} className="publication-item">
+          {normalizedQuery ? <p className="publication-year-tag">{item.year}</p> : null}
           <p className="publication-type">{item.type}</p>
           <h4>
             <a href={item.url} target="_blank" rel="noreferrer">
@@ -658,7 +810,11 @@ function ProfileGrid({ sectionKey }) {
   return (
     <div className={`profile-grid ${isFaculty ? "faculty-profile-grid" : ""}`}>
       {profiles.map((profile) => (
-        <article key={`${sectionKey}-${profile.name}`} className={`profile-card ${isFaculty ? "faculty-profile-card" : ""}`}>
+        <article
+          key={`${sectionKey}-${profile.name}`}
+          id={personAnchorId({ section: sectionKey, name: profile.name })}
+          className={`profile-card ${isFaculty ? "faculty-profile-card" : ""}`}
+        >
           <div className={`profile-image ${profile.image ? "has-photo" : ""} ${profile.imageClassName ?? ""}`} aria-hidden="true">
             {profile.image ? <img className="profile-photo" src={profile.image} alt="" loading="lazy" /> : null}
           </div>
@@ -668,7 +824,7 @@ function ProfileGrid({ sectionKey }) {
             {isFaculty ? (
               <>
                 <p><strong>Research Area</strong> {profile.research}</p>
-                <p><strong>Courses</strong> {profile.courses.join(" / ")}</p>
+                <p className="profile-courses"><strong>Courses</strong> {profile.courses.join(" / ")}</p>
                 <p><strong>Office</strong> {profile.office}</p>
                 <p><strong>Phone</strong> {profile.phone}</p>
                 <p><strong>Email</strong> {profile.email}</p>
@@ -688,7 +844,7 @@ function ProfileGrid({ sectionKey }) {
   );
 }
 
-function StudentYearGroups() {
+function StudentYearGroups({ onOpenCv }) {
   const years = ["2024", "2025", "2026"];
 
   return (
@@ -698,13 +854,16 @@ function StudentYearGroups() {
           <h3>{year}</h3>
           <div className="profile-grid student-profile-grid">
             {STUDENT_PROFILES[year].map((profile) => (
-              <article key={`${year}-${profile.name}`} className="profile-card">
+              <article key={`${year}-${profile.name}`} id={personAnchorId({ section: "students", name: profile.name, year })} className="profile-card">
                 <div className={`profile-image ${profile.image ? "has-photo" : ""}`} aria-hidden="true">
                   {profile.image ? <img className="profile-photo" src={profile.image} alt="" loading="lazy" /> : null}
                 </div>
                 <div className="profile-content">
                   <h4>{profile.name}</h4>
                   <p>{profile.lab}</p>
+                  <button type="button" className="student-cv-link" onClick={() => onOpenCv(studentCvSlug(profile.name, year))}>
+                    CV
+                  </button>
                 </div>
               </article>
             ))}
@@ -715,15 +874,122 @@ function StudentYearGroups() {
   );
 }
 
-function InternalPage({ menuKey, sectionKey, onSectionSelect }) {
+function LabsShowcase({ onOpenFaculty }) {
+  return (
+    <div className="labs-showcase">
+      <div className="labs-scroll" role="list" aria-label="Lab cards">
+        {LAB_CARDS.map((lab) => (
+          <article key={lab.title} className="lab-card" role="listitem">
+            <h2>{lab.title}</h2>
+            <div className="lab-card-tags">
+              {lab.keywords.map((keyword) => (
+                <span key={`${lab.title}-${keyword}`}>{keyword}</span>
+              ))}
+            </div>
+            <p className="lab-card-description">{lab.description}</p>
+            <button type="button" className="lab-card-homepage-button" onClick={onOpenFaculty} aria-label={`Open ${lab.title}`}>
+              <span aria-hidden="true">→</span>
+            </button>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function StudentCvPage({ slug, onBack }) {
+  const profile = STUDENT_CV_PROFILES.find((item) => item.slug === slug);
+
+  if (!profile) {
+    return null;
+  }
+
+  return (
+    <section className="internal-page student-cv-page" id="content">
+      <div className="content-shell student-cv-shell reveal-on-scroll is-visible">
+        <button type="button" className="student-cv-back" onClick={onBack}>
+          ← Back to PhD Students
+        </button>
+        <div className="student-cv-header">
+          <p className="student-cv-kicker">PhD Students · {profile.year}</p>
+          <h1>{profile.name}</h1>
+          <div className="student-cv-meta">
+            <p>
+              <span>Email</span>
+              <a href={`mailto:${profile.email}`}>{profile.email}</a>
+            </p>
+            <p>
+              <span>Lab</span>
+              {profile.lab}
+            </p>
+          </div>
+        </div>
+        <div className="student-cv-stack">
+          <section className="student-cv-section">
+            <h3>Research Keywords</h3>
+            <p>{profile.keywords.join(" / ")}</p>
+          </section>
+          <section className="student-cv-section">
+            <h3>Education</h3>
+            <ul>
+              {profile.education.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </section>
+          <section className="student-cv-section">
+            <h3>Research Interests</h3>
+            <ul>
+              {profile.researchInterests.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </section>
+          <section className="student-cv-section">
+            <h3>Academic Activities</h3>
+            <ul>
+              {profile.activities.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </section>
+          <section className="student-cv-section">
+            <h3>Presented Papers</h3>
+            {profile.presentedPapers.length > 0 ? (
+              <ul>
+                {profile.presentedPapers.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>No presented papers have been added yet.</p>
+            )}
+          </section>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function InternalPage({ menuKey, sectionKey, onSectionSelect, onOpenCv }) {
   const menu = getMenu(menuKey);
   const content = getPageContent(menuKey, sectionKey);
   const currentSection = sectionKey || menu?.sections[0]?.key || "";
   const currentLabel = currentSection ? getSectionLabel(menuKey, currentSection) : "";
   const showVisual = menuKey === "about";
   const showProfiles = menuKey === "people";
+  const showLabs = menuKey === "labs";
   const showPublications = menuKey === "research";
   const useWidePeopleLayout = menuKey === "people" && (currentSection === "faculty" || currentSection === "students");
+  const useWideLabsLayout = menuKey === "labs";
+  const [publicationQuery, setPublicationQuery] = useState("");
+  const [publicationSearchMode, setPublicationSearchMode] = useState("authors");
+
+  useEffect(() => {
+    if (showPublications) {
+      setPublicationQuery("");
+    }
+  }, [showPublications, currentSection]);
 
   if (!menu || !content) {
     return null;
@@ -749,16 +1015,48 @@ function InternalPage({ menuKey, sectionKey, onSectionSelect }) {
         ) : null}
       </div>
 
-      <div className={`content-shell internal-grid reveal-on-scroll ${showVisual ? "" : "single-column"} ${showPublications ? "research-layout" : ""} ${useWidePeopleLayout ? "wide-people-layout" : ""}`}>
+      <div className={`content-shell internal-grid reveal-on-scroll ${showVisual ? "" : "single-column"} ${showPublications ? "research-layout" : ""} ${useWidePeopleLayout ? "wide-people-layout" : ""} ${useWideLabsLayout ? "wide-labs-layout" : ""}`}>
         <article className="internal-copy">
-          {!showPublications ? <h2>{currentLabel || content.headline}</h2> : null}
-          {!showPublications && content.subheadline ? <h3>{content.subheadline}</h3> : null}
-          {!showPublications ? content.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>) : null}
+          {!showPublications && !showLabs ? <h2>{currentLabel || content.headline}</h2> : null}
+          {!showPublications && !showLabs && content.subheadline ? <h3>{content.subheadline}</h3> : null}
+          {!showPublications && !showLabs ? content.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>) : null}
+          {showPublications ? (
+            <div className="publication-search">
+              <label className="publication-search-label" htmlFor="publication-search">
+                Search publications
+              </label>
+              <div className="publication-search-row">
+                <div className="section-select-wrap publication-search-select-wrap">
+                  <label className="sr-only" htmlFor="publication-search-mode">
+                    Select publication search mode
+                  </label>
+                  <select
+                    id="publication-search-mode"
+                    className="section-select publication-search-select"
+                    value={publicationSearchMode}
+                    onChange={(event) => setPublicationSearchMode(event.target.value)}
+                  >
+                    <option value="authors">Author</option>
+                    <option value="title">Title</option>
+                  </select>
+                </div>
+                <input
+                  id="publication-search"
+                  className="publication-search-input"
+                  type="search"
+                  placeholder={publicationSearchMode === "authors" ? "Search by author" : "Search by title"}
+                  value={publicationQuery}
+                  onChange={(event) => setPublicationQuery(event.target.value)}
+                />
+              </div>
+            </div>
+          ) : null}
           {showProfiles && currentSection === "faculty" ? <ProfileGrid sectionKey={currentSection} /> : null}
-          {menuKey === "people" && currentSection === "students" ? <StudentYearGroups /> : null}
+          {menuKey === "people" && currentSection === "students" ? <StudentYearGroups onOpenCv={onOpenCv} /> : null}
+          {showLabs ? <LabsShowcase onOpenFaculty={() => onSectionSelect("people", "faculty")} /> : null}
         </article>
         {showVisual ? <EditorialVisual /> : null}
-        {showPublications ? <PublicationList sectionKey={currentSection} /> : null}
+        {showPublications ? <PublicationList sectionKey={currentSection} query={publicationQuery} searchMode={publicationSearchMode} /> : null}
       </div>
     </section>
   );
@@ -798,7 +1096,17 @@ function MenuOverlay({ expandedMenuKey, onToggleMenu, onSelectSection, onClose }
         <div className="menu-list">
           {SITE_MAP.map((menu) => (
             <div key={menu.key} className={`menu-group ${expandedMenuKey === menu.key ? "is-expanded" : ""}`}>
-              <button className="menu-link" type="button" onClick={() => onToggleMenu(menu.key)}>
+              <button
+                className="menu-link"
+                type="button"
+                onClick={() => {
+                  if (menu.sections.length === 0) {
+                    onSelectSection(menu.key, "");
+                    return;
+                  }
+                  onToggleMenu(menu.key);
+                }}
+              >
                 <span>{menu.label}</span>
               </button>
               {menu.sections.length > 0 ? (
@@ -823,12 +1131,14 @@ function MenuOverlay({ expandedMenuKey, onToggleMenu, onSelectSection, onClose }
 export default function App() {
   const [currentPage, setCurrentPage] = useState("home");
   const [currentSection, setCurrentSection] = useState("");
+  const [currentCvSlug, setCurrentCvSlug] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [expandedMenuKey, setExpandedMenuKey] = useState("");
   const [desktopMenuKey, setDesktopMenuKey] = useState("");
   const shellRef = useRef(null);
 
   const isHome = currentPage === "home";
+  const isStudentCv = currentPage === "student-cv";
 
   const activeSection = useMemo(() => {
     if (isHome) {
@@ -840,6 +1150,7 @@ export default function App() {
   const navigateHome = () => {
     setCurrentPage("home");
     setCurrentSection("");
+    setCurrentCvSlug("");
     setMenuOpen(false);
     setExpandedMenuKey("");
     setDesktopMenuKey("");
@@ -849,8 +1160,19 @@ export default function App() {
   const navigateTo = (menuKey, sectionKey = "") => {
     setCurrentPage(menuKey);
     setCurrentSection(sectionKey);
+    setCurrentCvSlug("");
     setMenuOpen(false);
     setExpandedMenuKey(sectionKey ? menuKey : "");
+    setDesktopMenuKey("");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const openStudentCv = (slug) => {
+    setCurrentPage("student-cv");
+    setCurrentSection("");
+    setCurrentCvSlug(slug);
+    setMenuOpen(false);
+    setExpandedMenuKey("");
     setDesktopMenuKey("");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -928,7 +1250,18 @@ export default function App() {
           setDesktopMenuKey(menuKey);
         }}
       />
-      {isHome ? <HomePage /> : <InternalPage menuKey={currentPage} sectionKey={activeSection} onSectionSelect={navigateTo} />}
+      {isHome ? (
+        <HomePage />
+      ) : isStudentCv ? (
+        <StudentCvPage slug={currentCvSlug} onBack={() => navigateTo("people", "students")} />
+      ) : (
+        <InternalPage
+          menuKey={currentPage}
+          sectionKey={activeSection}
+          onSectionSelect={navigateTo}
+          onOpenCv={openStudentCv}
+        />
+      )}
       <Footer isHome={isHome} onNavigate={navigateTo} />
       {menuOpen ? (
         <MenuOverlay

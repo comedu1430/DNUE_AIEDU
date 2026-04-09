@@ -138,7 +138,7 @@ button {
 .desktop-nav-list {
   display: flex;
   align-items: center;
-  gap: 34px;
+  gap: 42px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -149,6 +149,9 @@ button {
 }
 
 .desktop-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   padding: 4px 0;
   font-size: 18px;
   line-height: 1.2;
@@ -204,8 +207,8 @@ button {
 }
 
 .menu-button {
-  width: 28px;
-  height: 18px;
+  width: 24px;
+  height: 15px;
   padding: 0;
   margin-top: 7px;
   display: none;
@@ -216,7 +219,7 @@ button {
 .menu-button span {
   display: block;
   width: 100%;
-  height: 1.5px;
+  height: 1px;
   background: currentColor;
   border-radius: 999px;
 }
@@ -557,9 +560,62 @@ button {
 .section-tabs {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 18px;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.section-select-wrap {
+  display: inline-flex;
+  position: relative;
+}
+
+.section-select {
+  min-width: 190px;
+  height: 46px;
+  padding: 0 40px 0 16px;
+  border: 1px solid rgba(17, 24, 39, 0.1);
+  border-radius: 999px;
+  background:
+    linear-gradient(45deg, transparent 50%, rgba(17, 24, 39, 0.72) 50%),
+    linear-gradient(135deg, rgba(17, 24, 39, 0.72) 50%, transparent 50%),
+    rgba(255, 255, 255, 0.72);
+  background-position:
+    calc(100% - 22px) calc(50% - 2px),
+    calc(100% - 16px) calc(50% - 2px),
+    0 0;
+  background-size:
+    6px 6px,
+    6px 6px,
+    100% 100%;
+  background-repeat: no-repeat;
+  font-size: 15px;
+  line-height: 1;
+  color: rgba(17, 24, 39, 0.88);
+  appearance: none;
+  -webkit-appearance: none;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.section-select:focus {
+  outline: none;
+  border-color: rgba(17, 24, 39, 0.18);
+  box-shadow: 0 0 0 4px rgba(17, 24, 39, 0.04);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .section-tab {
@@ -593,6 +649,10 @@ button {
 }
 
 .internal-grid.wide-people-layout.single-column {
+  grid-template-columns: minmax(320px, 1fr);
+}
+
+.internal-grid.wide-labs-layout.single-column {
   grid-template-columns: minmax(320px, 1fr);
 }
 
@@ -646,6 +706,163 @@ button {
   grid-template-columns: 1fr;
 }
 
+.labs-showcase {
+  margin-top: 4px;
+}
+
+.labs-scroll {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  padding: 8px 0 0;
+}
+
+.lab-card {
+  min-height: min(28vw, 360px);
+  padding: 26px 24px 22px;
+  border-radius: 24px;
+  background: rgba(247, 246, 241, 0.94);
+  box-shadow:
+    0 10px 22px rgba(15, 23, 42, 0.03),
+    0 2px 6px rgba(15, 23, 42, 0.015),
+    0 1px 0 rgba(255, 255, 255, 0.62) inset;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.lab-card h2 {
+  margin: 0;
+  max-width: 10ch;
+  font-size: clamp(30px, 3.1vw, 52px);
+  line-height: 0.94;
+  letter-spacing: -0.05em;
+  font-weight: 500;
+}
+
+.lab-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 18px 0 14px;
+}
+
+.lab-card-tags span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 10px;
+  border: 1px solid rgba(17, 24, 39, 0.1);
+  border-radius: 999px;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  color: rgba(17, 24, 39, 0.72);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.lab-card-description {
+  margin: 0;
+  max-width: 28ch;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(17, 24, 39, 0.82);
+}
+
+.lab-card-homepage-button {
+  margin-top: 20px;
+  align-self: flex-end;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(243, 242, 237, 0.92);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 400;
+  color: rgba(17, 24, 39, 0.88);
+  transition:
+    background 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+  box-shadow:
+    0 6px 14px rgba(15, 23, 42, 0.045),
+    0 1px 0 rgba(255, 255, 255, 0.72) inset;
+}
+
+.lab-card-homepage-button:hover {
+  background: rgba(249, 248, 244, 1);
+  transform: translateY(-1px);
+  box-shadow:
+    0 8px 18px rgba(15, 23, 42, 0.055),
+    0 1px 0 rgba(255, 255, 255, 0.8) inset;
+}
+
+.publication-search {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.publication-search-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.publication-search-select-wrap {
+  flex: 0 0 160px;
+}
+
+.publication-search-select {
+  width: 100%;
+  min-width: 0;
+  background-color: rgba(255, 255, 255, 0.72);
+}
+
+.publication-search-label {
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(17, 24, 39, 0.46);
+}
+
+.publication-search-input {
+  width: 100%;
+  max-width: 980px;
+  flex: 1 1 520px;
+  height: 46px;
+  padding: 0 16px;
+  border: 1px solid rgba(17, 24, 39, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  font-size: 15px;
+  line-height: 1;
+  color: rgba(17, 24, 39, 0.88);
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.publication-search-input::placeholder {
+  color: rgba(17, 24, 39, 0.42);
+}
+
+.publication-search-input:focus {
+  outline: none;
+  border-color: rgba(17, 24, 39, 0.18);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 4px rgba(17, 24, 39, 0.04);
+}
+
 .publication-list {
   display: grid;
   grid-template-columns: 1fr;
@@ -655,6 +872,16 @@ button {
 .publication-item {
   padding: 0 0 18px;
   border-bottom: 1px solid rgba(17, 24, 39, 0.12);
+}
+
+.publication-year-tag {
+  margin: 0 0 8px;
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(17, 24, 39, 0.46);
 }
 
 .publication-type {
@@ -822,6 +1049,23 @@ button {
   color: var(--muted);
 }
 
+.student-cv-link {
+  align-self: flex-start;
+  margin-top: 10px;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(17, 24, 39, 0.72);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.student-cv-link:hover {
+  color: rgba(17, 24, 39, 0.92);
+}
+
 .profile-content {
   min-width: 0;
 }
@@ -841,6 +1085,118 @@ button {
 .faculty-profile-card .profile-content strong {
   color: var(--text);
   font-weight: 600;
+}
+
+.student-cv-page {
+  padding-top: 72px;
+}
+
+.student-cv-shell {
+  display: grid;
+  gap: 28px;
+  max-width: 1160px;
+}
+
+.student-cv-back {
+  justify-self: start;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.2;
+  color: rgba(17, 24, 39, 0.68);
+}
+
+.student-cv-back:hover {
+  color: rgba(17, 24, 39, 0.9);
+}
+
+.student-cv-header {
+  display: grid;
+  gap: 8px;
+}
+
+.student-cv-kicker {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(17, 24, 39, 0.46);
+}
+
+.student-cv-header h1 {
+  margin: 0;
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  font-weight: 500;
+}
+
+.student-cv-meta {
+  display: grid;
+  gap: 6px;
+  margin-top: 20px;
+}
+
+.student-cv-meta p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(17, 24, 39, 0.66);
+}
+
+.student-cv-meta span {
+  margin-right: 8px;
+  color: rgba(17, 24, 39, 0.46);
+}
+
+.student-cv-meta a {
+  color: rgba(17, 24, 39, 0.66);
+  text-decoration: none;
+}
+
+.student-cv-stack {
+  display: grid;
+  gap: 28px;
+}
+
+.student-cv-section {
+  padding: 0;
+  border-bottom: none;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.student-cv-section h3 {
+  margin: 0 0 16px;
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(17, 24, 39, 0.5);
+}
+
+.student-cv-section p,
+.student-cv-section li {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(17, 24, 39, 0.82);
+}
+
+.student-cv-section a {
+  color: rgba(17, 24, 39, 0.82);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.student-cv-section ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.student-cv-section li + li {
+  margin-top: 8px;
 }
 
 .site-footer.is-home {
@@ -1173,6 +1529,24 @@ button {
     gap: 14px;
   }
 
+  .labs-scroll {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .lab-card {
+    min-height: 420px;
+    padding: 30px 28px 28px;
+  }
+
+  .lab-card h2 {
+    font-size: clamp(34px, 5vw, 52px);
+  }
+
+  .lab-card-description {
+    font-size: 15px;
+  }
+
   .profile-card,
   .student-profile-grid .profile-card {
     max-width: none;
@@ -1181,17 +1555,17 @@ button {
 
   .faculty-profile-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
+    gap: 14px;
   }
 
   .faculty-profile-card {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 10px;
   }
 
   .faculty-profile-card .profile-image,
   .student-profile-grid .profile-image {
-    aspect-ratio: 5 / 6.6;
+    aspect-ratio: 5 / 5.9;
   }
 
   .faculty-profile-card .profile-image.has-photo {
@@ -1205,12 +1579,12 @@ button {
   .student-profile-grid .profile-card {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 8px;
     align-items: start;
   }
 
   .student-profile-grid .profile-image {
-    aspect-ratio: 1 / 1.08;
+    aspect-ratio: 1 / 0.94;
   }
 
   .hero-summary-bar {
@@ -1271,23 +1645,27 @@ button {
   }
 
   .faculty-profile-card .profile-content {
-    gap: 6px;
+    gap: 5px;
   }
 
   .faculty-profile-card h4,
   .student-profile-grid .profile-card h4 {
     margin-top: 0;
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .faculty-profile-card .profile-content p {
-    font-size: 11px;
-    line-height: 1.55;
+    font-size: 10px;
+    line-height: 1.48;
+  }
+
+  .faculty-profile-card .profile-content .profile-courses {
+    display: none;
   }
 
   .student-profile-grid .profile-content p {
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 12px;
+    line-height: 1.42;
   }
 
   .footer-main-tone {
@@ -1334,15 +1712,55 @@ button {
 @media (max-width: 768px) {
   .faculty-profile-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .labs-scroll {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .lab-card {
+    min-height: 380px;
+    padding: 26px 22px 24px;
+    border-radius: 22px;
+  }
+
+  .lab-card h2 {
+    font-size: clamp(28px, 8vw, 42px);
   }
 
   .faculty-profile-card .profile-image {
-    aspect-ratio: 4 / 5.4;
-    min-height: 180px;
+    aspect-ratio: 4 / 4.8;
+    min-height: 136px;
   }
 
   .faculty-profile-card .profile-image.has-photo {
     background-color: #eef0f4;
+  }
+
+  .student-profile-grid .profile-image {
+    aspect-ratio: 1 / 0.9;
+    min-height: 126px;
+  }
+
+  .publication-search-row {
+    align-items: stretch;
+  }
+
+  .publication-search-select-wrap {
+    flex-basis: 100%;
+  }
+
+  .publication-search-select,
+  .publication-search-input {
+    width: 100%;
+    max-width: none;
+  }
+
+  .faculty-profile-card .profile-content p,
+  .student-profile-grid .profile-content p {
+    font-size: 11px;
   }
 }
 

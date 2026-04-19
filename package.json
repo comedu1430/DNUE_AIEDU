@@ -7,7 +7,10 @@
     "servo-bridge": "node servo-bridge.mjs",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "notion:create": "node scripts/create-notion-cms.mjs",
+    "notion:sync": "node scripts/sync-notion.mjs",
+    "notion:seed": "node scripts/seed-notion-cms.mjs"
   },
   "dependencies": {
     "@mediapipe/pose": "^0.5.1675469404",

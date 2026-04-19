@@ -548,57 +548,57 @@ const CONFERENCE_GROUPS = [
   },
 ];
 
+const GRADUATION_REQUIREMENT_INTRO = {
+  title: "Publication Record Requirement",
+  body: "Students must satisfy the publication record requirement before applying for the doctoral dissertation review.",
+};
+
 const GRADUATION_REQUIREMENTS = [
   {
     number: "01",
-    title: "Publication Record Requirement",
-    body: "Students must satisfy the publication record requirement before applying for the doctoral dissertation review.",
-  },
-  {
-    number: "02",
     title: "Authorship and Timing",
     body: "Only publications in which the student is the primary author are recognized. The work must be published before the dissertation review, and papers accepted for publication or presentation are also recognized.",
   },
   {
-    number: "03",
+    number: "02",
     title: "Recognized Venues",
     body: "Only journals and academic conferences approved by the AI Education major are recognized as valid publication records.",
   },
   {
-    number: "04",
+    number: "03",
     title: "Conference Requirement",
     body: "Students must have three academic conference papers.",
   },
   {
-    number: "05",
+    number: "04",
     title: "Journal Requirement",
     body: "Students must have either two papers in KCI-listed or KCI-candidate journals, or one paper in an SSCI- or SCIE-level journal.",
   },
 ];
 
+const GRADUATION_REQUIREMENT_INTRO_KO = {
+  title: "논문 실적 요건",
+  body: "졸업을 위해서는 학위논문 심사 신청 이전에 논문 실적 기준을 충족해야 합니다.",
+};
+
 const GRADUATION_REQUIREMENTS_KO = [
   {
     number: "01",
-    title: "논문 실적 요건",
-    body: "졸업을 위해서는 학위논문 심사 신청 이전에 논문 실적 기준을 충족해야 합니다.",
-  },
-  {
-    number: "02",
     title: "저자 기준과 인정 시점",
     body: "주저자로 참여한 논문만 실적으로 인정되며, 학위논문 심사 이전에 게재되어야 합니다. 게재 또는 발표가 확정된 논문도 인정됩니다.",
   },
   {
-    number: "03",
+    number: "02",
     title: "인정 학술지 및 학술대회",
     body: "AI교육전공에서 인정하는 학술지와 학술대회만 논문 실적으로 인정됩니다.",
   },
   {
-    number: "04",
+    number: "03",
     title: "학술대회 논문 요건",
     body: "학술대회 논문 3편을 충족해야 합니다.",
   },
   {
-    number: "05",
+    number: "04",
     title: "학술지 논문 요건",
     body: "KCI 등재 또는 등재후보 학술지 논문 2편, 또는 SSCI·SCIE급 학술지 논문 1편을 충족해야 합니다.",
   },
@@ -1667,33 +1667,49 @@ function LabsShowcase({ onOpenFaculty }) {
 function ConferenceTables({ sectionKey, language }) {
   const text = getText(language);
   const [topConferenceQuery, setTopConferenceQuery] = useState("");
+  const [topConferenceSearchMode, setTopConferenceSearchMode] = useState("acronym");
+  const [domesticConferenceQuery, setDomesticConferenceQuery] = useState("");
+  const [domesticConferenceSearchMode, setDomesticConferenceSearchMode] = useState("conference");
   const [internationalConferenceQuery, setInternationalConferenceQuery] = useState("");
   const [internationalConferenceSearchMode, setInternationalConferenceSearchMode] = useState("conference");
   const selectedGroup = CONFERENCE_GROUPS.find((group) => group.key === sectionKey) || CONFERENCE_GROUPS[0];
   const showTopConferences = sectionKey === "top-cs";
+  const showDomesticSearch = sectionKey === "domestic";
   const showInternationalSearch = sectionKey === "international";
   const normalizedQuery = topConferenceQuery.trim().toLowerCase();
+  const normalizedDomesticQuery = domesticConferenceQuery.trim().toLowerCase();
   const normalizedInternationalQuery = internationalConferenceQuery.trim().toLowerCase();
   const filteredTopConferences = useMemo(() => {
     if (!normalizedQuery) {
       return CS_TOP_CONFERENCES;
     }
 
-    return CS_TOP_CONFERENCES.filter((item) =>
-      [
-        item.acronym,
-        item.name,
-        item.kiise2024,
-        item.bk21Plus2018,
-        item.kaistCs2022,
-        item.snuCse2024,
-        item.postechCse2026,
-      ]
+    return CS_TOP_CONFERENCES.filter((item) => {
+      const searchableFields = {
+        acronym: [item.acronym],
+        conference: [item.name],
+        rank: [
+          item.normalizedAverage,
+          item.normalizedAverage ? `${text.average} ${item.normalizedAverage}` : "",
+          item.kiise2024,
+          item.bk21Plus2018,
+          item.kaistCs2022,
+          item.snuCse2024,
+          item.postechCse2026,
+          item.kiise2024 ? `KIISE ${item.kiise2024}` : "",
+          item.bk21Plus2018 ? `BK21 ${item.bk21Plus2018}` : "",
+          item.kaistCs2022 ? `KAIST ${item.kaistCs2022}` : "",
+          item.snuCse2024 ? `SNU ${item.snuCse2024}` : "",
+          item.postechCse2026 ? `POSTECH ${item.postechCse2026}` : "",
+        ],
+      };
+      const searchableText = (searchableFields[topConferenceSearchMode] || searchableFields.acronym)
         .join(" ")
-        .toLowerCase()
-        .includes(normalizedQuery)
-    );
-  }, [normalizedQuery]);
+        .toLowerCase();
+
+      return searchableText.includes(normalizedQuery);
+    });
+  }, [normalizedQuery, topConferenceSearchMode]);
 
   const monthMap = {
     january: 0,
@@ -1801,6 +1817,125 @@ function ConferenceTables({ sectionKey, language }) {
       return searchableText.includes(normalizedInternationalQuery);
     });
   };
+  const filterDomesticConferenceItems = (items) => {
+    if (!normalizedDomesticQuery) {
+      return items;
+    }
+
+    return items.filter((item) => {
+      const dateParts = getScheduleDateParts(item.schedule);
+      const searchableFields = {
+        conference: [item.name, item.note],
+        date: [item.schedule, dateParts?.label, dateParts?.year, dateParts ? monthLabels[dateParts.month] : ""],
+        location: [item.location],
+      };
+      const searchableText = (searchableFields[domesticConferenceSearchMode] || searchableFields.conference)
+        .join(" ")
+        .toLowerCase();
+
+      return searchableText.includes(normalizedDomesticQuery);
+    });
+  };
+  const getConferenceSuggestions = (items, mode) => {
+    const suggestions = new Set();
+
+    items.forEach((item) => {
+      const dateParts = getScheduleDateParts(item.schedule);
+      const values = {
+        conference: [item.name],
+        date: [item.schedule, dateParts?.label, dateParts?.year, dateParts ? monthLabels[dateParts.month] : ""],
+        location: [item.location],
+      }[mode] || [item.name];
+
+      values.filter(Boolean).forEach((value) => suggestions.add(String(value)));
+    });
+
+    return Array.from(suggestions).sort((a, b) => a.localeCompare(b));
+  };
+  const getTopConferenceSuggestions = (mode) => {
+    const suggestions = new Set();
+
+    CS_TOP_CONFERENCES.forEach((item) => {
+      const values = {
+        acronym: [item.acronym],
+        conference: [item.name],
+        rank: [
+          item.normalizedAverage,
+          item.kiise2024 ? `KIISE ${item.kiise2024}` : "",
+          item.bk21Plus2018 ? `BK21 ${item.bk21Plus2018}` : "",
+          item.kaistCs2022 ? `KAIST ${item.kaistCs2022}` : "",
+          item.snuCse2024 ? `SNU ${item.snuCse2024}` : "",
+          item.postechCse2026 ? `POSTECH ${item.postechCse2026}` : "",
+        ],
+      }[mode] || [item.acronym];
+
+      values.filter(Boolean).forEach((value) => suggestions.add(String(value)));
+    });
+
+    return Array.from(suggestions).sort((a, b) => a.localeCompare(b));
+  };
+  const renderConferenceSearch = ({
+    id,
+    label,
+    mode,
+    setMode,
+    query,
+    setQuery,
+    datalistId,
+    suggestions,
+  }) => (
+    <div className="publication-search conference-main-search">
+      <label className="publication-search-label" htmlFor={id}>
+        {label}
+      </label>
+      <div className="publication-search-row">
+        <div className="section-select-wrap publication-search-select-wrap">
+          <label className="sr-only" htmlFor={`${id}-mode`}>
+            {language === "ko" ? "검색 기준 선택" : "Select search mode"}
+          </label>
+          <select
+            id={`${id}-mode`}
+            className="section-select publication-search-select"
+            value={mode}
+            onChange={(event) => {
+              setMode(event.target.value);
+              setQuery("");
+            }}
+          >
+            <option value="conference">{language === "ko" ? "컨퍼런스명" : "Conference"}</option>
+            <option value="date">{language === "ko" ? "연도 / 월" : "Year / Month"}</option>
+            <option value="location">{language === "ko" ? "국가 / 도시" : "Country / City"}</option>
+          </select>
+        </div>
+        <input
+          id={id}
+          className="publication-search-input conference-main-search-input"
+          type="search"
+          list={datalistId}
+          placeholder={
+            language === "ko"
+              ? mode === "conference"
+                ? "컨퍼런스명으로 검색"
+                : mode === "date"
+                  ? "연도 또는 월로 검색"
+                  : "국가 또는 도시로 검색"
+              : mode === "conference"
+                ? "Search by conference name"
+                : mode === "date"
+                  ? "Search by year or month"
+                  : "Search by country or city"
+          }
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+        />
+        <datalist id={datalistId}>
+          {suggestions.map((suggestion) => (
+            <option key={`${datalistId}-${suggestion}`} value={suggestion} />
+          ))}
+        </datalist>
+      </div>
+    </div>
+  );
 
   const renderTable = (items, label) => (
     <section className="conference-section">
@@ -1818,7 +1953,7 @@ function ConferenceTables({ sectionKey, language }) {
           <tbody>
             {sortByScheduleAsc(dedupeConferenceItems(items)).map((item) => (
               <tr key={`${label}-${item.name}-${item.schedule}-${item.location}-${item.note}`}>
-                <td>
+                <td data-label={text.conferenceEvent}>
                   {item.url ? (
                     <a href={item.url} target="_blank" rel="noreferrer">
                       {item.name}
@@ -1827,9 +1962,9 @@ function ConferenceTables({ sectionKey, language }) {
                     item.name
                   )}
                 </td>
-                <td>{item.schedule}</td>
-                <td>{item.location}</td>
-                <td>{item.note}</td>
+                <td data-label={text.schedule}>{item.schedule}</td>
+                <td data-label={text.location}>{item.location}</td>
+                <td data-label={text.notes}>{item.note}</td>
               </tr>
             ))}
           </tbody>
@@ -1857,7 +1992,7 @@ function ConferenceTables({ sectionKey, language }) {
                 <tbody>
                   {group.items.map((item) => (
                     <tr key={`${label}-${group.key}-${item.name}-${item.schedule}-${item.location}-${item.note}`}>
-                      <td>
+                      <td data-label={text.conferenceEvent}>
                         {item.url ? (
                           <a href={item.url} target="_blank" rel="noreferrer">
                             {item.name}
@@ -1866,9 +2001,9 @@ function ConferenceTables({ sectionKey, language }) {
                           item.name
                         )}
                       </td>
-                      <td>{item.schedule}</td>
-                      <td>{item.location}</td>
-                      <td>{item.note}</td>
+                      <td data-label={text.schedule}>{item.schedule}</td>
+                      <td data-label={text.location}>{item.location}</td>
+                      <td data-label={text.notes}>{item.note}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -1886,49 +2021,102 @@ function ConferenceTables({ sectionKey, language }) {
         <p className="conference-updated">{text.updatedApril}</p>
         <section className="conference-section">
           <h2>{text.topCsConferences}</h2>
-          <div className="top-cs-explainer">
-            <p>
-              <strong>{text.average}</strong> {language === "ko" ? "은 여러 기준 목록의 인정 값을 정규화한 뒤 산출한 점수입니다. 최우수 또는 동등한 인정은 1.00, 우수 인정은 0.50, 출처별 중간 척도는 0.25 또는 0.75, 미인정 또는 공란은 0.00으로 변환한 뒤 평균을 냅니다." : "is a normalized score calculated from multiple reference lists. Recognition values are converted to numbers before averaging: top-tier or equivalent recognition is treated as 1.00, strong recognition as 0.50, lower recognition as 0.25 or 0.75 depending on the source scale, and missing recognition as 0.00."}
-            </p>
-            <div className="score-rule-table-wrap">
-              <table className="score-rule-table">
-                <thead>
-                  <tr>
-                    <th>Value</th>
-                    <th>KIISE (2024)</th>
-                    <th>BK21 Plus IF (2018)</th>
-                    <th>KAIST CS (2022)</th>
-                    <th>SNU CSE (2024.4)</th>
-                    <th>POSTECH CSE (2026.1)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {TOP_CS_SCORE_RULES.map((rule) => (
-                    <tr key={rule.value}>
-                      <td>{rule.value}</td>
-                      <td>{rule.kiise}</td>
-                      <td>{rule.bk21}</td>
-                      <td>{rule.kaist}</td>
-                      <td>{rule.snu}</td>
-                      <td>{rule.postech}</td>
+          <details className="top-cs-explainer">
+            <summary>{language === "ko" ? "평균 산정 방식 보기" : "View average calculation method"}</summary>
+            <div className="top-cs-explainer-body">
+              <p>
+                <strong>{text.average}</strong> {language === "ko" ? "은 여러 기준 목록의 인정 값을 정규화한 뒤 산출한 점수입니다. 최우수 또는 동등한 인정은 1.00, 우수 인정은 0.50, 출처별 중간 척도는 0.25 또는 0.75, 미인정 또는 공란은 0.00으로 변환한 뒤 평균을 냅니다." : "is a normalized score calculated from multiple reference lists. Recognition values are converted to numbers before averaging: top-tier or equivalent recognition is treated as 1.00, strong recognition as 0.50, lower recognition as 0.25 or 0.75 depending on the source scale, and missing recognition as 0.00."}
+              </p>
+              <div className="score-rule-table-wrap">
+                <table className="score-rule-table">
+                  <thead>
+                    <tr>
+                      <th>Value</th>
+                      <th>KIISE (2024)</th>
+                      <th>BK21 Plus IF (2018)</th>
+                      <th>KAIST CS (2022)</th>
+                      <th>SNU CSE (2024.4)</th>
+                      <th>POSTECH CSE (2026.1)</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {TOP_CS_SCORE_RULES.map((rule) => (
+                      <tr key={rule.value}>
+                        <td>{rule.value}</td>
+                        <td>{rule.kiise}</td>
+                        <td>{rule.bk21}</td>
+                        <td>{rule.kaist}</td>
+                        <td>{rule.snu}</td>
+                        <td>{rule.postech}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="top-cs-source-note">
+                {language === "ko"
+                  ? "이 목록과 평균 산정 방식은 Pusnow의 CS 분야 우수 학술대회 목록 Gist를 참고하여, 본 홈페이지의 표시 형식에 맞게 재구성했습니다."
+                  : "This list and averaging method are adapted from Pusnow's Gist on top CS conferences and reformatted for this website."}{" "}
+                <a
+                  href="https://gist.github.com/Pusnow/6eb933355b5cb8d31ef1abcb3c3e1206"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {language === "ko" ? "원문 보기" : "View source"}
+                </a>
+              </p>
             </div>
-          </div>
-          <div className="conference-search">
+          </details>
+          <div className="publication-search conference-main-search">
             <label className="publication-search-label" htmlFor="top-cs-search">
               {text.searchConferenceList}
             </label>
-            <input
-              id="top-cs-search"
-              className="publication-search-input conference-search-input"
-              type="search"
-              placeholder={text.searchConferencePlaceholder}
-              value={topConferenceQuery}
-              onChange={(event) => setTopConferenceQuery(event.target.value)}
-            />
+            <div className="publication-search-row">
+              <div className="section-select-wrap publication-search-select-wrap">
+                <label className="sr-only" htmlFor="top-cs-search-mode">
+                  {language === "ko" ? "우수 학술대회 검색 기준 선택" : "Select top conference search mode"}
+                </label>
+                <select
+                  id="top-cs-search-mode"
+                  className="section-select publication-search-select"
+                  value={topConferenceSearchMode}
+                  onChange={(event) => {
+                    setTopConferenceSearchMode(event.target.value);
+                    setTopConferenceQuery("");
+                  }}
+                >
+                  <option value="acronym">{language === "ko" ? "약자" : "Acronym"}</option>
+                  <option value="conference">{language === "ko" ? "학회명" : "Conference Name"}</option>
+                  <option value="rank">{language === "ko" ? "순위 / 등급" : "Rank"}</option>
+                </select>
+              </div>
+              <input
+                id="top-cs-search"
+                className="publication-search-input conference-main-search-input"
+                type="search"
+                list="top-cs-search-options"
+                placeholder={
+                  language === "ko"
+                    ? topConferenceSearchMode === "acronym"
+                      ? "약자로 검색"
+                      : topConferenceSearchMode === "conference"
+                        ? "학회명으로 검색"
+                        : "평균, 등급, 인정 기준으로 검색"
+                    : topConferenceSearchMode === "acronym"
+                      ? "Search by acronym"
+                      : topConferenceSearchMode === "conference"
+                        ? "Search by conference name"
+                        : "Search by rank or recognition"
+                }
+                value={topConferenceQuery}
+                onChange={(event) => setTopConferenceQuery(event.target.value)}
+              />
+              <datalist id="top-cs-search-options">
+                {getTopConferenceSuggestions(topConferenceSearchMode).map((suggestion) => (
+                  <option key={`top-cs-${suggestion}`} value={suggestion} />
+                ))}
+              </datalist>
+            </div>
           </div>
           <p className="conference-result-count">
             {text.showingConferences(filteredTopConferences.length, CS_TOP_CONFERENCES.length)}
@@ -1945,9 +2133,9 @@ function ConferenceTables({ sectionKey, language }) {
               <tbody>
                 {filteredTopConferences.map((item) => (
                   <tr key={`${item.acronym}-${item.dblpKey}`}>
-                    <td>{item.acronym}</td>
-                    <td>{item.name}</td>
-                    <td>
+                    <td data-label={text.acronym}>{item.acronym}</td>
+                    <td data-label={text.conferenceName}>{item.name}</td>
+                    <td data-label={text.scoresRecognition}>
                       <span className="top-cs-score">{text.average} {item.normalizedAverage || "-"}</span>
                       <span className="top-cs-ranks">
                         KIISE {item.kiise2024 || "-"} / BK21 {item.bk21Plus2018 || "-"} / KAIST {item.kaistCs2022 || "-"} / SNU {item.snuCse2024 || "-"} / POSTECH {item.postechCse2026 || "-"}
@@ -1966,52 +2154,36 @@ function ConferenceTables({ sectionKey, language }) {
   return (
     <div className="conference-sections">
       <p className="conference-updated">{text.updatedApril}</p>
-      {showInternationalSearch ? (
-        <div className="publication-search conference-main-search">
-          <label className="publication-search-label" htmlFor="international-conference-search">
-            {language === "ko" ? "국제학회 검색" : "Search international conferences"}
-          </label>
-          <div className="publication-search-row">
-            <div className="section-select-wrap publication-search-select-wrap">
-              <label className="sr-only" htmlFor="international-conference-search-mode">
-                {language === "ko" ? "국제학회 검색 기준 선택" : "Select international conference search mode"}
-              </label>
-              <select
-                id="international-conference-search-mode"
-                className="section-select publication-search-select"
-                value={internationalConferenceSearchMode}
-                onChange={(event) => setInternationalConferenceSearchMode(event.target.value)}
-              >
-                <option value="conference">{language === "ko" ? "컨퍼런스명" : "Conference"}</option>
-                <option value="date">{language === "ko" ? "연도 / 월" : "Year / Month"}</option>
-                <option value="location">{language === "ko" ? "국가 / 도시" : "Country / City"}</option>
-              </select>
-            </div>
-            <input
-              id="international-conference-search"
-              className="publication-search-input conference-main-search-input"
-              type="search"
-              placeholder={
-                language === "ko"
-                  ? internationalConferenceSearchMode === "conference"
-                    ? "컨퍼런스명으로 검색"
-                    : internationalConferenceSearchMode === "date"
-                      ? "연도 또는 월로 검색"
-                      : "국가 또는 도시로 검색"
-                  : internationalConferenceSearchMode === "conference"
-                    ? "Search by conference name"
-                    : internationalConferenceSearchMode === "date"
-                      ? "Search by year or month"
-                      : "Search by country or city"
-              }
-              value={internationalConferenceQuery}
-              onChange={(event) => setInternationalConferenceQuery(event.target.value)}
-            />
-          </div>
-        </div>
-      ) : null}
+      {showDomesticSearch
+        ? renderConferenceSearch({
+            id: "domestic-conference-search",
+            label: language === "ko" ? "국내 학회 검색" : "Search domestic conferences",
+            mode: domesticConferenceSearchMode,
+            setMode: setDomesticConferenceSearchMode,
+            query: domesticConferenceQuery,
+            setQuery: setDomesticConferenceQuery,
+            datalistId: "domestic-conference-search-options",
+            suggestions: getConferenceSuggestions(selectedGroup.items, domesticConferenceSearchMode),
+          })
+        : null}
+      {showInternationalSearch
+        ? renderConferenceSearch({
+            id: "international-conference-search",
+            label: language === "ko" ? "국제학회 검색" : "Search international conferences",
+            mode: internationalConferenceSearchMode,
+            setMode: setInternationalConferenceSearchMode,
+            query: internationalConferenceQuery,
+            setQuery: setInternationalConferenceQuery,
+            datalistId: "international-conference-search-options",
+            suggestions: getConferenceSuggestions(selectedGroup.items, internationalConferenceSearchMode),
+          })
+        : null}
       {renderGroupedTable(
-        showInternationalSearch ? filterConferenceItems(selectedGroup.items) : selectedGroup.items,
+        showInternationalSearch
+          ? filterConferenceItems(selectedGroup.items)
+          : showDomesticSearch
+            ? filterDomesticConferenceItems(selectedGroup.items)
+            : selectedGroup.items,
         selectedGroup.title
       )}
     </div>
@@ -2019,10 +2191,15 @@ function ConferenceTables({ sectionKey, language }) {
 }
 
 function GraduationRequirements({ language }) {
+  const intro = language === "ko" ? GRADUATION_REQUIREMENT_INTRO_KO : GRADUATION_REQUIREMENT_INTRO;
   const requirements = language === "ko" ? GRADUATION_REQUIREMENTS_KO : GRADUATION_REQUIREMENTS;
 
   return (
     <div className="requirements-panel">
+      <div className="requirement-intro">
+        <h3>{intro.title}</h3>
+        <p>{intro.body}</p>
+      </div>
       <div className="requirements-list">
         {requirements.map((item) => (
           <article key={item.number} className="requirement-item">
@@ -2064,18 +2241,18 @@ function CurriculumPage({ language }) {
             <tbody>
               {summary.map((group) => (
                 <tr key={group.category}>
-                  <th>{text[group.category]}</th>
-                  <td>{group.courses.join(" / ")}</td>
-                  <td>{group.semesterCredits}</td>
-                  <td>{group.requirement || "-"}</td>
+                  <th data-label={text.category}>{text[group.category]}</th>
+                  <td data-label={text.courseName}>{group.courses.join(" / ")}</td>
+                  <td data-label={text.semesterCredits}>{group.semesterCredits}</td>
+                  <td data-label={text.requirement}>{group.requirement || "-"}</td>
                 </tr>
               ))}
             </tbody>
             <tfoot>
               <tr>
-                <th>{isKo ? "계" : "Total"}</th>
+                <th data-label={isKo ? "구분" : "Category"}>{isKo ? "계" : "Total"}</th>
                 <td />
-                <td>42</td>
+                <td data-label={text.semesterCredits}>42</td>
                 <td />
               </tr>
             </tfoot>
@@ -2282,7 +2459,7 @@ function InternalPage({ menuKey, sectionKey, onSectionSelect, onOpenCv, language
   const showGraduationRequirements = menuKey === "academics" && currentSection === "graduation";
   const showCurriculum = menuKey === "academics" && currentSection === "curriculum";
   const useWidePeopleLayout = menuKey === "people" && (currentSection === "faculty" || currentSection === "students");
-  const useWideLabsLayout = menuKey === "labs" || menuKey === "conferences" || showCurriculum || isAbout;
+  const useWideLabsLayout = menuKey === "labs" || menuKey === "conferences" || showCurriculum || showGraduationRequirements || isAbout;
   const [publicationQuery, setPublicationQuery] = useState("");
   const [publicationSearchMode, setPublicationSearchMode] = useState("authors");
 

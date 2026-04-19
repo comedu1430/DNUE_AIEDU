@@ -1095,12 +1095,48 @@ button {
 
 .top-cs-explainer {
   display: grid;
-  gap: 10px;
   width: 100%;
   margin: -6px 0 24px;
-  padding: 18px 0 20px;
+  padding: 0;
   border-top: 1px solid rgba(17, 24, 39, 0.12);
   border-bottom: 1px solid rgba(17, 24, 39, 0.12);
+}
+
+.top-cs-explainer summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 0;
+  font-size: clamp(13px, 0.9vw, 15px);
+  line-height: 1.4;
+  font-weight: 500;
+  color: rgba(17, 24, 39, 0.78);
+  cursor: pointer;
+  list-style: none;
+}
+
+.top-cs-explainer summary::-webkit-details-marker {
+  display: none;
+}
+
+.top-cs-explainer summary::after {
+  content: "+";
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 300;
+  color: rgba(17, 24, 39, 0.56);
+  transition: transform 180ms ease;
+}
+
+.top-cs-explainer[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.top-cs-explainer-body {
+  display: grid;
+  gap: 10px;
+  padding: 2px 0 20px;
 }
 
 .top-cs-explainer p {
@@ -1113,6 +1149,19 @@ button {
 .top-cs-explainer strong {
   font-weight: 600;
   color: rgba(17, 24, 39, 0.9);
+}
+
+.top-cs-source-note {
+  margin-top: 4px !important;
+  font-size: clamp(11px, 0.78vw, 13px) !important;
+  line-height: 1.65 !important;
+  color: rgba(17, 24, 39, 0.48) !important;
+}
+
+.top-cs-source-note a {
+  color: rgba(17, 24, 39, 0.68);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .score-rule-table-wrap {
@@ -1158,8 +1207,8 @@ button {
 }
 
 .conference-main-search-input {
-  max-width: 1120px;
-  flex-basis: 720px;
+  max-width: none;
+  flex: 1 1 720px;
 }
 
 .conference-result-count {
@@ -1302,12 +1351,37 @@ button {
 
 .requirements-panel {
   display: grid;
-  gap: 34px;
+  gap: 30px;
+  width: 100%;
+}
+
+.requirement-intro {
+  display: grid;
+  gap: 10px;
+  padding: 0 0 30px;
+  border-bottom: 1px solid rgba(17, 24, 39, 0.14);
+}
+
+.requirement-intro h3 {
+  margin: 0;
+  font-size: clamp(22px, 1.7vw, 32px);
+  line-height: 1.22;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.requirement-intro p {
+  margin: 0 !important;
+  max-width: 980px;
+  font-size: clamp(13px, 0.94vw, 16px) !important;
+  line-height: 1.75 !important;
+  color: rgba(17, 24, 39, 0.68);
 }
 
 .requirements-list {
   display: grid;
-  border-top: 1px solid rgba(17, 24, 39, 0.14);
+  width: 100%;
 }
 
 .requirement-item {
@@ -1337,7 +1411,7 @@ button {
 
 .requirement-item p {
   margin: 0 !important;
-  max-width: 920px;
+  max-width: 980px;
   font-size: clamp(13px, 0.94vw, 16px) !important;
   line-height: 1.75 !important;
   color: rgba(17, 24, 39, 0.68);
@@ -2441,6 +2515,197 @@ button {
 }
 
 @media (max-width: 768px) {
+  .conference-sections,
+  .curriculum-panel {
+    gap: 34px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .conference-section h2,
+  .curriculum-section h2 {
+    margin-bottom: 16px;
+    font-size: clamp(24px, 8vw, 34px);
+  }
+
+  .conference-month-groups {
+    gap: 28px;
+  }
+
+  .conference-month-group {
+    gap: 0;
+  }
+
+  .conference-month-group h3 {
+    padding: 0 0 12px;
+    border-radius: 0;
+    background: transparent;
+    border-bottom: 1px solid rgba(17, 24, 39, 0.14);
+    font-size: clamp(19px, 6vw, 26px);
+  }
+
+  .conference-table-wrap,
+  .curriculum-table-wrap {
+    overflow: visible;
+    border-top: 0;
+  }
+
+  .conference-table,
+  .conference-table thead,
+  .conference-table tbody,
+  .conference-table tr,
+  .conference-table th,
+  .conference-table td,
+  .curriculum-table,
+  .curriculum-table thead,
+  .curriculum-table tbody,
+  .curriculum-table tfoot,
+  .curriculum-table tr,
+  .curriculum-table th,
+  .curriculum-table td {
+    display: block;
+    width: 100% !important;
+    min-width: 0;
+  }
+
+  .conference-table,
+  .curriculum-table {
+    border-collapse: separate;
+    table-layout: auto;
+  }
+
+  .conference-table thead,
+  .curriculum-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .conference-table tr,
+  .curriculum-table tbody tr,
+  .curriculum-table tfoot tr {
+    display: grid;
+    gap: 10px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(17, 24, 39, 0.12);
+  }
+
+  .conference-table td,
+  .curriculum-table td,
+  .curriculum-table tbody th,
+  .curriculum-table tfoot th {
+    display: grid;
+    grid-template-columns: minmax(92px, 34%) minmax(0, 1fr);
+    gap: 14px;
+    padding: 0;
+    border: 0;
+    background: transparent !important;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .conference-table td::before,
+  .curriculum-table td::before,
+  .curriculum-table tbody th::before,
+  .curriculum-table tfoot th::before {
+    font-size: 10px;
+    line-height: 1.4;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(17, 24, 39, 0.4);
+  }
+
+  .conference-table td::before,
+  .curriculum-table td::before,
+  .curriculum-table tbody th::before,
+  .curriculum-table tfoot th::before {
+    content: attr(data-label);
+  }
+
+  .curriculum-table tfoot td:empty {
+    display: none;
+  }
+
+  .score-rule-table-wrap {
+    width: 100%;
+    margin: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .score-rule-table-wrap::after {
+    content: "";
+    display: block;
+    height: 1px;
+  }
+
+  .score-rule-table {
+    min-width: 620px;
+  }
+
+  .score-rule-table th,
+  .score-rule-table td {
+    padding: 8px 9px;
+    font-size: 10.5px;
+    line-height: 1.35;
+    white-space: nowrap;
+  }
+
+  .top-cs-explainer summary {
+    align-items: flex-start;
+    padding: 14px 0;
+    gap: 14px;
+    font-size: 13px;
+  }
+
+  .top-cs-explainer summary::after {
+    flex: 0 0 auto;
+    margin-top: -2px;
+  }
+
+  .top-cs-explainer-body {
+    gap: 14px;
+    padding: 0 0 18px;
+  }
+
+  .top-cs-explainer p {
+    max-width: none;
+    font-size: 12px !important;
+    line-height: 1.75 !important;
+  }
+
+  .top-cs-source-note {
+    margin-top: 0 !important;
+    font-size: 11px !important;
+    line-height: 1.6 !important;
+  }
+
+  .conference-result-count {
+    margin-bottom: 8px !important;
+  }
+
+  .curriculum-course-group {
+    margin-top: 26px;
+  }
+
+  .curriculum-course-list {
+    border-top-color: rgba(17, 24, 39, 0.1);
+  }
+
+  .curriculum-course-item {
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 14px;
+    padding: 18px 0;
+  }
+
+  .curriculum-course-item p {
+    max-width: none;
+  }
+
   .faculty-profile-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;

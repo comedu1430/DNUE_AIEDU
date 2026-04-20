@@ -59,6 +59,10 @@ const UI_TEXT = {
     pastEvents: "Past Events",
     curriculumOrganization: "Curriculum Organization",
     courseOverview: "Course Overview",
+    semesterSchedule: "Semester Schedule",
+    semester: "Semester",
+    item: "Item",
+    remarks: "Remarks",
     requiredMajor: "Required Major Courses",
     electiveMajor: "Elective Major Courses",
     dissertation: "Dissertation",
@@ -111,6 +115,10 @@ const UI_TEXT = {
     pastEvents: "지난 일정",
     curriculumOrganization: "교육과정 편제",
     courseOverview: "교과목 개요",
+    semesterSchedule: "학기별 주요 일정 안내",
+    semester: "학기",
+    item: "내용",
+    remarks: "비고",
     requiredMajor: "전공필수",
     electiveMajor: "전공선택",
     dissertation: "논문",
@@ -159,6 +167,7 @@ const SITE_MAP = [
     key: "academics",
     label: "ACADEMICS",
     sections: [
+      { key: "calendar", label: "Academic Calendar" },
       { key: "curriculum", label: "Curriculum" },
       { key: "graduation", label: "Graduation Requirements" },
     ],
@@ -576,6 +585,46 @@ const GRADUATION_REQUIREMENTS = [
   },
 ];
 
+const DEGREE_REQUIREMENT_INTRO = {
+  title: "Graduate School Degree Completion Requirements",
+  body: "The following requirements summarize the completion, degree conferment, and credit requirements specified in the Graduate School rules.",
+  linkLabel: "DNUE Rules and Regulations",
+  linkHref: "https://www.dnue.ac.kr/kor/CMS/RegulationBookMgr/list.do?mCode=MN026",
+};
+
+const DEGREE_REQUIREMENTS = [
+  {
+    number: "01",
+    title: "Completion",
+    body: "Article 23 specifies the timing and conditions for completion of the doctoral program.",
+    items: [
+      "Completion and graduation for degree programs are processed at the end of each semester.",
+      "Completion means that the required period of study has elapsed and the prescribed credits have been earned.",
+      "For completion, the overall grade point average across all courses must be 3.0 or higher.",
+      "Students who complete the prescribed program may receive a certificate of completion according to the designated form.",
+    ],
+  },
+  {
+    number: "02",
+    title: "Degree Conferment",
+    body: "Article 24 specifies the requirements for doctoral degree conferment.",
+    items: [
+      "A doctoral degree is conferred to students who earn the prescribed credits, pass the comprehensive examination, pass the doctoral dissertation review and oral examination, and receive approval through deliberation by the Graduate School Committee.",
+      "Detailed procedures for the comprehensive examination, dissertation review, oral examination, and degree conferment are separately determined by the President.",
+    ],
+  },
+  {
+    number: "03",
+    title: "Completion Credits",
+    body: "Article 29 specifies the credit requirements for completing the doctoral program.",
+    items: [
+      "Doctoral program completion requires at least 36 course credits and 6 dissertation research credits.",
+      "Dissertation research credits are evaluated on a Pass/Fail basis.",
+      "Credit requirements may be adjusted when necessary for curriculum operation.",
+    ],
+  },
+];
+
 const GRADUATION_REQUIREMENT_INTRO_KO = {
   title: "논문 실적 요건",
   body: "졸업을 위해서는 학위논문 심사 신청 이전에 논문 실적 기준을 충족해야 합니다.",
@@ -601,6 +650,46 @@ const GRADUATION_REQUIREMENTS_KO = [
     number: "04",
     title: "학술지 논문 요건",
     body: "KCI 등재 또는 등재후보 학술지 논문 2편, 또는 SSCI·SCIE급 학술지 논문 1편을 충족해야 합니다.",
+  },
+];
+
+const DEGREE_REQUIREMENT_INTRO_KO = {
+  title: "교육전문대학원 학위취득요건",
+  body: "교육전문대학원 학칙에 따른 수료, 학위수여, 수료학점 관련 요건을 정리한 내용입니다.",
+  linkLabel: "대구교육대학교 학칙 및 규정",
+  linkHref: "https://www.dnue.ac.kr/kor/CMS/RegulationBookMgr/list.do?mCode=MN026",
+};
+
+const DEGREE_REQUIREMENTS_KO = [
+  {
+    number: "01",
+    title: "수료",
+    body: "제23조는 교육전문대학원 학위과정의 수료 시기와 수료 기준을 규정합니다.",
+    items: [
+      "교육전문대학원의 학위과정의 수료 및 졸업의 시기는 매 학기말로 합니다.",
+      "수료란 학칙이 정하는 수업연한이 경과하고 정해진 학점을 취득한 것을 말합니다.",
+      "수료를 위해서는 전 과목의 평점 평균이 3.0 이상이어야 합니다.",
+      "교육전문대학원의 정해진 과정을 수료한 자에게 별지서식 제1호에 따라 수료증서를 교부할 수 있습니다.",
+    ],
+  },
+  {
+    number: "02",
+    title: "학위수여",
+    body: "제24조는 박사학위 수여를 위한 요건을 규정합니다.",
+    items: [
+      "정해진 학점을 취득하고 종합시험에 합격한 자로서 박사학위 논문심사와 구술시험을 통과하고, 교육전문대학원위원회의 심의를 거친 자에게 박사학위를 수여합니다.",
+      "종합시험, 논문심사, 구술시험, 학위수여에 대한 세부사항은 총장이 따로 정합니다.",
+    ],
+  },
+  {
+    number: "03",
+    title: "수료학점",
+    body: "제29조는 박사과정 수료에 필요한 학점을 규정합니다.",
+    items: [
+      "박사과정 수료에 필요한 학점은 교과학점 36학점 이상과 논문연구학점 6학점으로 합니다.",
+      "논문연구학점은 P/F제로 평가합니다.",
+      "이수학점은 교과운영상 필요한 경우 조정할 수 있습니다.",
+    ],
   },
 ];
 
@@ -956,6 +1045,9 @@ const PAGE_COPY = {
         "Students must have three academic conference papers.",
         "Students must have either two papers in KCI-listed or KCI-candidate journals, or one paper in an SSCI- or SCIE-level journal.",
       ],
+      calendar: [
+        "Key semester milestones for doctoral students are organized as a quick academic planning guide.",
+      ],
       completion: [
         "The completion guide is suitable for summarizing required courses, electives, thesis completion, and semester-based credit structure.",
       ],
@@ -1090,6 +1182,9 @@ const PAGE_COPY_KO = {
         "입학 일정과 절차는 교육전문대학원의 공식 안내에 따라 정리할 수 있습니다.",
         "현재 이 페이지는 AI교육, 교육과정 설계, 교육 혁신에 관심 있는 지원자를 위한 안내 공간입니다.",
       ],
+      calendar: [
+        "박사과정 학생이 학기별로 확인해야 할 주요 학사 일정을 정리합니다.",
+      ],
       graduation: [],
       curriculum: [],
       default: ["AI교육전공의 교육과정과 학사 구조를 체계적으로 소개합니다."],
@@ -1112,6 +1207,100 @@ const PAGE_COPY_KO = {
     },
   },
 };
+
+const ACADEMIC_CALENDAR = [
+  {
+    semester: "1",
+    items: [
+      { title: "Entrance Ceremony", note: "During March" },
+      { title: "New Student Orientation", note: "During March" },
+    ],
+  },
+  {
+    semester: "2",
+    items: [
+      { title: "Advisor Assignment", note: "Spring semester: mid-March / Fall semester: mid-September" },
+      { title: "Research Topic Exploration", note: "Consult with academic advisor" },
+    ],
+  },
+  {
+    semester: "3",
+    items: [
+      { title: "Academic Conference Participation / Presentation", note: "As needed" },
+    ],
+  },
+  {
+    semester: "4",
+    items: [
+      { title: "Academic Conference Participation / Presentation", note: "As needed" },
+    ],
+  },
+  {
+    semester: "5",
+    items: [
+      {
+        title: "Dissertation Proposal Submission",
+        note: "Spring semester: mid-March (evening program) / early August (seasonal program)\nFall semester: mid-September (evening program) / early January (seasonal program)",
+      },
+    ],
+  },
+  {
+    semester: "6",
+    items: [
+      { title: "Qualification Exam Application", note: "Spring semester: mid-March / Fall semester: mid-September" },
+      { title: "Qualification Exam", note: "Spring semester: first Saturday of April\nFall semester: first Saturday of October" },
+      { title: "Dissertation Review Application", note: "Spring semester: late March to early April\nFall semester: early October" },
+      { title: "Dissertation Review", note: "" },
+    ],
+  },
+];
+
+const ACADEMIC_CALENDAR_KO = [
+  {
+    semester: "1",
+    items: [
+      { title: "입학식", note: "3월 중" },
+      { title: "신입생 오리엔테이션", note: "3월 중" },
+    ],
+  },
+  {
+    semester: "2",
+    items: [
+      { title: "지도교수 선정", note: "1학기: 3월 중순 / 2학기: 9월 중순" },
+      { title: "연구과제 탐색", note: "지도교수님과 상의" },
+    ],
+  },
+  {
+    semester: "3",
+    items: [
+      { title: "학술대회(참석/발표)", note: "수시" },
+    ],
+  },
+  {
+    semester: "4",
+    items: [
+      { title: "학술대회(참석/발표)", note: "수시" },
+    ],
+  },
+  {
+    semester: "5",
+    items: [
+      {
+        title: "논문작성계획서 제출\n(전공 사무실 제출)",
+        note: "1학기: 3월 중순(야간제) / 8월 초(계절제)\n2학기: 9월 중순(야간제) / 1월 초(계절제)",
+      },
+    ],
+  },
+  {
+    semester: "6",
+    items: [
+      { title: "자격시험 신청\n(통합학사정보시스템 신청)", note: "1학기: 3월 중순 / 2학기: 9월 중순" },
+      { title: "자격시험", note: "1학기: 4월 첫째 주 토요일\n2학기: 10월 첫째 주 토요일" },
+      { title: "논문심사신청\n(전공 사무실 제출)", note: "1학기: 3월 말~4월 초\n2학기: 10월 초" },
+      { title: "논문심사", note: "" },
+    ],
+  },
+];
 
 const CURRICULUM_SUMMARY = [
   { category: "requiredMajor", courses: ["SW/AI Education Topics", "AI Education Research Methodology", "Advanced Study of Programming Language"], semesterCredits: "1-4 / 3", requirement: "" },
@@ -1570,7 +1759,8 @@ function ProfileGrid({ sectionKey, language }) {
   return (
     <div className={`profile-grid ${isFaculty ? "faculty-profile-grid" : ""}`}>
       {profiles.map((profile) => {
-        const courses = language === "ko" && profile.koCourses ? profile.koCourses : profile.courses;
+        const courses = language === "ko" && profile.koCourses ? profile.koCourses : profile.courses || [];
+        const displayName = language === "ko" && profile.koName ? profile.koName : profile.name;
 
         return (
           <article
@@ -1581,26 +1771,40 @@ function ProfileGrid({ sectionKey, language }) {
             <div className={`profile-image ${profile.image ? "has-photo" : ""} ${profile.imageClassName ?? ""}`} aria-hidden="true">
               {profile.image ? <img className="profile-photo" src={profile.image} alt="" loading="lazy" /> : null}
             </div>
-            <div className="profile-content">
-              <h4>{language === "ko" && profile.koName ? profile.koName : profile.name}</h4>
-              <p>{profile.position}</p>
-              {isFaculty ? (
-                <>
-                  <p><strong>{text.researchArea}</strong> {profile.research}</p>
-                  <p className="profile-courses"><strong>{text.courses}</strong> {courses.join(" / ")}</p>
-                  <p><strong>{text.office}</strong> {profile.office}</p>
-                  <p><strong>{text.phone}</strong> {profile.phone}</p>
-                  <p><strong>{text.email}</strong> {profile.email}</p>
-                </>
-              ) : (
-                <>
-                  <p>{profile.research}</p>
-                  <p>{profile.office}</p>
-                  <p>{profile.phone}</p>
-                  <p>{profile.email}</p>
-                </>
-              )}
-            </div>
+            {isFaculty ? (
+              <>
+                <div className="profile-content faculty-profile-main">
+                  <div className="faculty-profile-title">
+                    <h4>{displayName}</h4>
+                    <p>{profile.position}</p>
+                  </div>
+                  <div className="faculty-profile-meta">
+                    <p><strong>{text.researchArea}</strong> <span>{profile.research}</span></p>
+                    <p><strong>{text.office}</strong> <span>{profile.office}</span></p>
+                    <p><strong>{text.phone}</strong> <span>{profile.phone}</span></p>
+                    <p><strong>{text.email}</strong> <span>{profile.email}</span></p>
+                  </div>
+                </div>
+                {courses.length > 0 ? (
+                  <div className="profile-courses-block">
+                    <p className="profile-courses-heading">{text.courses}</p>
+                    <ul>
+                      {courses.map((course) => (
+                        <li key={`${profile.name}-${course}`}>{course}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+              </>
+            ) : (
+              <div className="profile-content">
+                <h4>{displayName}</h4>
+                <p>{profile.research}</p>
+                <p>{profile.office}</p>
+                <p>{profile.phone}</p>
+                <p>{profile.email}</p>
+              </div>
+            )}
           </article>
         );
       })}
@@ -1709,7 +1913,7 @@ function ConferenceTables({ sectionKey, language }) {
 
       return searchableText.includes(normalizedQuery);
     });
-  }, [normalizedQuery, topConferenceSearchMode]);
+  }, [normalizedQuery, topConferenceSearchMode, text.average]);
 
   const monthMap = {
     january: 0,
@@ -1836,53 +2040,15 @@ function ConferenceTables({ sectionKey, language }) {
       return searchableText.includes(normalizedDomesticQuery);
     });
   };
-  const getConferenceSuggestions = (items, mode) => {
-    const suggestions = new Set();
-
-    items.forEach((item) => {
-      const dateParts = getScheduleDateParts(item.schedule);
-      const values = {
-        conference: [item.name],
-        date: [item.schedule, dateParts?.label, dateParts?.year, dateParts ? monthLabels[dateParts.month] : ""],
-        location: [item.location],
-      }[mode] || [item.name];
-
-      values.filter(Boolean).forEach((value) => suggestions.add(String(value)));
-    });
-
-    return Array.from(suggestions).sort((a, b) => a.localeCompare(b));
-  };
-  const getTopConferenceSuggestions = (mode) => {
-    const suggestions = new Set();
-
-    CS_TOP_CONFERENCES.forEach((item) => {
-      const values = {
-        acronym: [item.acronym],
-        conference: [item.name],
-        rank: [
-          item.normalizedAverage,
-          item.kiise2024 ? `KIISE ${item.kiise2024}` : "",
-          item.bk21Plus2018 ? `BK21 ${item.bk21Plus2018}` : "",
-          item.kaistCs2022 ? `KAIST ${item.kaistCs2022}` : "",
-          item.snuCse2024 ? `SNU ${item.snuCse2024}` : "",
-          item.postechCse2026 ? `POSTECH ${item.postechCse2026}` : "",
-        ],
-      }[mode] || [item.acronym];
-
-      values.filter(Boolean).forEach((value) => suggestions.add(String(value)));
-    });
-
-    return Array.from(suggestions).sort((a, b) => a.localeCompare(b));
-  };
   const renderConferenceSearch = ({
     id,
     label,
     mode,
     setMode,
+    options,
+    placeholder,
     query,
     setQuery,
-    datalistId,
-    suggestions,
   }) => (
     <div className="publication-search conference-main-search">
       <label className="publication-search-label" htmlFor={id}>
@@ -1902,37 +2068,22 @@ function ConferenceTables({ sectionKey, language }) {
               setQuery("");
             }}
           >
-            <option value="conference">{language === "ko" ? "컨퍼런스명" : "Conference"}</option>
-            <option value="date">{language === "ko" ? "연도 / 월" : "Year / Month"}</option>
-            <option value="location">{language === "ko" ? "국가 / 도시" : "Country / City"}</option>
+            {options.map((option) => (
+              <option key={`${id}-${option.value}`} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
         </div>
         <input
           id={id}
           className="publication-search-input conference-main-search-input"
           type="search"
-          list={datalistId}
-          placeholder={
-            language === "ko"
-              ? mode === "conference"
-                ? "컨퍼런스명으로 검색"
-                : mode === "date"
-                  ? "연도 또는 월로 검색"
-                  : "국가 또는 도시로 검색"
-              : mode === "conference"
-                ? "Search by conference name"
-                : mode === "date"
-                  ? "Search by year or month"
-                  : "Search by country or city"
-          }
+          autoComplete="off"
+          placeholder={placeholder}
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
-        <datalist id={datalistId}>
-          {suggestions.map((suggestion) => (
-            <option key={`${datalistId}-${suggestion}`} value={suggestion} />
-          ))}
-        </datalist>
       </div>
     </div>
   );
@@ -2067,57 +2218,24 @@ function ConferenceTables({ sectionKey, language }) {
               </p>
             </div>
           </details>
-          <div className="publication-search conference-main-search">
-            <label className="publication-search-label" htmlFor="top-cs-search">
-              {text.searchConferenceList}
-            </label>
-            <div className="publication-search-row">
-              <div className="section-select-wrap publication-search-select-wrap">
-                <label className="sr-only" htmlFor="top-cs-search-mode">
-                  {language === "ko" ? "우수 학술대회 검색 기준 선택" : "Select top conference search mode"}
-                </label>
-                <select
-                  id="top-cs-search-mode"
-                  className="section-select publication-search-select"
-                  value={topConferenceSearchMode}
-                  onChange={(event) => {
-                    setTopConferenceSearchMode(event.target.value);
-                    setTopConferenceQuery("");
-                  }}
-                >
-                  <option value="acronym">{language === "ko" ? "약자" : "Acronym"}</option>
-                  <option value="conference">{language === "ko" ? "학회명" : "Conference Name"}</option>
-                  <option value="rank">{language === "ko" ? "순위 / 등급" : "Rank"}</option>
-                </select>
-              </div>
-              <input
-                id="top-cs-search"
-                className="publication-search-input conference-main-search-input"
-                type="search"
-                list="top-cs-search-options"
-                placeholder={
-                  language === "ko"
-                    ? topConferenceSearchMode === "acronym"
-                      ? "약자로 검색"
-                      : topConferenceSearchMode === "conference"
-                        ? "학회명으로 검색"
-                        : "평균, 등급, 인정 기준으로 검색"
-                    : topConferenceSearchMode === "acronym"
-                      ? "Search by acronym"
-                      : topConferenceSearchMode === "conference"
-                        ? "Search by conference name"
-                        : "Search by rank or recognition"
-                }
-                value={topConferenceQuery}
-                onChange={(event) => setTopConferenceQuery(event.target.value)}
-              />
-              <datalist id="top-cs-search-options">
-                {getTopConferenceSuggestions(topConferenceSearchMode).map((suggestion) => (
-                  <option key={`top-cs-${suggestion}`} value={suggestion} />
-                ))}
-              </datalist>
-            </div>
-          </div>
+          {renderConferenceSearch({
+            id: "top-cs-search",
+            label: text.searchConferenceList,
+            mode: topConferenceSearchMode,
+            setMode: setTopConferenceSearchMode,
+            options: [
+              { value: "acronym", label: language === "ko" ? "약자" : "Acronym" },
+              { value: "conference", label: language === "ko" ? "학회명" : "Conference" },
+              { value: "rank", label: language === "ko" ? "인정 기준" : "Rank" },
+            ],
+            placeholder: {
+              acronym: language === "ko" ? "약자로 검색" : "Search by acronym",
+              conference: language === "ko" ? "학회명으로 검색" : "Search by conference name",
+              rank: language === "ko" ? "평균 또는 인정 기준으로 검색" : "Search by average or recognition",
+            }[topConferenceSearchMode],
+            query: topConferenceQuery,
+            setQuery: setTopConferenceQuery,
+          })}
           <p className="conference-result-count">
             {text.showingConferences(filteredTopConferences.length, CS_TOP_CONFERENCES.length)}
           </p>
@@ -2160,10 +2278,18 @@ function ConferenceTables({ sectionKey, language }) {
             label: language === "ko" ? "국내 학회 검색" : "Search domestic conferences",
             mode: domesticConferenceSearchMode,
             setMode: setDomesticConferenceSearchMode,
+            options: [
+              { value: "conference", label: language === "ko" ? "학회명" : "Conference" },
+              { value: "date", label: language === "ko" ? "일정" : "Date" },
+              { value: "location", label: language === "ko" ? "장소" : "Location" },
+            ],
+            placeholder: {
+              conference: language === "ko" ? "학회명으로 검색" : "Search by conference name",
+              date: language === "ko" ? "연도, 월, 일정으로 검색" : "Search by year, month, or schedule",
+              location: language === "ko" ? "국가, 도시, 장소로 검색" : "Search by country, city, or location",
+            }[domesticConferenceSearchMode],
             query: domesticConferenceQuery,
             setQuery: setDomesticConferenceQuery,
-            datalistId: "domestic-conference-search-options",
-            suggestions: getConferenceSuggestions(selectedGroup.items, domesticConferenceSearchMode),
           })
         : null}
       {showInternationalSearch
@@ -2172,10 +2298,18 @@ function ConferenceTables({ sectionKey, language }) {
             label: language === "ko" ? "국제학회 검색" : "Search international conferences",
             mode: internationalConferenceSearchMode,
             setMode: setInternationalConferenceSearchMode,
+            options: [
+              { value: "conference", label: language === "ko" ? "학회명" : "Conference" },
+              { value: "date", label: language === "ko" ? "일정" : "Date" },
+              { value: "location", label: language === "ko" ? "장소" : "Location" },
+            ],
+            placeholder: {
+              conference: language === "ko" ? "학회명으로 검색" : "Search by conference name",
+              date: language === "ko" ? "연도, 월, 일정으로 검색" : "Search by year, month, or schedule",
+              location: language === "ko" ? "국가, 도시, 장소로 검색" : "Search by country, city, or location",
+            }[internationalConferenceSearchMode],
             query: internationalConferenceQuery,
             setQuery: setInternationalConferenceQuery,
-            datalistId: "international-conference-search-options",
-            suggestions: getConferenceSuggestions(selectedGroup.items, internationalConferenceSearchMode),
           })
         : null}
       {renderGroupedTable(
@@ -2191,26 +2325,112 @@ function ConferenceTables({ sectionKey, language }) {
 }
 
 function GraduationRequirements({ language }) {
-  const intro = language === "ko" ? GRADUATION_REQUIREMENT_INTRO_KO : GRADUATION_REQUIREMENT_INTRO;
-  const requirements = language === "ko" ? GRADUATION_REQUIREMENTS_KO : GRADUATION_REQUIREMENTS;
+  const requirementGroups = language === "ko"
+    ? [
+        { intro: DEGREE_REQUIREMENT_INTRO_KO, requirements: DEGREE_REQUIREMENTS_KO },
+        { intro: GRADUATION_REQUIREMENT_INTRO_KO, requirements: GRADUATION_REQUIREMENTS_KO },
+      ]
+    : [
+        { intro: DEGREE_REQUIREMENT_INTRO, requirements: DEGREE_REQUIREMENTS },
+        { intro: GRADUATION_REQUIREMENT_INTRO, requirements: GRADUATION_REQUIREMENTS },
+      ];
 
   return (
     <div className="requirements-panel">
-      <div className="requirement-intro">
-        <h3>{intro.title}</h3>
-        <p>{intro.body}</p>
-      </div>
-      <div className="requirements-list">
-        {requirements.map((item) => (
-          <article key={item.number} className="requirement-item">
-            <span className="requirement-number">{item.number}</span>
-            <div>
-              <h3>{item.title}</h3>
-              <p>{item.body}</p>
-            </div>
-          </article>
-        ))}
-      </div>
+      {requirementGroups.map((group) => (
+        <section key={group.intro.title} className="requirement-group">
+          <div className="requirement-intro">
+            <h3>
+              <span>{group.intro.title}</span>
+              {group.intro.linkHref ? (
+                <a
+                  className="requirement-rule-link"
+                  href={group.intro.linkHref}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {group.intro.linkLabel}
+                </a>
+              ) : null}
+            </h3>
+          </div>
+          <div className="requirements-list">
+            {group.requirements.map((item) => (
+              <article key={`${group.intro.title}-${item.number}`} className="requirement-item">
+                <span className="requirement-number">{item.number}</span>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                  {item.items?.length ? (
+                    <ul className="requirement-subpoints">
+                      {item.items.map((detail) => (
+                        <li key={detail}>{detail}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  );
+}
+
+function AcademicCalendarPage({ language }) {
+  const text = getText(language);
+  const calendar = language === "ko" ? ACADEMIC_CALENDAR_KO : ACADEMIC_CALENDAR;
+
+  return (
+    <div className="curriculum-panel academic-calendar-panel">
+      <section className="curriculum-section">
+        <h2>{text.semesterSchedule}</h2>
+        <div className="curriculum-table-wrap academic-calendar-table-wrap">
+          <table className="curriculum-table academic-calendar-table">
+            <thead>
+              <tr>
+                <th>{text.semester}</th>
+                <th>{text.item}</th>
+                <th>{text.remarks}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {calendar.flatMap((group) =>
+                group.items.map((item, index) => (
+                  <tr key={`${group.semester}-${item.title}`}>
+                    {index === 0 ? (
+                      <th rowSpan={group.items.length} data-label={text.semester}>
+                        {group.semester}
+                      </th>
+                    ) : null}
+                    <td data-label={text.item}>{item.title}</td>
+                    <td data-label={text.remarks}>{item.note || "-"}</td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+        <div className="academic-calendar-mobile-list" aria-label={text.semesterSchedule}>
+          {calendar.map((group) => (
+            <article key={`mobile-${group.semester}`} className="academic-calendar-card">
+              <div className="academic-calendar-card-head">
+                <span>{text.semester}</span>
+                <strong>{group.semester}</strong>
+              </div>
+              <div className="academic-calendar-card-body">
+                {group.items.map((item) => (
+                  <div key={`${group.semester}-${item.title}`} className="academic-calendar-card-row">
+                    <p>{item.title}</p>
+                    {item.note ? <span>{item.note}</span> : null}
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
@@ -2457,9 +2677,10 @@ function InternalPage({ menuKey, sectionKey, onSectionSelect, onOpenCv, language
   const showPublications = menuKey === "research";
   const showConferences = menuKey === "conferences";
   const showGraduationRequirements = menuKey === "academics" && currentSection === "graduation";
+  const showAcademicCalendar = menuKey === "academics" && currentSection === "calendar";
   const showCurriculum = menuKey === "academics" && currentSection === "curriculum";
   const useWidePeopleLayout = menuKey === "people" && (currentSection === "faculty" || currentSection === "students");
-  const useWideLabsLayout = menuKey === "labs" || menuKey === "conferences" || showCurriculum || showGraduationRequirements || isAbout;
+  const useWideLabsLayout = menuKey === "labs" || menuKey === "conferences" || showCurriculum || showGraduationRequirements || showAcademicCalendar || isAbout;
   const [publicationQuery, setPublicationQuery] = useState("");
   const [publicationSearchMode, setPublicationSearchMode] = useState("authors");
 
@@ -2496,10 +2717,11 @@ function InternalPage({ menuKey, sectionKey, onSectionSelect, onOpenCv, language
       <div className={`content-shell internal-grid reveal-on-scroll ${showVisual ? "" : "single-column"} ${showPublications ? "research-layout" : ""} ${useWidePeopleLayout ? "wide-people-layout" : ""} ${useWideLabsLayout ? "wide-labs-layout" : ""}`}>
         <article className="internal-copy">
           {isAbout ? <AboutOverview sectionKey={currentSection} language={language} /> : null}
-          {!isAbout && !showPublications && !showLabs && !showConferences && !showGraduationRequirements && !showCurriculum ? <h2>{currentLabel || content.headline}</h2> : null}
-          {!isAbout && !showPublications && !showLabs && !showConferences && !showGraduationRequirements && !showCurriculum && content.subheadline ? <h3>{content.subheadline}</h3> : null}
-          {!isAbout && !showPublications && !showLabs && !showConferences && !showGraduationRequirements && !showCurriculum ? content.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>) : null}
+          {!isAbout && !showPublications && !showLabs && !showConferences && !showGraduationRequirements && !showAcademicCalendar && !showCurriculum ? <h2>{currentLabel || content.headline}</h2> : null}
+          {!isAbout && !showPublications && !showLabs && !showConferences && !showGraduationRequirements && !showAcademicCalendar && !showCurriculum && content.subheadline ? <h3>{content.subheadline}</h3> : null}
+          {!isAbout && !showPublications && !showLabs && !showConferences && !showGraduationRequirements && !showAcademicCalendar && !showCurriculum ? content.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>) : null}
           {showGraduationRequirements ? <GraduationRequirements language={language} /> : null}
+          {showAcademicCalendar ? <AcademicCalendarPage language={language} /> : null}
           {showCurriculum ? <CurriculumPage language={language} /> : null}
           {showPublications ? (
             <div className="publication-search">

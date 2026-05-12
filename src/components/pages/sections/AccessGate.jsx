@@ -26,25 +26,27 @@ function GraduationPasswordGate({ language, onUnlock, onBack }) {
           ← {isKorean ? "운영 프로그램 목록으로 돌아가기" : "Back to program list"}
         </button>
       ) : null}
-      <form className="private-gate-form private-gate-form-minimal" onSubmit={handleSubmit}>
-        <label className="sr-only" htmlFor="private-page-password">
-          {isKorean ? "비밀번호" : "Password"}
-        </label>
-        <input
-          id="private-page-password"
-          className="private-gate-input"
-          type="password"
-          inputMode="numeric"
-          autoComplete="current-password"
-          placeholder={isKorean ? "비밀번호를 입력하세요" : "Enter password"}
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
-        <button className="sr-only" type="submit">
-          {isKorean ? "입장하기" : "Enter"}
-        </button>
-      </form>
-      {error ? <p className="private-gate-error">{error}</p> : null}
+      <div className="private-gate-content">
+        <form className="private-gate-form private-gate-form-minimal" onSubmit={handleSubmit}>
+          <label className="sr-only" htmlFor="private-page-password">
+            {isKorean ? "비밀번호" : "Password"}
+          </label>
+          <input
+            id="private-page-password"
+            className="private-gate-input"
+            type="password"
+            inputMode="numeric"
+            autoComplete="current-password"
+            placeholder={isKorean ? "비밀번호를 입력하세요" : "Enter password"}
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+          <button className="sr-only" type="submit">
+            {isKorean ? "입장하기" : "Enter"}
+          </button>
+        </form>
+        {error ? <p className="private-gate-error">{error}</p> : null}
+      </div>
     </div>
   );
 }

@@ -329,18 +329,26 @@
 }
 
 .private-gate-shell-with-back {
-  min-height: auto;
+  min-height: 50vh;
   align-items: flex-start;
   justify-content: flex-start;
+}
+
+.private-gate-content {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+}
+
+.private-gate-shell-with-back .private-gate-content {
+  flex: 1 1 auto;
+  align-self: stretch;
+  align-content: center;
 }
 
 .private-gate-form-minimal {
   width: min(100%, 420px);
   justify-content: center;
-}
-
-.private-gate-shell-with-back .private-gate-form-minimal {
-  justify-content: flex-start;
 }
 
 .private-gate-form-minimal .private-gate-input {
@@ -1261,10 +1269,6 @@
 
 .private-gate-back {
   margin: 0 0 8px;
-}
-
-.private-gate-shell-with-back .private-gate-error {
-  text-align: left;
 }
 
 .publication-item p {

@@ -1,0 +1,721 @@
+@media (min-width: 1101px) {
+  .menu-button {
+    display: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .content-shell,
+  .hero-summary-grid,
+  .internal-header-block {
+    width: calc(100% - 34px);
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .menu-button {
+    display: inline-flex;
+  }
+
+  .header-actions {
+    margin-left: auto;
+    gap: 14px;
+  }
+
+  .mobile-language-toggle {
+    display: inline-flex;
+  }
+
+  .language-toggle {
+    height: 28px;
+    min-width: auto;
+    padding: 0;
+    font-size: 11px;
+    gap: 6px;
+  }
+
+  .language-globe {
+    width: 13px;
+    height: 13px;
+  }
+
+  .language-options {
+    grid-template-columns: repeat(2, 26px);
+    height: 22px;
+  }
+
+  .language-slider {
+    width: 24px;
+    height: 18px;
+  }
+
+  .language-toggle.is-en .language-slider {
+    transform: translateX(26px);
+  }
+
+  .language-option {
+    font-size: 10px;
+  }
+
+  .top-header {
+    height: 78px;
+    padding: 14px 16px 0;
+  }
+
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+    background-size: 210px 34px;
+  }
+
+  .brand-text {
+    font-size: 12px;
+  }
+
+  .landing-copy {
+    width: 100%;
+    max-width: none;
+  }
+
+  .landing-copy h1 {
+    font-size: clamp(30px, 8vw, 46px);
+  }
+
+  .landing-kicker {
+    margin-bottom: 14px;
+    font-size: clamp(15px, 3.8vw, 20px);
+  }
+
+  .landing-description {
+    max-width: none;
+    font-size: 16px;
+  }
+
+  .landing-hero {
+    padding: 136px 22px 58px;
+    align-items: center;
+  }
+
+  .landing-spline {
+    transform: scale(1.02);
+  }
+
+  .home-publications {
+    padding-bottom: 68px;
+  }
+
+  .home-publications-inner {
+    padding-top: 24px;
+  }
+
+  .home-publications-head {
+    margin-bottom: 14px;
+  }
+
+  .home-publications-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-publication-card {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    min-height: auto;
+  }
+
+  .home-publication-empty {
+    min-height: 120px;
+  }
+
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .top-header.is-home .menu-button {
+    display: flex;
+  }
+
+  .hero-summary-grid,
+  .internal-grid,
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-lead {
+    margin-bottom: 34px;
+  }
+
+  .about-point-list {
+    grid-template-columns: 1fr;
+  }
+
+  .about-text-section {
+    grid-template-columns: 1fr;
+    padding-top: 22px;
+  }
+
+  .about-section-index {
+    margin: 0;
+  }
+
+  .about-section-head {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .about-section-body {
+    grid-column: auto;
+    padding-left: 0;
+  }
+
+  .requirement-doc-frame {
+    min-height: 680px;
+  }
+
+  .student-profile-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 14px;
+  }
+
+  .labs-scroll {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .lab-card {
+    min-height: 420px;
+    padding: 30px 28px 28px;
+  }
+
+  .lab-card h2 {
+    font-size: clamp(34px, 5vw, 52px);
+  }
+
+  .lab-card-description {
+    font-size: 15px;
+  }
+
+  .profile-card,
+  .student-profile-grid .profile-card {
+    max-width: none;
+    width: 100%;
+  }
+
+  .faculty-profile-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .faculty-profile-card {
+    grid-template-columns: 116px minmax(0, 1fr);
+    gap: 14px 18px;
+    padding: 20px 0;
+  }
+
+  .faculty-profile-card.no-photo {
+    grid-template-columns: 1fr;
+    gap: 14px 0;
+  }
+
+  .faculty-profile-card .profile-image {
+    width: 116px;
+    aspect-ratio: 4 / 5;
+  }
+
+  .faculty-profile-card .profile-image.has-photo {
+    background-color: #eef0f4;
+  }
+
+  .faculty-profile-card .profile-image.has-photo .profile-photo {
+    object-fit: cover;
+  }
+
+  .student-profile-grid .profile-card {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 10px;
+    align-items: center;
+    padding: 12px 0;
+  }
+
+  .student-profile-grid .profile-image {
+    width: 64px;
+    aspect-ratio: 1;
+  }
+
+  .hero-summary-bar {
+    display: none;
+  }
+
+  .hero-summary-head h5,
+  .hero-summary-head button,
+  .hero-summary-list li p,
+  .hero-summary-list li span {
+    font-size: 10px;
+  }
+
+  .internal-page {
+    padding-top: 24px;
+  }
+
+  .internal-header-block {
+    margin-bottom: 28px;
+  }
+
+  .internal-header-block h1 {
+    font-size: clamp(30px, 9vw, 40px);
+  }
+
+  .section-tabs {
+    gap: 6px;
+  }
+
+  .section-tab {
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+
+  .internal-copy h2 {
+    font-size: clamp(18px, 5vw, 24px);
+  }
+
+  .internal-copy h3 {
+    margin-bottom: 20px;
+    font-size: clamp(13px, 3.8vw, 15px);
+  }
+
+  .internal-copy p,
+  .profile-card p,
+  .footer-link,
+  .footer-meta p {
+    font-size: 12px;
+  }
+
+  .faculty-profile-card .profile-content,
+  .faculty-profile-card .profile-content p,
+  .student-profile-grid .profile-content,
+  .student-profile-grid .profile-content p {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .faculty-profile-card .profile-content {
+    gap: 10px;
+  }
+
+  .faculty-profile-card h4,
+  .student-profile-grid .profile-card h4 {
+    margin-top: 0;
+    font-size: 14px;
+  }
+
+  .faculty-profile-card .profile-content p {
+    font-size: 11px;
+    line-height: 1.55;
+  }
+
+  .profile-courses-block {
+    display: none;
+  }
+
+  .student-profile-grid .profile-content p {
+    font-size: 11px;
+    line-height: 1.42;
+  }
+
+  .footer-main-tone {
+    padding: 42px 0 24px;
+  }
+
+  .footer-sitemap {
+    display: none;
+  }
+
+  .footer-signature {
+    padding-top: 8px;
+  }
+
+  .footer-signature-mark {
+    width: 60px;
+    height: 60px;
+    background-size: 371px 60px;
+  }
+
+  .footer-signature-title {
+    font-size: 13px;
+  }
+
+  .menu-panel {
+    width: 100%;
+    padding: 68px 18px 24px;
+  }
+
+  .close-button {
+    right: 10px;
+    font-size: 40px;
+  }
+
+  .menu-link {
+    font-size: 16px;
+  }
+
+  .submenu-link {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .conference-sections,
+  .curriculum-panel {
+    gap: 34px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .conference-section h2,
+  .curriculum-section h2 {
+    margin-bottom: 16px;
+    font-size: clamp(24px, 8vw, 34px);
+  }
+
+  .conference-month-groups {
+    gap: 28px;
+  }
+
+  .conference-month-group {
+    gap: 0;
+  }
+
+  .conference-month-group h3 {
+    padding: 0 0 12px;
+    border-radius: 0;
+    background: transparent;
+    border-bottom: 1px solid rgba(17, 24, 39, 0.14);
+    font-size: clamp(19px, 6vw, 26px);
+  }
+
+  .conference-table-wrap,
+  .curriculum-table-wrap {
+    overflow: visible;
+    border-top: 0;
+  }
+
+  .academic-calendar-panel .curriculum-section h2 {
+    margin-bottom: 22px;
+    font-size: clamp(30px, 9vw, 42px);
+    line-height: 1.08;
+    letter-spacing: -0.06em;
+  }
+
+  .academic-calendar-table-wrap {
+    display: none;
+  }
+
+  .academic-calendar-mobile-list {
+    display: grid;
+    border-top: 1px solid rgba(17, 24, 39, 0.12);
+  }
+
+  .academic-calendar-card {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 22px;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(17, 24, 39, 0.12);
+  }
+
+  .academic-calendar-card-head {
+    display: grid;
+    align-content: start;
+    gap: 8px;
+    color: rgba(17, 24, 39, 0.42);
+  }
+
+  .academic-calendar-card-head span {
+    font-size: 10px;
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .academic-calendar-card-head strong {
+    font-size: 26px;
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    color: rgba(17, 24, 39, 0.9);
+  }
+
+  .academic-calendar-card-body {
+    display: grid;
+    gap: 18px;
+  }
+
+  .academic-calendar-card-row {
+    display: grid;
+    gap: 7px;
+  }
+
+  .academic-calendar-card-row p {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.45;
+    letter-spacing: -0.04em;
+    color: rgba(17, 24, 39, 0.82);
+  }
+
+  .academic-calendar-card-row span {
+    font-size: 13px;
+    line-height: 1.55;
+    color: rgba(17, 24, 39, 0.52);
+    white-space: pre-line;
+  }
+
+  .conference-table,
+  .conference-table thead,
+  .conference-table tbody,
+  .conference-table tr,
+  .conference-table th,
+  .conference-table td,
+  .curriculum-table,
+  .curriculum-table thead,
+  .curriculum-table tbody,
+  .curriculum-table tfoot,
+  .curriculum-table tr,
+  .curriculum-table th,
+  .curriculum-table td {
+    display: block;
+    width: 100% !important;
+    min-width: 0;
+  }
+
+  .conference-table,
+  .curriculum-table {
+    border-collapse: separate;
+    table-layout: auto;
+  }
+
+  .conference-table thead,
+  .curriculum-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .conference-table tr,
+  .curriculum-table tbody tr,
+  .curriculum-table tfoot tr {
+    display: grid;
+    gap: 10px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(17, 24, 39, 0.12);
+  }
+
+  .conference-table td,
+  .curriculum-table td,
+  .curriculum-table tbody th,
+  .curriculum-table tfoot th {
+    display: grid;
+    grid-template-columns: minmax(92px, 34%) minmax(0, 1fr);
+    gap: 14px;
+    padding: 0;
+    border: 0;
+    background: transparent !important;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .conference-table td::before,
+  .curriculum-table td::before,
+  .curriculum-table tbody th::before,
+  .curriculum-table tfoot th::before {
+    font-size: 10px;
+    line-height: 1.4;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(17, 24, 39, 0.4);
+  }
+
+  .conference-table td::before,
+  .curriculum-table td::before,
+  .curriculum-table tbody th::before,
+  .curriculum-table tfoot th::before {
+    content: attr(data-label);
+  }
+
+  .curriculum-table tfoot td:empty {
+    display: none;
+  }
+
+  .score-rule-table-wrap {
+    width: 100%;
+    margin: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .score-rule-table-wrap::after {
+    content: "";
+    display: block;
+    height: 1px;
+  }
+
+  .score-rule-table {
+    min-width: 620px;
+  }
+
+  .score-rule-table th,
+  .score-rule-table td {
+    padding: 8px 9px;
+    font-size: 10.5px;
+    line-height: 1.35;
+    white-space: nowrap;
+  }
+
+  .top-cs-explainer summary {
+    align-items: flex-start;
+    padding: 14px 0;
+    gap: 14px;
+    font-size: 13px;
+  }
+
+  .top-cs-explainer summary::after {
+    flex: 0 0 auto;
+    margin-top: -2px;
+  }
+
+  .top-cs-explainer-body {
+    gap: 14px;
+    padding: 0 0 18px;
+  }
+
+  .top-cs-explainer p {
+    max-width: none;
+    font-size: 12px !important;
+    line-height: 1.75 !important;
+  }
+
+  .top-cs-source-note {
+    margin-top: 0 !important;
+    font-size: 11px !important;
+    line-height: 1.6 !important;
+  }
+
+  .conference-result-count {
+    margin-bottom: 8px !important;
+  }
+
+  .curriculum-course-group {
+    margin-top: 26px;
+  }
+
+  .curriculum-course-list {
+    border-top-color: rgba(17, 24, 39, 0.1);
+  }
+
+  .curriculum-course-item {
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 14px;
+    padding: 18px 0;
+  }
+
+  .curriculum-course-item p {
+    max-width: none;
+  }
+
+  .faculty-profile-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .labs-scroll {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .lab-card {
+    min-height: 380px;
+    padding: 26px 22px 24px;
+    border-radius: 22px;
+  }
+
+  .lab-card h2 {
+    font-size: clamp(28px, 8vw, 42px);
+  }
+
+  .faculty-profile-card .profile-image {
+    width: 92px;
+    aspect-ratio: 4 / 5;
+    min-height: 0;
+  }
+
+  .faculty-profile-card .profile-image.has-photo {
+    background-color: #eef0f4;
+  }
+
+  .student-profile-grid .profile-image {
+    width: 56px;
+    aspect-ratio: 1;
+    min-height: 0;
+  }
+
+  .publication-search-row {
+    align-items: stretch;
+  }
+
+  .publication-search-select-wrap {
+    flex-basis: 100%;
+  }
+
+  .publication-search-select,
+  .publication-search-input {
+    width: 100%;
+    max-width: none;
+  }
+
+  .faculty-profile-card .profile-content p,
+  .student-profile-grid .profile-content p {
+    font-size: 11px;
+  }
+
+  .faculty-profile-card {
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 12px 14px;
+    padding: 18px 0;
+  }
+
+  .faculty-profile-card.no-photo {
+    grid-template-columns: 1fr;
+    gap: 12px 0;
+  }
+
+  .faculty-profile-main {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .faculty-profile-meta p {
+    grid-template-columns: 82px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .profile-courses-block {
+    grid-column: 1 / -1;
+    display: none;
+  }
+
+  .student-profile-grid .profile-card {
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 10px;
+    padding: 10px 0;
+  }
+}

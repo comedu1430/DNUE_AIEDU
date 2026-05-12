@@ -328,9 +328,19 @@
   justify-content: center;
 }
 
+.private-gate-shell-with-back {
+  min-height: auto;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
 .private-gate-form-minimal {
   width: min(100%, 420px);
   justify-content: center;
+}
+
+.private-gate-shell-with-back .private-gate-form-minimal {
+  justify-content: flex-start;
 }
 
 .private-gate-form-minimal .private-gate-input {
@@ -1250,7 +1260,11 @@
 }
 
 .private-gate-back {
-  margin-bottom: 20px;
+  margin: 0 0 8px;
+}
+
+.private-gate-shell-with-back .private-gate-error {
+  text-align: left;
 }
 
 .publication-item p {

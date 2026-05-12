@@ -20,7 +20,7 @@ function GraduationPasswordGate({ language, onUnlock, onBack }) {
   };
 
   return (
-    <div className="private-gate-shell">
+    <div className={`private-gate-shell ${onBack ? "private-gate-shell-with-back" : ""}`}>
       {onBack ? (
         <button type="button" className="news-detail-back private-gate-back" onClick={onBack}>
           ← {isKorean ? "운영 프로그램 목록으로 돌아가기" : "Back to program list"}

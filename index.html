@@ -8,6 +8,26 @@
       name="description"
       content="Official website for the Graduate School of AI Education at Daegu National University of Education."
     />
+    <script>
+      (function () {
+        var repoBase = "/DNUE_AIEDU";
+        var params = new URLSearchParams(window.location.search);
+        var redirectedPath = params.get("p");
+        var legacyHashPath = window.location.hash && window.location.hash.startsWith("#/")
+          ? window.location.hash.slice(1)
+          : "";
+
+        if (!redirectedPath) {
+          if (legacyHashPath) {
+            window.history.replaceState(null, "", repoBase + legacyHashPath);
+          }
+          return;
+        }
+
+        var normalizedPath = redirectedPath.startsWith("/") ? redirectedPath : "/" + redirectedPath;
+        window.history.replaceState(null, "", repoBase + normalizedPath);
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

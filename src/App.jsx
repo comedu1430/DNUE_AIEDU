@@ -4,12 +4,13 @@ import { Footer, MenuOverlay } from "./components/SiteFooterMenu";
 import { HomePage, InternalPage } from "./components/SitePages";
 import {
   NEWS_ROUTE_SECTION_KEYS,
-  buildHashForRoute,
+  buildAppUrlForRoute,
   getDefaultSection,
   getMenu,
   getVisibleSections,
-  normalizeHashRoute,
-  parseRouteFromHash,
+  normalizePathRoute,
+  parseRouteFromPathname,
+  stripBasePath,
 } from "./siteData";
 
 export default function App() {
@@ -18,14 +19,14 @@ export default function App() {
       return "home";
     }
 
-    return parseRouteFromHash(window.location.hash).page;
+    return parseRouteFromPathname(window.location.pathname).page;
   });
   const [currentSection, setCurrentSection] = useState(() => {
     if (typeof window === "undefined") {
       return "";
     }
 
-    return parseRouteFromHash(window.location.hash).section;
+    return parseRouteFromPathname(window.location.pathname).section;
   });
   const [menuOpen, setMenuOpen] = useState(false);
   const [expandedMenuKey, setExpandedMenuKey] = useState("");
@@ -53,7 +54,7 @@ export default function App() {
     setDesktopMenuKey("");
 
     if (typeof window !== "undefined") {
-      window.location.hash = buildHashForRoute("home");
+      window.history.pushState(null, "", buildAppUrlForRoute("home"));
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -77,7 +78,7 @@ export default function App() {
     setDesktopMenuKey("");
 
     if (typeof window !== "undefined") {
-      window.location.hash = buildHashForRoute(menuKey, resolvedSection);
+      window.history.pushState(null, "", buildAppUrlForRoute(menuKey, resolvedSection));
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -102,13 +103,14 @@ export default function App() {
   };
 
   useEffect(() => {
-    const handleHashChange = () => {
-      const normalizedHash = normalizeHashRoute(window.location.hash);
-      if (window.location.hash !== normalizedHash) {
-        window.history.replaceState(null, "", normalizedHash || window.location.pathname + window.location.search);
+    const handlePathChange = () => {
+      const normalizedPath = normalizePathRoute(window.location.pathname);
+      if (stripBasePath(window.location.pathname) !== normalizedPath) {
+        const route = parseRouteFromPathname(window.location.pathname);
+        window.history.replaceState(null, "", buildAppUrlForRoute(route.page, route.section));
       }
 
-      const route = parseRouteFromHash(window.location.hash);
+      const route = parseRouteFromPathname(window.location.pathname);
       setCurrentPage(route.page);
       setCurrentSection(route.section);
       setGraduationUnlocked(false);
@@ -118,10 +120,10 @@ export default function App() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    window.addEventListener("hashchange", handleHashChange);
-    handleHashChange();
+    window.addEventListener("popstate", handlePathChange);
+    handlePathChange();
 
-    return () => window.removeEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("popstate", handlePathChange);
   }, []);
 
   useEffect(() => {

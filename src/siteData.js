@@ -1,21 +1,24 @@
 export {
+  APP_BASE_PATH,
   GRADUATION_REQUIREMENTS_DOC_URL,
   GRADUATION_REQUIREMENTS_PREVIEW_URL,
   NEWS_ROUTE_SECTION_KEYS,
   PRIVATE_PAGE_PASSWORD,
   SITE_MAP,
   asset,
-  buildHashForRoute,
+  buildAppUrlForRoute,
+  buildPathForRoute,
   getDefaultSection,
   getMenu,
   getSectionLabel,
   getText,
   getVisibleSections,
   localizeFacultyOffice,
-  normalizeHashRoute,
+  normalizePathRoute,
   openExternalLink,
-  parseRouteFromHash,
+  parseRouteFromPathname,
   personAnchorId,
+  stripBasePath,
 } from "./site/shared";
 
 export {

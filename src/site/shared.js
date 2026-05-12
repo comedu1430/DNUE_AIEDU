@@ -32,6 +32,7 @@ const openExternalLink = (href) => {
 };
 
 const NEWS_ROUTE_SECTION_KEYS = new Set(["annual"]);
+const APP_BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 const UI_TEXT = {
   en: {
@@ -204,9 +205,23 @@ function getSectionLabel(menuKey, sectionKey) {
   return getMenu(menuKey)?.sections.find((section) => section.key === sectionKey)?.label || "";
 }
 
-const parseRouteFromHash = (hash) => {
-  const normalized = String(hash || "")
-    .replace(/^#\/?/, "")
+const stripBasePath = (pathname) => {
+  const rawPathname = String(pathname || "/");
+
+  if (!APP_BASE_PATH || APP_BASE_PATH === ".") {
+    return rawPathname || "/";
+  }
+
+  if (APP_BASE_PATH && rawPathname.startsWith(APP_BASE_PATH)) {
+    return rawPathname.slice(APP_BASE_PATH.length) || "/";
+  }
+
+  return rawPathname || "/";
+};
+
+const parseRouteFromPathname = (pathname) => {
+  const normalized = stripBasePath(pathname)
+    .replace(/^\/+/, "")
     .trim();
 
   if (!normalized || normalized === "home") {
@@ -239,41 +254,49 @@ const parseRouteFromHash = (hash) => {
   };
 };
 
-const normalizeHashRoute = (hash) => {
-  const route = parseRouteFromHash(hash);
-  return buildHashForRoute(route.page, route.section);
+const normalizePathRoute = (pathname) => {
+  const route = parseRouteFromPathname(pathname);
+  return buildPathForRoute(route.page, route.section);
 };
 
-const buildHashForRoute = (pageKey, sectionKey = "") => {
+const buildPathForRoute = (pageKey, sectionKey = "") => {
   if (!pageKey || pageKey === "home") {
-    return "";
+    return "/";
   }
 
   if (pageKey === "news") {
-    return sectionKey === "annual" ? "#/news/annual" : "#/news";
+    return sectionKey === "annual" ? "/news/annual" : "/news";
   }
 
-  return sectionKey ? `#/${pageKey}/${sectionKey}` : `#/${pageKey}`;
+  return sectionKey ? `/${pageKey}/${sectionKey}` : `/${pageKey}`;
+};
+
+const buildAppUrlForRoute = (pageKey, sectionKey = "") => {
+  const routePath = buildPathForRoute(pageKey, sectionKey);
+  return `${APP_BASE_PATH}${routePath}` || "/";
 };
 
 export {
+  APP_BASE_PATH,
   GRADUATION_REQUIREMENTS_DOC_URL,
   GRADUATION_REQUIREMENTS_PREVIEW_URL,
   NEWS_ROUTE_SECTION_KEYS,
   PRIVATE_PAGE_PASSWORD,
   SITE_MAP,
   asset,
-  buildHashForRoute,
+  buildAppUrlForRoute,
+  buildPathForRoute,
   getDefaultSection,
   getMenu,
   getSectionLabel,
   getText,
   getVisibleSections,
   localizeFacultyOffice,
-  normalizeHashRoute,
+  normalizePathRoute,
   openExternalLink,
-  parseRouteFromHash,
+  parseRouteFromPathname,
   personAnchorId,
+  stripBasePath,
   slugify,
   studentCvSlug,
 };

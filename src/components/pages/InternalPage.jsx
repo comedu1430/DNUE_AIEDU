@@ -13,7 +13,16 @@ import {
   StudentYearGroups,
 } from "./SectionContent";
 
-function InternalPage({ menuKey, sectionKey, onSectionSelect, language, graduationUnlocked, onUnlockGraduation }) {
+function InternalPage({
+  menuKey,
+  sectionKey,
+  onSectionSelect,
+  language,
+  graduationUnlocked,
+  onUnlockGraduation,
+  pendingProtectedNewsItem,
+  onClearProtectedNewsItem,
+}) {
   const text = getText(language);
   const menu = getMenu(menuKey);
   const content = getPageContent(menuKey, sectionKey, language);
@@ -93,6 +102,8 @@ function InternalPage({ menuKey, sectionKey, onSectionSelect, language, graduati
               sectionKey={currentSection}
               onBackToNews={() => onSectionSelect("news", "")}
               onOpenAnnual={() => onSectionSelect("news", "annual")}
+              initialProtectedItem={pendingProtectedNewsItem}
+              onClearProtectedItem={onClearProtectedNewsItem}
             />
           ) : null}
           {showPublications ? (

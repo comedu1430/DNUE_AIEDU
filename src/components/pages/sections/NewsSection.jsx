@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { getLocalizedAnnualPrograms, getLocalizedNewsProjects, openExternalLink } from "../../../siteData";
 import { GraduationPasswordGate } from "./AccessGate";
 
-function NewsPage({ language, sectionKey, onBackToNews, onOpenAnnual }) {
+function NewsPage({ language, sectionKey, onBackToNews, onOpenAnnual, initialProtectedItem, onClearProtectedItem }) {
   const annualPrograms = getLocalizedAnnualPrograms(language);
   const isKorean = language === "ko";
   const projectItems = getLocalizedNewsProjects(language);
-  const [protectedItem, setProtectedItem] = useState(null);
+  const [protectedItem, setProtectedItem] = useState(initialProtectedItem ?? null);
   const annualNotice = {
     tag: isKorean ? "상단 고정" : "Pinned",
     type: isKorean ? "공지" : "Notice",
@@ -21,6 +21,10 @@ function NewsPage({ language, sectionKey, onBackToNews, onOpenAnnual }) {
     setProtectedItem(null);
   }, [sectionKey]);
 
+  useEffect(() => {
+    setProtectedItem(initialProtectedItem ?? null);
+  }, [initialProtectedItem]);
+
   const handleProjectLinkClick = (event, item) => {
     if (!item.requiresPassword) {
       return;
@@ -28,6 +32,7 @@ function NewsPage({ language, sectionKey, onBackToNews, onOpenAnnual }) {
 
     event.preventDefault();
     setProtectedItem(item);
+    onClearProtectedItem?.();
   };
 
   const handleProtectedUnlock = () => {
@@ -37,6 +42,7 @@ function NewsPage({ language, sectionKey, onBackToNews, onOpenAnnual }) {
 
     const targetHref = protectedItem.href;
     setProtectedItem(null);
+    onClearProtectedItem?.();
     openExternalLink(targetHref);
   };
 
@@ -46,7 +52,10 @@ function NewsPage({ language, sectionKey, onBackToNews, onOpenAnnual }) {
         key={protectedItem.href}
         language={language}
         onUnlock={handleProtectedUnlock}
-        onBack={() => setProtectedItem(null)}
+        onBack={() => {
+          setProtectedItem(null);
+          onClearProtectedItem?.();
+        }}
       />
     );
   }

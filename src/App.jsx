@@ -33,6 +33,7 @@ export default function App() {
   const [desktopMenuKey, setDesktopMenuKey] = useState("");
   const [language, setLanguage] = useState("en");
   const [graduationUnlocked, setGraduationUnlocked] = useState(false);
+  const [pendingProtectedNewsItem, setPendingProtectedNewsItem] = useState(null);
   const shellRef = useRef(null);
 
   const isHome = currentPage === "home";
@@ -49,6 +50,7 @@ export default function App() {
     setCurrentPage("home");
     setCurrentSection("");
     setGraduationUnlocked(false);
+    setPendingProtectedNewsItem(null);
     setMenuOpen(false);
     setExpandedMenuKey("");
     setDesktopMenuKey("");
@@ -73,12 +75,32 @@ export default function App() {
     setCurrentPage(menuKey);
     setCurrentSection(resolvedSection);
     setGraduationUnlocked(false);
+    setPendingProtectedNewsItem(null);
     setMenuOpen(false);
     setExpandedMenuKey(resolvedSection ? menuKey : "");
     setDesktopMenuKey("");
 
     if (typeof window !== "undefined") {
       window.history.pushState(null, "", buildAppUrlForRoute(menuKey, resolvedSection));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const openProtectedNewsItem = (item) => {
+    if (!item) {
+      return;
+    }
+
+    setCurrentPage("news");
+    setCurrentSection("");
+    setGraduationUnlocked(false);
+    setPendingProtectedNewsItem(item);
+    setMenuOpen(false);
+    setExpandedMenuKey("");
+    setDesktopMenuKey("");
+
+    if (typeof window !== "undefined") {
+      window.history.pushState(null, "", buildAppUrlForRoute("news"));
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -114,6 +136,7 @@ export default function App() {
       setCurrentPage(route.page);
       setCurrentSection(route.section);
       setGraduationUnlocked(false);
+      setPendingProtectedNewsItem(null);
       setMenuOpen(false);
       setExpandedMenuKey("");
       setDesktopMenuKey("");
@@ -184,7 +207,7 @@ export default function App() {
         onToggleLanguage={() => setLanguage((current) => (current === "en" ? "ko" : "en"))}
       />
       {isHome ? (
-        <HomePage language={language} />
+        <HomePage language={language} onOpenProtectedNews={openProtectedNewsItem} />
       ) : (
         <InternalPage
           menuKey={currentPage}
@@ -193,6 +216,8 @@ export default function App() {
           language={language}
           graduationUnlocked={graduationUnlocked}
           onUnlockGraduation={() => setGraduationUnlocked(true)}
+          pendingProtectedNewsItem={pendingProtectedNewsItem}
+          onClearProtectedNewsItem={() => setPendingProtectedNewsItem(null)}
         />
       )}
       <Footer isHome={isHome} onNavigate={navigateTo} />

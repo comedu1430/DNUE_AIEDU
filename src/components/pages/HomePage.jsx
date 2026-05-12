@@ -6,19 +6,19 @@ const splineRestartUrl = (id) => `${SPLINE_LANDING_URL}?restart=${id}`;
 const SPLINE_RESTART_INTERVAL_MS = 55_000;
 
 const openProtectedExternalLink = (event, item, language) => {
+  if (!item.requiresPassword) {
+    return;
+  }
+
   event.preventDefault();
 
-  if (item.requiresPassword) {
-    const password = window.prompt(
-      language === "ko" ? "비밀번호를 입력하세요." : "Enter the password to open this page."
-    );
+  const password = window.prompt(language === "ko" ? "비밀번호를 입력하세요." : "Enter the password to open this page.");
 
-    if (password !== PRIVATE_PAGE_PASSWORD) {
-      if (password) {
-        window.alert(language === "ko" ? "비밀번호가 올바르지 않습니다." : "The password is incorrect.");
-      }
-      return;
+  if (password !== PRIVATE_PAGE_PASSWORD) {
+    if (password) {
+      window.alert(language === "ko" ? "비밀번호가 올바르지 않습니다." : "The password is incorrect.");
     }
+    return;
   }
 
   openExternalLink(item.href);
@@ -147,7 +147,7 @@ function HomePage({ language }) {
                       <a
                         href={item.href}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         onClick={(event) => openProtectedExternalLink(event, item, language)}
                       >
                         {item.displayTitle}

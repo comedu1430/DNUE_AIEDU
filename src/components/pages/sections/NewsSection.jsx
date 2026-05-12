@@ -22,14 +22,12 @@ function NewsPage({ language, sectionKey, onBackToNews, onOpenAnnual }) {
   }, [sectionKey]);
 
   const handleProjectLinkClick = (event, item) => {
-    event.preventDefault();
-
-    if (item.requiresPassword) {
-      setProtectedItem(item);
+    if (!item.requiresPassword) {
       return;
     }
 
-    openExternalLink(item.href);
+    event.preventDefault();
+    setProtectedItem(item);
   };
 
   const handleProtectedUnlock = () => {

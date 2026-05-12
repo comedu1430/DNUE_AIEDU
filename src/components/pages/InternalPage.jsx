@@ -87,7 +87,14 @@ function InternalPage({ menuKey, sectionKey, onSectionSelect, language, graduati
           ) : null}
           {showAcademicCalendar ? <AcademicCalendarPage language={language} /> : null}
           {showCurriculum ? <CurriculumPage language={language} /> : null}
-          {showNews ? <NewsPage language={language} sectionKey={currentSection} onOpenAnnual={() => onSectionSelect("news", "annual")} /> : null}
+          {showNews ? (
+            <NewsPage
+              language={language}
+              sectionKey={currentSection}
+              onBackToNews={() => onSectionSelect("news", "")}
+              onOpenAnnual={() => onSectionSelect("news", "annual")}
+            />
+          ) : null}
           {showPublications ? (
             <div className="publication-search">
               <label className="publication-search-label" htmlFor="publication-search">

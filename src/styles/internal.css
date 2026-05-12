@@ -1236,6 +1236,19 @@
   color: #1d4f86;
 }
 
+.news-detail-back {
+  justify-self: start;
+  margin: 0 0 8px;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.2;
+  color: rgba(17, 24, 39, 0.68);
+}
+
+.news-detail-back:hover {
+  color: rgba(17, 24, 39, 0.9);
+}
+
 .publication-item p {
   margin: 0;
 }
@@ -1652,4 +1665,3 @@
 .student-cv-section li + li {
   margin-top: 8px;
 }
-

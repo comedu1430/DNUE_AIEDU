@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getLocalizedAnnualPrograms, getLocalizedNewsProjects, openExternalLink } from "../../../siteData";
 import { GraduationPasswordGate } from "./AccessGate";
 
-function NewsPage({ language, sectionKey, onOpenAnnual }) {
+function NewsPage({ language, sectionKey, onBackToNews, onOpenAnnual }) {
   const annualPrograms = getLocalizedAnnualPrograms(language);
   const isKorean = language === "ko";
   const projectItems = getLocalizedNewsProjects(language);
@@ -50,6 +50,9 @@ function NewsPage({ language, sectionKey, onOpenAnnual }) {
     <div className="about-overview news-overview">
       {showAnnualDetail ? (
         <div className="about-text-stack news-annual-stack">
+          <button type="button" className="news-detail-back" onClick={onBackToNews}>
+            ← {isKorean ? "운영 프로그램 목록으로 돌아가기" : "Back to program list"}
+          </button>
           {annualPrograms.map((item) => (
             <section key={item.number} className="about-text-section">
               <div className="about-section-head">
@@ -104,7 +107,7 @@ function NewsPage({ language, sectionKey, onOpenAnnual }) {
                   <a
                     href={item.href}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     onClick={(event) => handleProjectLinkClick(event, item)}
                   >
                     {item.displayTitle}

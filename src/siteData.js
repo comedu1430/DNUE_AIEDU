@@ -2,7 +2,7 @@ export {
   APP_BASE_PATH,
   GRADUATION_REQUIREMENTS_DOC_URL,
   GRADUATION_REQUIREMENTS_PREVIEW_URL,
-  NEWS_ROUTE_SECTION_KEYS,
+  PROGRAMS_ROUTE_SECTION_KEYS,
   PRIVATE_PAGE_PASSWORD,
   SITE_MAP,
   asset,
@@ -51,10 +51,10 @@ export {
 } from "./site/people";
 
 export {
-  NEWS_ANNUAL_PROGRAMS,
+  PROGRAMS_ANNUAL_ITEMS,
   getLocalizedAnnualPrograms,
-  getLocalizedNewsProjects,
-  getLocalizedNewsProjectsByYear,
-} from "./site/news";
+  getLocalizedProgramsItems,
+  getLocalizedProgramsItemsByYear,
+} from "./site/programs";
 
 export { PUBLICATION_LISTS, getLocalizedPublication } from "./site/publications";

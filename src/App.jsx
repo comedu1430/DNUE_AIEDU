@@ -3,7 +3,7 @@ import { Header } from "./components/SiteChrome";
 import { Footer, MenuOverlay } from "./components/SiteFooterMenu";
 import { HomePage, InternalPage } from "./components/SitePages";
 import {
-  NEWS_ROUTE_SECTION_KEYS,
+  PROGRAMS_ROUTE_SECTION_KEYS,
   buildAppUrlForRoute,
   getDefaultSection,
   getMenu,
@@ -33,7 +33,7 @@ export default function App() {
   const [desktopMenuKey, setDesktopMenuKey] = useState("");
   const [language, setLanguage] = useState("en");
   const [graduationUnlocked, setGraduationUnlocked] = useState(false);
-  const [pendingProtectedNewsItem, setPendingProtectedNewsItem] = useState(null);
+  const [pendingProtectedProgramItem, setPendingProtectedProgramItem] = useState(null);
   const shellRef = useRef(null);
 
   const isHome = currentPage === "home";
@@ -50,7 +50,7 @@ export default function App() {
     setCurrentPage("home");
     setCurrentSection("");
     setGraduationUnlocked(false);
-    setPendingProtectedNewsItem(null);
+    setPendingProtectedProgramItem(null);
     setMenuOpen(false);
     setExpandedMenuKey("");
     setDesktopMenuKey("");
@@ -64,8 +64,8 @@ export default function App() {
   const navigateTo = (menuKey, sectionKey = "") => {
     const resolvedMenu = getMenu(menuKey);
     const resolvedSection =
-      menuKey === "news"
-        ? (NEWS_ROUTE_SECTION_KEYS.has(sectionKey) ? sectionKey : "")
+      menuKey === "programs"
+        ? (PROGRAMS_ROUTE_SECTION_KEYS.has(sectionKey) ? sectionKey : "")
         : resolvedMenu?.sections.length
           ? (sectionKey && resolvedMenu.sections.some((section) => section.key === sectionKey)
               ? sectionKey
@@ -75,7 +75,7 @@ export default function App() {
     setCurrentPage(menuKey);
     setCurrentSection(resolvedSection);
     setGraduationUnlocked(false);
-    setPendingProtectedNewsItem(null);
+    setPendingProtectedProgramItem(null);
     setMenuOpen(false);
     setExpandedMenuKey(resolvedSection ? menuKey : "");
     setDesktopMenuKey("");
@@ -86,21 +86,21 @@ export default function App() {
     }
   };
 
-  const openProtectedNewsItem = (item) => {
+  const openProtectedProgramItem = (item) => {
     if (!item) {
       return;
     }
 
-    setCurrentPage("news");
+    setCurrentPage("programs");
     setCurrentSection("");
     setGraduationUnlocked(false);
-    setPendingProtectedNewsItem(item);
+    setPendingProtectedProgramItem(item);
     setMenuOpen(false);
     setExpandedMenuKey("");
     setDesktopMenuKey("");
 
     if (typeof window !== "undefined") {
-      window.history.pushState(null, "", buildAppUrlForRoute("news"));
+      window.history.pushState(null, "", buildAppUrlForRoute("programs"));
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -136,7 +136,7 @@ export default function App() {
       setCurrentPage(route.page);
       setCurrentSection(route.section);
       setGraduationUnlocked(false);
-      setPendingProtectedNewsItem(null);
+      setPendingProtectedProgramItem(null);
       setMenuOpen(false);
       setExpandedMenuKey("");
       setDesktopMenuKey("");
@@ -207,7 +207,7 @@ export default function App() {
         onToggleLanguage={() => setLanguage((current) => (current === "en" ? "ko" : "en"))}
       />
       {isHome ? (
-        <HomePage language={language} onOpenProtectedNews={openProtectedNewsItem} />
+        <HomePage language={language} onOpenProtectedProgram={openProtectedProgramItem} />
       ) : (
         <InternalPage
           menuKey={currentPage}
@@ -216,8 +216,8 @@ export default function App() {
           language={language}
           graduationUnlocked={graduationUnlocked}
           onUnlockGraduation={() => setGraduationUnlocked(true)}
-          pendingProtectedNewsItem={pendingProtectedNewsItem}
-          onClearProtectedNewsItem={() => setPendingProtectedNewsItem(null)}
+          pendingProtectedProgramItem={pendingProtectedProgramItem}
+          onClearProtectedProgramItem={() => setPendingProtectedProgramItem(null)}
         />
       )}
       <Footer isHome={isHome} onNavigate={navigateTo} />

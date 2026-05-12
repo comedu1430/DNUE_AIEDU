@@ -82,8 +82,8 @@ const PAGE_COPY = {
       default: ["This page is intended to present the curriculum and academic structure of the program in a systematic way."],
     },
   },
-  news: {
-    title: "News",
+  programs: {
+    title: "Programs",
     headline: "Program updates and annual activities",
     subheadline: "",
     body: {
@@ -155,8 +155,8 @@ const PAGE_COPY_KO = {
       default: ["AI교육전공의 교육과정과 학사 구조를 체계적으로 소개합니다."],
     },
   },
-  news: {
-    title: "News",
+  programs: {
+    title: "Programs",
     headline: "전공 소식과 연간 사업",
     subheadline: "",
     body: {

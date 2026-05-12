@@ -31,7 +31,7 @@ const openExternalLink = (href) => {
   }
 };
 
-const NEWS_ROUTE_SECTION_KEYS = new Set(["annual"]);
+const PROGRAMS_ROUTE_SECTION_KEYS = new Set(["annual"]);
 const APP_BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 const UI_TEXT = {
@@ -183,8 +183,8 @@ const SITE_MAP = [
     ],
   },
   {
-    key: "news",
-    label: "NEWS",
+    key: "programs",
+    label: "PROGRAMS",
     sections: [],
   },
 ];
@@ -231,10 +231,10 @@ const parseRouteFromPathname = (pathname) => {
   const [pageKey, sectionKey = ""] = normalized.split("/").filter(Boolean);
   const menu = getMenu(pageKey);
 
-  if (pageKey === "news") {
+  if (pageKey === "programs") {
     return {
-      page: "news",
-      section: NEWS_ROUTE_SECTION_KEYS.has(sectionKey) ? sectionKey : "",
+      page: "programs",
+      section: PROGRAMS_ROUTE_SECTION_KEYS.has(sectionKey) ? sectionKey : "",
     };
   }
 
@@ -264,8 +264,8 @@ const buildPathForRoute = (pageKey, sectionKey = "") => {
     return "/";
   }
 
-  if (pageKey === "news") {
-    return sectionKey === "annual" ? "/news/annual" : "/news";
+  if (pageKey === "programs") {
+    return sectionKey === "annual" ? "/programs/annual" : "/programs";
   }
 
   return sectionKey ? `/${pageKey}/${sectionKey}` : `/${pageKey}`;
@@ -280,7 +280,7 @@ export {
   APP_BASE_PATH,
   GRADUATION_REQUIREMENTS_DOC_URL,
   GRADUATION_REQUIREMENTS_PREVIEW_URL,
-  NEWS_ROUTE_SECTION_KEYS,
+  PROGRAMS_ROUTE_SECTION_KEYS,
   PRIVATE_PAGE_PASSWORD,
   SITE_MAP,
   asset,

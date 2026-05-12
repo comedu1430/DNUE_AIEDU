@@ -13,14 +13,8 @@
         var repoBase = "/DNUE_AIEDU";
         var params = new URLSearchParams(window.location.search);
         var redirectedPath = params.get("p");
-        var legacyHashPath = window.location.hash && window.location.hash.startsWith("#/")
-          ? window.location.hash.slice(1)
-          : "";
 
         if (!redirectedPath) {
-          if (legacyHashPath) {
-            window.history.replaceState(null, "", repoBase + legacyHashPath);
-          }
           return;
         }
 

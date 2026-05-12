@@ -6,6 +6,6 @@ export {
   CurriculumPage,
   GraduationRequirements,
 } from "./sections/AcademicsSection";
-export { NewsPage } from "./sections/NewsSection";
+export { ProgramsPage } from "./sections/ProgramsSection";
 export { LabsShowcase, ProfileGrid, StudentCvPage, StudentYearGroups } from "./sections/PeopleSection";
 export { PublicationList } from "./sections/PublicationsSection";

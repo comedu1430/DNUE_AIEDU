@@ -7,7 +7,7 @@ import {
   GraduationPasswordGate,
   GraduationRequirements,
   LabsShowcase,
-  NewsPage,
+  ProgramsPage,
   ProfileGrid,
   PublicationList,
   StudentYearGroups,
@@ -20,8 +20,8 @@ function InternalPage({
   language,
   graduationUnlocked,
   onUnlockGraduation,
-  pendingProtectedNewsItem,
-  onClearProtectedNewsItem,
+  pendingProtectedProgramItem,
+  onClearProtectedProgramItem,
 }) {
   const text = getText(language);
   const menu = getMenu(menuKey);
@@ -34,13 +34,13 @@ function InternalPage({
   const showProfiles = menuKey === "people";
   const showLabs = menuKey === "labs";
   const showPublications = menuKey === "research";
-  const showNews = menuKey === "news";
+  const showPrograms = menuKey === "programs";
   const showGraduationRequirements = menuKey === "academics" && currentSection === "graduation";
   const showAcademicCalendar = menuKey === "academics" && currentSection === "calendar";
   const showCurriculum = menuKey === "academics" && currentSection === "curriculum";
   const useWidePeopleLayout = menuKey === "people" && (currentSection === "faculty" || currentSection === "students");
   const useWideLabsLayout =
-    menuKey === "labs" || menuKey === "news" || showCurriculum || showGraduationRequirements || showAcademicCalendar || isAbout;
+    menuKey === "labs" || menuKey === "programs" || showCurriculum || showGraduationRequirements || showAcademicCalendar || isAbout;
   const [publicationQuery, setPublicationQuery] = useState("");
   const [publicationSearchMode, setPublicationSearchMode] = useState("authors");
 
@@ -62,7 +62,7 @@ function InternalPage({
           <div className="section-tabs" role="tablist" aria-label={`${content.title} sections`}>
             {visibleSections.map((section) => {
               const isProjectSection =
-                menuKey === "news" &&
+                menuKey === "programs" &&
                 currentSection.startsWith("projects-") &&
                 section.key === "projects-2026";
 
@@ -88,22 +88,22 @@ function InternalPage({
       >
         <article className="internal-copy">
           {isAbout ? <AboutOverview sectionKey={currentSection} language={language} /> : null}
-          {!isAbout && !showPublications && !showLabs && !showNews && !showGraduationRequirements && !showAcademicCalendar && !showCurriculum ? <h2>{currentLabel || content.headline}</h2> : null}
-          {!isAbout && !showPublications && !showLabs && !showNews && !showGraduationRequirements && !showAcademicCalendar && !showCurriculum && content.subheadline ? <h3>{content.subheadline}</h3> : null}
-          {!isAbout && !showPublications && !showLabs && !showNews && !showGraduationRequirements && !showAcademicCalendar && !showCurriculum ? content.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>) : null}
+          {!isAbout && !showPublications && !showLabs && !showPrograms && !showGraduationRequirements && !showAcademicCalendar && !showCurriculum ? <h2>{currentLabel || content.headline}</h2> : null}
+          {!isAbout && !showPublications && !showLabs && !showPrograms && !showGraduationRequirements && !showAcademicCalendar && !showCurriculum && content.subheadline ? <h3>{content.subheadline}</h3> : null}
+          {!isAbout && !showPublications && !showLabs && !showPrograms && !showGraduationRequirements && !showAcademicCalendar && !showCurriculum ? content.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>) : null}
           {showGraduationRequirements ? (
             graduationUnlocked ? <GraduationRequirements language={language} /> : <GraduationPasswordGate language={language} onUnlock={onUnlockGraduation} />
           ) : null}
           {showAcademicCalendar ? <AcademicCalendarPage language={language} /> : null}
           {showCurriculum ? <CurriculumPage language={language} /> : null}
-          {showNews ? (
-            <NewsPage
+          {showPrograms ? (
+            <ProgramsPage
               language={language}
               sectionKey={currentSection}
-              onBackToNews={() => onSectionSelect("news", "")}
-              onOpenAnnual={() => onSectionSelect("news", "annual")}
-              initialProtectedItem={pendingProtectedNewsItem}
-              onClearProtectedItem={onClearProtectedNewsItem}
+              onBackToPrograms={() => onSectionSelect("programs", "")}
+              onOpenAnnual={() => onSectionSelect("programs", "annual")}
+              initialProtectedItem={pendingProtectedProgramItem}
+              onClearProtectedItem={onClearProtectedProgramItem}
             />
           ) : null}
           {showPublications ? (

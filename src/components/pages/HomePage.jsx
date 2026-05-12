@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import { getLocalizedNewsProjects } from "../../siteData";
+import { getLocalizedProgramsItems } from "../../siteData";
 
 const SPLINE_LANDING_URL = "https://my.spline.design/displacelines-LS4TQIxZI0gVrTKi0K58h1m1/";
 const splineRestartUrl = (id) => `${SPLINE_LANDING_URL}?restart=${id}`;
 const SPLINE_RESTART_INTERVAL_MS = 55_000;
 
-const handleHomeNewsLinkClick = (event, item, onOpenProtectedNews) => {
+const handleHomeProgramLinkClick = (event, item, onOpenProtectedProgram) => {
   if (!item.requiresPassword) {
     return;
   }
 
   event.preventDefault();
-  onOpenProtectedNews(item);
+  onOpenProtectedProgram(item);
 };
 
 function LandingBackdrop() {
@@ -90,8 +90,8 @@ function LandingBackdrop() {
   );
 }
 
-function HomePage({ language, onOpenProtectedNews }) {
-  const homeNewsItems = getLocalizedNewsProjects(language);
+function HomePage({ language, onOpenProtectedProgram }) {
+  const homeProgramItems = getLocalizedProgramsItems(language);
 
   return (
     <div className="home-stack">
@@ -124,10 +124,10 @@ function HomePage({ language, onOpenProtectedNews }) {
       <section className="home-publications home-news">
         <div className="content-shell home-publications-inner reveal-on-scroll">
           <div className="home-publications-head">
-            <p>News</p>
+            <p>Programs</p>
           </div>
           <div className="home-publications-grid">
-            {homeNewsItems.map((item) => (
+            {homeProgramItems.map((item) => (
               <article key={`${item.date}-${item.title}`} className="home-publication-card">
                 <div className="home-publication-year">{item.date}</div>
                 <div className="home-publication-items">
@@ -138,7 +138,7 @@ function HomePage({ language, onOpenProtectedNews }) {
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        onClick={(event) => handleHomeNewsLinkClick(event, item, onOpenProtectedNews)}
+                        onClick={(event) => handleHomeProgramLinkClick(event, item, onOpenProtectedProgram)}
                       >
                         {item.displayTitle}
                       </a>

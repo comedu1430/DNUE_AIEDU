@@ -1249,6 +1249,10 @@
   color: rgba(17, 24, 39, 0.9);
 }
 
+.private-gate-back {
+  margin-bottom: 20px;
+}
+
 .publication-item p {
   margin: 0;
 }

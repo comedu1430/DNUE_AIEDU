@@ -41,7 +41,14 @@ function NewsPage({ language, sectionKey, onBackToNews, onOpenAnnual }) {
   };
 
   if (protectedItem) {
-    return <GraduationPasswordGate key={protectedItem.href} language={language} onUnlock={handleProtectedUnlock} />;
+    return (
+      <GraduationPasswordGate
+        key={protectedItem.href}
+        language={language}
+        onUnlock={handleProtectedUnlock}
+        onBack={() => setProtectedItem(null)}
+      />
+    );
   }
 
   return (

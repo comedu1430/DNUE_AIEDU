@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PRIVATE_PAGE_PASSWORD } from "../../../siteData";
 
-function GraduationPasswordGate({ language, onUnlock }) {
+function GraduationPasswordGate({ language, onUnlock, onBack }) {
   const isKorean = language === "ko";
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -21,6 +21,11 @@ function GraduationPasswordGate({ language, onUnlock }) {
 
   return (
     <div className="private-gate-shell">
+      {onBack ? (
+        <button type="button" className="news-detail-back private-gate-back" onClick={onBack}>
+          ← {isKorean ? "운영 프로그램 목록으로 돌아가기" : "Back to program list"}
+        </button>
+      ) : null}
       <form className="private-gate-form private-gate-form-minimal" onSubmit={handleSubmit}>
         <label className="sr-only" htmlFor="private-page-password">
           {isKorean ? "비밀번호" : "Password"}

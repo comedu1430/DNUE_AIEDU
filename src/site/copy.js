@@ -181,16 +181,9 @@ function getPageContent(menuKey, sectionKey, language = "en") {
     return null;
   }
 
-  const resolvedTitle =
-    menuKey === "news" && sectionKey === "annual"
-      ? language === "ko"
-        ? "연간 지속 사업"
-        : "Annual Programs"
-      : page.title;
-
   return {
     ...page,
-    title: resolvedTitle,
+    title: page.title,
     paragraphs: page.body[sectionKey] || page.body.default || fallbackPage?.body?.[sectionKey] || fallbackPage?.body?.default || [],
   };
 }

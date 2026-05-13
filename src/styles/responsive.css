@@ -719,6 +719,17 @@
     max-width: none;
   }
 
+  .private-gate-form-minimal {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .private-gate-submit {
+    align-self: center;
+    min-width: 120px;
+  }
+
   .faculty-profile-card .profile-content p,
   .student-profile-grid .profile-content p {
     font-size: 11px;

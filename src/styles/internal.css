@@ -348,6 +348,9 @@
 
 .private-gate-form-minimal {
   width: min(100%, 420px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
   justify-content: center;
 }
 
@@ -367,6 +370,7 @@
   background: rgba(255, 255, 255, 0.84);
   font-size: 15px;
   line-height: 1;
+  text-align: center;
   color: rgba(17, 24, 39, 0.88);
   transition:
     border-color 180ms ease,
@@ -389,6 +393,7 @@
   border: 0;
   height: 46px;
   padding: 0 20px;
+  flex: 0 0 auto;
   border-radius: 999px;
   background: rgba(17, 24, 39, 0.92);
   color: #fff;

@@ -1,5 +1,3 @@
-import notionPublications from "../data/notionPublications.json";
-
 const STATIC_PUBLICATION_LISTS = {
   "2026": [
     {
@@ -130,35 +128,7 @@ const STATIC_PUBLICATION_LISTS = {
   ],
 };
 
-const buildPublicationLists = (publications) => {
-  if (!Array.isArray(publications) || publications.length === 0) {
-    return STATIC_PUBLICATION_LISTS;
-  }
-
-  return publications.reduce((groups, publication) => {
-    const year = String(publication.year || new Date().getFullYear());
-    const currentGroup = groups[year] || [];
-    const normalizedPublication = {
-      type: publication.type || "Korean Journal",
-      title: publication.title || "",
-      koTitle: publication.koTitle || "",
-      authors: publication.authors || "",
-      koAuthors: publication.koAuthors || "",
-      venue: publication.venue || "",
-      koVenue: publication.koVenue || "",
-      doi: publication.doi || "",
-      url: publication.url || (publication.doi ? `https://doi.org/${publication.doi}` : ""),
-      order: publication.order ?? 9999,
-    };
-
-    return {
-      ...groups,
-      [year]: [...currentGroup, normalizedPublication],
-    };
-  }, {});
-};
-
-const PUBLICATION_LISTS = buildPublicationLists(notionPublications);
+const PUBLICATION_LISTS = STATIC_PUBLICATION_LISTS;
 
 const getLocalizedPublication = (item, language) => {
   if (language !== "ko") {

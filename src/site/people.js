@@ -1,4 +1,3 @@
-import notionStudents from "../data/notionStudents.json";
 import { asset, slugify, studentCvSlug } from "./shared";
 
 const FACULTY_PROFILES = [
@@ -162,23 +161,7 @@ const STATIC_STUDENT_PROFILES = {
   ],
 };
 
-const buildStudentProfiles = (students) => {
-  if (!Array.isArray(students) || students.length === 0) {
-    return STATIC_STUDENT_PROFILES;
-  }
-
-  return students.reduce((groups, student) => {
-    const year = String(student.year || student.cohort || "2024");
-    const currentGroup = groups[year] || [];
-
-    return {
-      ...groups,
-      [year]: [...currentGroup, student],
-    };
-  }, {});
-};
-
-const STUDENT_PROFILES = buildStudentProfiles(notionStudents);
+const STUDENT_PROFILES = STATIC_STUDENT_PROFILES;
 
 const LAB_CARDS = [
   {

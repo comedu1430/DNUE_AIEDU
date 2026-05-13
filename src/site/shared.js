@@ -25,10 +25,15 @@ const openExternalLink = (href) => {
   if (!href) {
     return;
   }
-  const nextWindow = window.open(href, "_blank", "noopener,noreferrer");
-  if (!nextWindow) {
-    window.location.href = href;
-  }
+
+  const link = document.createElement("a");
+  link.href = href;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.style.display = "none";
+  document.body.append(link);
+  link.click();
+  link.remove();
 };
 
 const PROGRAMS_ROUTE_SECTION_KEYS = new Set(["annual"]);

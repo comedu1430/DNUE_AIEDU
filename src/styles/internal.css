@@ -350,6 +350,7 @@
   width: min(100%, 420px);
   display: flex;
   align-items: center;
+  flex-wrap: nowrap;
   gap: 12px;
   justify-content: center;
 }

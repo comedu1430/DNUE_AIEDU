@@ -149,7 +149,7 @@ function StudentCvPage({ slug, onBack, language }) {
           ← {text.backToStudents}
         </button>
         <div className="student-cv-header">
-          <p className="student-cv-kicker">PhD Students · {profile.year}</p>
+          <p className="student-cv-kicker">Ed.D Students · {profile.year}</p>
           <h1>{language === "ko" ? profile.koName : profile.name}</h1>
           <div className="student-cv-meta">
             <p>

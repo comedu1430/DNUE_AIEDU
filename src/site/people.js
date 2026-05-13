@@ -207,7 +207,7 @@ const STUDENT_CV_PROFILES = Object.entries(STUDENT_PROFILES).flatMap(([year, pro
     koKeywords: profile.koKeywords?.length ? profile.koKeywords : ["AI 교수학습", "교육 데이터", "미래 학습"],
     education: profile.education?.length
       ? profile.education
-      : ["Graduate School of AI Education, Daegu National University of Education", `PhD Student Cohort ${year}`],
+      : ["Graduate School of AI Education, Daegu National University of Education", `Ed.D Student Cohort ${year}`],
     koEducation: profile.koEducation?.length ? profile.koEducation : ["대구교육대학교 AI교육전공 박사과정", `${year}학년도 입학`],
     researchInterests: profile.researchInterests?.length
       ? profile.researchInterests

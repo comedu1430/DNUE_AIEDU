@@ -207,7 +207,11 @@ export default function App() {
         onToggleLanguage={() => setLanguage((current) => (current === "en" ? "ko" : "en"))}
       />
       {isHome ? (
-        <HomePage language={language} onOpenProtectedProgram={openProtectedProgramItem} />
+        <HomePage
+          language={language}
+          onOpenProtectedProgram={openProtectedProgramItem}
+          onOpenAnnual={() => navigateTo("programs", "annual")}
+        />
       ) : (
         <InternalPage
           menuKey={currentPage}

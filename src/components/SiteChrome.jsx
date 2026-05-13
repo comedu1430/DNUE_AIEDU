@@ -112,8 +112,8 @@ function LanguageToggle({ language, onToggleLanguage, className = "" }) {
       </span>
       <span className="language-options" aria-hidden="true">
         <span className="language-slider" />
-        <span className="language-option">KR</span>
-        <span className="language-option">EN</span>
+        <span className="language-option language-option-kr">KR</span>
+        <span className="language-option language-option-en">EN</span>
       </span>
     </button>
   );

@@ -4,6 +4,7 @@ import { getLocalizedProgramsItems } from "../../siteData";
 const SPLINE_LANDING_URL = "https://my.spline.design/displacelines-LS4TQIxZI0gVrTKi0K58h1m1/";
 const splineRestartUrl = (id) => `${SPLINE_LANDING_URL}?restart=${id}`;
 const SPLINE_RESTART_INTERVAL_MS = 55_000;
+const HOME_PROGRAMS_COLLAPSED_COUNT = 5;
 
 const handleHomeProgramLinkClick = (event, item, onOpenProtectedProgram) => {
   if (!item.requiresPassword) {
@@ -90,8 +91,22 @@ function LandingBackdrop() {
   );
 }
 
-function HomePage({ language, onOpenProtectedProgram }) {
+function HomePage({ language, onOpenProtectedProgram, onOpenAnnual }) {
   const homeProgramItems = getLocalizedProgramsItems(language);
+  const [showAllPrograms, setShowAllPrograms] = useState(false);
+  const visibleProgramItems = showAllPrograms
+    ? homeProgramItems
+    : homeProgramItems.slice(0, HOME_PROGRAMS_COLLAPSED_COUNT);
+  const hasMorePrograms = homeProgramItems.length > HOME_PROGRAMS_COLLAPSED_COUNT;
+  const annualNotice = {
+    tag: language === "ko" ? "상단 고정" : "Pinned",
+    type: language === "ko" ? "공지" : "Notice",
+    title: language === "ko" ? "연간 지속 사업" : "Annual Programs",
+    summary:
+      language === "ko"
+        ? "AI교육전공에서 연중 운영하는 정기 프로그램 일정을 확인할 수 있습니다."
+        : "Review the recurring annual programs organized throughout the year in the AI Education major.",
+  };
 
   return (
     <div className="home-stack">
@@ -127,7 +142,28 @@ function HomePage({ language, onOpenProtectedProgram }) {
             <p>Programs</p>
           </div>
           <div className="home-publications-grid">
-            {homeProgramItems.map((item) => (
+            <article className="home-publication-card home-publication-card-pinned">
+              <div className="home-publication-year home-publication-year-pinned">
+                <span className="home-publication-pin" aria-label={annualNotice.tag}>
+                  <span className="sr-only">{annualNotice.tag}</span>
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M15 4.5a1.5 1.5 0 0 1 1.5 1.5v1.1l1.9 1.9a1 1 0 0 1-.7 1.7h-2v4.2l1.1 1.1a1 1 0 0 1-.7 1.7h-4.1V22a1 1 0 0 1-2 0v-4.4H6.9a1 1 0 0 1-.7-1.7l1.1-1.1v-4.2h-2a1 1 0 0 1-.7-1.7l1.9-1.9V6A1.5 1.5 0 0 1 8 4.5z"></path>
+                  </svg>
+                </span>
+              </div>
+              <div className="home-publication-items">
+                <div className="home-publication-entry home-publication-entry-pinned">
+                  <p className="home-publication-type">{annualNotice.type}</p>
+                  <h3>
+                    <button type="button" className="home-publication-link-button" onClick={onOpenAnnual}>
+                      {annualNotice.title}
+                    </button>
+                  </h3>
+                  <p className="home-publication-meta">{annualNotice.summary}</p>
+                </div>
+              </div>
+            </article>
+            {visibleProgramItems.map((item) => (
               <article key={`${item.date}-${item.title}`} className="home-publication-card">
                 <div className="home-publication-year">{item.date}</div>
                 <div className="home-publication-items">
@@ -149,6 +185,19 @@ function HomePage({ language, onOpenProtectedProgram }) {
               </article>
             ))}
           </div>
+          {hasMorePrograms ? (
+            <div className="home-publications-more">
+              <button type="button" className="home-publications-more-button" onClick={() => setShowAllPrograms((current) => !current)}>
+                {showAllPrograms
+                  ? language === "ko"
+                    ? "접기"
+                    : "Show less"
+                  : language === "ko"
+                    ? "더보기"
+                    : "Show more"}
+              </button>
+            </div>
+          ) : null}
         </div>
       </section>
     </div>

@@ -167,26 +167,6 @@
   color: var(--text);
 }
 
-.home-publication-year-pinned {
-  display: flex;
-  align-items: flex-start;
-}
-
-.home-publication-pin {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  color: rgba(17, 19, 24, 0.7);
-}
-
-.home-publication-pin svg {
-  width: 24px;
-  height: 24px;
-  fill: currentColor;
-}
-
 .home-publication-empty {
   display: flex;
   align-items: center;
@@ -219,6 +199,7 @@
 
 .home-publication-entry-pinned {
   border-top: 0;
+  background: rgba(17, 19, 24, 0.035);
 }
 
 .home-publication-type {

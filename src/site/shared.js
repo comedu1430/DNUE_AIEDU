@@ -53,7 +53,7 @@ const UI_TEXT = {
     phone: "Phone",
     email: "Email",
     lab: "Lab",
-    backToStudents: "Back to Ed.D Students",
+    backToStudents: "Back to Ed. D. Students",
     researchKeywords: "Research Keywords",
     education: "Education",
     researchInterests: "Research Interests",
@@ -165,7 +165,7 @@ const SITE_MAP = [
     label: "PEOPLE",
     sections: [
       { key: "faculty", label: "Faculty" },
-      { key: "students", label: "Ed.D Students" },
+      { key: "students", label: "Ed. D. Students" },
     ],
   },
   {

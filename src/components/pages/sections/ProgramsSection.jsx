@@ -97,12 +97,7 @@ function ProgramsPage({ language, sectionKey, onBackToPrograms, onOpenAnnual, in
                 }
               }}
             >
-              <p className="publication-year-tag news-pin-tag" aria-label={annualNotice.tag}>
-                <span className="sr-only">{annualNotice.tag}</span>
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path d="M15 4.5a1.5 1.5 0 0 1 1.5 1.5v1.1l1.9 1.9a1 1 0 0 1-.7 1.7h-2v4.2l1.1 1.1a1 1 0 0 1-.7 1.7h-4.1V22a1 1 0 0 1-2 0v-4.4H6.9a1 1 0 0 1-.7-1.7l1.1-1.1v-4.2h-2a1 1 0 0 1-.7-1.7l1.9-1.9V6A1.5 1.5 0 0 1 8 4.5z"></path>
-                </svg>
-              </p>
+              <p className="publication-year-tag">{annualNotice.tag}</p>
               <p className="publication-type">{annualNotice.type}</p>
               <h4>
                 <button

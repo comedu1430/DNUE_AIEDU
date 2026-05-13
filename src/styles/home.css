@@ -159,8 +159,8 @@
 }
 
 .home-publication-card-pinned {
-  grid-template-columns: 1fr;
-  gap: 0;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 24px;
 }
 
 .home-publication-year {
@@ -169,7 +169,7 @@
   line-height: 1;
   letter-spacing: -0.05em;
   font-weight: 500;
-  color: rgba(17, 19, 24, 0.46);
+  color: var(--text);
 }
 
 .home-publication-empty {

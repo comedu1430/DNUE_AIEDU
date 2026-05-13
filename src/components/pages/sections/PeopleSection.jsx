@@ -90,10 +90,17 @@ function StudentYearGroups({ language }) {
                 className="profile-card student-typography-card"
               >
                 <div className="profile-content student-typography-content">
-                  <h4 className="student-name-en">{profile.name}</h4>
-                  <p className="student-name-ko">{profile.koName}</p>
-                  <p className="student-lab-en">{profile.lab}</p>
-                  <p className="student-lab-ko">{profile.koLab}</p>
+                  {language === "ko" ? (
+                    <>
+                      <h4 className="student-name-ko-primary">{profile.koName}</h4>
+                      <p className="student-lab-ko">{profile.koLab}</p>
+                    </>
+                  ) : (
+                    <>
+                      <h4 className="student-name-en">{profile.name}</h4>
+                      <p className="student-lab-en">{profile.lab}</p>
+                    </>
+                  )}
                 </div>
               </article>
             ))}

@@ -347,9 +347,8 @@
     font-size: 15px;
   }
 
-  .student-profile-grid .student-typography-card .student-name-ko {
-    font-size: 12px;
-    margin-bottom: 4px;
+  .student-profile-grid .student-typography-card h4.student-name-ko-primary {
+    font-size: 15px;
   }
 
   .student-profile-grid .student-typography-card .student-lab-en,

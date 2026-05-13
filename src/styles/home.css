@@ -158,6 +158,11 @@
   border-top: 0;
 }
 
+.home-publication-card-pinned {
+  padding-top: 18px;
+  border-top: 1px solid rgba(10, 16, 30, 0.18);
+}
+
 .home-publication-year {
   padding-top: 2px;
   font-size: 30px;
@@ -199,7 +204,7 @@
 
 .home-publication-entry-pinned {
   border-top: 0;
-  background: rgba(17, 19, 24, 0.035);
+  background: transparent;
 }
 
 .home-publication-type {

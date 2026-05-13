@@ -8,7 +8,7 @@ function ProgramsPage({ language, sectionKey, onBackToPrograms, onOpenAnnual, in
   const programItems = getLocalizedProgramsItems(language);
   const [protectedItem, setProtectedItem] = useState(initialProtectedItem ?? null);
   const annualNotice = {
-    tag: isKorean ? "상단 고정" : "Pinned",
+    tag: isKorean ? "공지" : "Notice",
     type: isKorean ? "공지" : "Notice",
     title: isKorean ? "연간 지속 사업" : "Annual Programs",
     summary: isKorean

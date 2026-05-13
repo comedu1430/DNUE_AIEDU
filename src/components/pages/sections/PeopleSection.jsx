@@ -84,13 +84,16 @@ function StudentYearGroups({ language }) {
           <h3>{year}</h3>
           <div className="profile-grid student-profile-grid">
             {STUDENT_PROFILES[year].map((profile) => (
-              <article key={`${year}-${profile.name}`} id={personAnchorId({ section: "students", name: profile.name, year })} className="profile-card">
-                <div className={`profile-image ${profile.image ? "has-photo" : ""}`} aria-hidden="true">
-                  {profile.image ? <img className="profile-photo" src={profile.image} alt="" loading="lazy" /> : null}
-                </div>
-                <div className="profile-content">
-                  <h4>{language === "ko" ? profile.koName : profile.name}</h4>
-                  <p>{language === "ko" ? profile.koLab : profile.lab}</p>
+              <article
+                key={`${year}-${profile.name}`}
+                id={personAnchorId({ section: "students", name: profile.name, year })}
+                className="profile-card student-typography-card"
+              >
+                <div className="profile-content student-typography-content">
+                  <h4 className="student-name-en">{profile.name}</h4>
+                  <p className="student-name-ko">{profile.koName}</p>
+                  <p className="student-lab-en">{profile.lab}</p>
+                  <p className="student-lab-ko">{profile.koLab}</p>
                 </div>
               </article>
             ))}

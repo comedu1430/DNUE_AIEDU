@@ -204,18 +204,6 @@
     gap: 0 14px;
   }
 
-  .student-year-groups {
-    gap: 40px;
-  }
-
-  .student-year-group {
-    gap: 18px;
-  }
-
-  .student-year-group h3 {
-    font-size: clamp(30px, 8vw, 42px);
-  }
-
   .labs-scroll {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
@@ -364,16 +352,11 @@
   }
 
   .student-lab-groups {
-    gap: 20px;
-  }
-
-  .student-lab-group {
-    gap: 12px;
-    padding-top: 12px;
+    gap: 16px;
   }
 
   .student-lab-heading {
-    padding-left: 10px;
+    padding-bottom: 6px;
   }
 
   .student-lab-heading h4 {

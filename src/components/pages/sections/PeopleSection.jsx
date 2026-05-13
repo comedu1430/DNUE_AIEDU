@@ -98,35 +98,17 @@ function groupStudentProfilesByLab(profiles) {
   return groups;
 }
 
-function getLabAccent(group, language) {
-  if (language === "ko") {
-    return String(group.koLab || "")
-      .replace(/\s*교수 연구실$/, "")
-      .trim();
-  }
-
-  return String(group.lab || "")
-    .replace(/^Member of the\s+/i, "")
-    .replace(/\s+Lab$/i, "")
-    .trim()
-    .toUpperCase();
-}
-
 function StudentYearGroups({ language }) {
   const years = ["2024", "2025", "2026"];
 
   return (
     <div className="student-year-groups">
       {years.map((year) => (
-        <section key={year} className="student-year-group" data-year={year}>
+        <section key={year} className="student-year-group">
           <h3>{year}</h3>
           <div className="student-lab-groups">
             {groupStudentProfilesByLab(STUDENT_PROFILES[year]).map((group) => (
-              <section
-                key={`${year}-${group.lab}`}
-                className="student-lab-group"
-                data-accent={getLabAccent(group, language)}
-              >
+              <section key={`${year}-${group.lab}`} className="student-lab-group">
                 <div className="student-lab-heading">
                   <h4>{language === "ko" ? group.koLab : group.lab}</h4>
                 </div>

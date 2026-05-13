@@ -143,6 +143,7 @@ function HomePage({ language, onOpenProtectedProgram, onOpenAnnual }) {
           </div>
           <div className="home-publications-grid">
             <article className="home-publication-card home-publication-card-pinned">
+              <div className="home-publication-year">{annualNotice.tag}</div>
               <div className="home-publication-items">
                 <div className="home-publication-entry home-publication-entry-pinned">
                   <h3>

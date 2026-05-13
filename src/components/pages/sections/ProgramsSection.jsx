@@ -65,7 +65,7 @@ function ProgramsPage({ language, sectionKey, onBackToPrograms, onOpenAnnual, in
       {showAnnualDetail ? (
         <div className="about-text-stack news-annual-stack">
           <button type="button" className="news-detail-back" onClick={onBackToPrograms}>
-            ← {isKorean ? "운영 프로그램 목록으로 돌아가기" : "Back to program list"}
+            ← {isKorean ? "운영 프로그램 목록으로 돌아가기" : "Back to Program List"}
           </button>
           {annualPrograms.map((item) => (
             <section key={item.number} className="about-text-section">

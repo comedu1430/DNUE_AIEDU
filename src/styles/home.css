@@ -165,11 +165,11 @@
 
 .home-publication-year {
   padding-top: 2px;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1;
   letter-spacing: -0.05em;
   font-weight: 500;
-  color: var(--text);
+  color: rgba(17, 19, 24, 0.46);
 }
 
 .home-publication-empty {

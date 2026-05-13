@@ -386,6 +386,7 @@
 }
 
 .private-gate-submit {
+  border: 0;
   height: 46px;
   padding: 0 20px;
   border-radius: 999px;
@@ -403,6 +404,13 @@
 .private-gate-submit:hover {
   transform: translateY(-1px);
   box-shadow: 0 10px 22px rgba(17, 24, 39, 0.14);
+}
+
+.private-gate-submit:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 4px rgba(17, 24, 39, 0.08),
+    0 10px 22px rgba(17, 24, 39, 0.14);
 }
 
 .private-gate-error {

@@ -36,12 +36,13 @@ function GraduationPasswordGate({ language, onUnlock, onBack }) {
             className="private-gate-input"
             type="password"
             inputMode="numeric"
+            enterKeyHint="done"
             autoComplete="current-password"
             placeholder={isKorean ? "비밀번호를 입력하세요" : "Enter password"}
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-          <button className="sr-only" type="submit">
+          <button className="private-gate-submit" type="submit">
             {isKorean ? "입장하기" : "Enter"}
           </button>
         </form>

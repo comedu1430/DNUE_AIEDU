@@ -262,6 +262,20 @@
     padding: 12px 0 14px;
   }
 
+  .student-profile-grid .profile-card:not(:nth-child(6n + 1))::before {
+    content: none;
+  }
+
+  .student-profile-grid .profile-card:not(:nth-child(2n + 1))::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: -7px;
+    width: 1px;
+    background: rgba(17, 24, 39, 0.08);
+  }
+
   .hero-summary-bar {
     display: none;
   }

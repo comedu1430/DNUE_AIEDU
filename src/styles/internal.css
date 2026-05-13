@@ -1355,8 +1355,19 @@
   max-width: none;
   width: 100%;
   display: block;
+  position: relative;
   padding: 18px 0 20px;
-  border-bottom: 1px solid rgba(17, 24, 39, 0.08);
+  border-bottom: 0;
+}
+
+.student-profile-grid .profile-card:not(:nth-child(6n + 1))::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: -11px;
+  width: 1px;
+  background: rgba(17, 24, 39, 0.08);
 }
 
 .profile-card {

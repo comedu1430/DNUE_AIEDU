@@ -6,7 +6,6 @@ This repository is for the Daegu National University of Education Graduate Schoo
 
 - Main website: Vite + React in `src/`.
 - Static assets: `public/`.
-- Notion CMS sync scripts: `scripts/`.
 - GitHub Pages deployment: `.github/workflows/deploy-pages.yml`.
 
 ## Common Commands
@@ -14,18 +13,7 @@ This repository is for the Daegu National University of Education Graduate Schoo
 ```bash
 npm run dev
 npm run build
-npm run notion:sync
-npm run notion:seed
 ```
-
-## Notion CMS
-
-Managed in Notion:
-
-- PhD student CV data
-- Publications
-
-The GitHub Pages workflow syncs Notion content before building the site.
 
 ## Important Boundaries
 

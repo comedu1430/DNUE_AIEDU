@@ -33,13 +33,6 @@ jobs:
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
 
-      - name: Sync Notion content
-        env:
-          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-          NOTION_STUDENTS_DATABASE_ID: ${{ secrets.NOTION_STUDENTS_DATABASE_ID }}
-          NOTION_PUBLICATIONS_DATABASE_ID: ${{ secrets.NOTION_PUBLICATIONS_DATABASE_ID }}
-        run: npm run notion:sync
-
       - name: Build
         run: npm run build
 

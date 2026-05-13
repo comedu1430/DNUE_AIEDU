@@ -351,6 +351,18 @@
     font-size: 15px;
   }
 
+  .student-lab-groups {
+    gap: 16px;
+  }
+
+  .student-lab-heading {
+    padding-bottom: 6px;
+  }
+
+  .student-lab-heading h4 {
+    font-size: 11px;
+  }
+
   .student-profile-grid .student-typography-card .student-lab-en,
   .student-profile-grid .student-typography-card .student-lab-ko {
     font-size: 11px;

@@ -74,6 +74,30 @@ function ProfileGrid({ sectionKey, language }) {
   );
 }
 
+function groupStudentProfilesByLab(profiles) {
+  const groups = [];
+  const seen = new Map();
+
+  profiles.forEach((profile) => {
+    const key = profile.lab;
+    const existingIndex = seen.get(key);
+
+    if (existingIndex !== undefined) {
+      groups[existingIndex].profiles.push(profile);
+      return;
+    }
+
+    seen.set(key, groups.length);
+    groups.push({
+      lab: profile.lab,
+      koLab: profile.koLab,
+      profiles: [profile],
+    });
+  });
+
+  return groups;
+}
+
 function StudentYearGroups({ language }) {
   const years = ["2024", "2025", "2026"];
 
@@ -82,27 +106,30 @@ function StudentYearGroups({ language }) {
       {years.map((year) => (
         <section key={year} className="student-year-group">
           <h3>{year}</h3>
-          <div className="profile-grid student-profile-grid">
-            {STUDENT_PROFILES[year].map((profile) => (
-              <article
-                key={`${year}-${profile.name}`}
-                id={personAnchorId({ section: "students", name: profile.name, year })}
-                className="profile-card student-typography-card"
-              >
-                <div className="profile-content student-typography-content">
-                  {language === "ko" ? (
-                    <>
-                      <h4 className="student-name-ko-primary">{profile.koName}</h4>
-                      <p className="student-lab-ko">{profile.koLab}</p>
-                    </>
-                  ) : (
-                    <>
-                      <h4 className="student-name-en">{profile.name}</h4>
-                      <p className="student-lab-en">{profile.lab}</p>
-                    </>
-                  )}
+          <div className="student-lab-groups">
+            {groupStudentProfilesByLab(STUDENT_PROFILES[year]).map((group) => (
+              <section key={`${year}-${group.lab}`} className="student-lab-group">
+                <div className="student-lab-heading">
+                  <h4>{language === "ko" ? group.koLab : group.lab}</h4>
                 </div>
-              </article>
+                <div className="profile-grid student-profile-grid">
+                  {group.profiles.map((profile) => (
+                    <article
+                      key={`${year}-${profile.name}`}
+                      id={personAnchorId({ section: "students", name: profile.name, year })}
+                      className="profile-card student-typography-card"
+                    >
+                      <div className="profile-content student-typography-content">
+                        {language === "ko" ? (
+                          <h4 className="student-name-ko-primary">{profile.koName}</h4>
+                        ) : (
+                          <h4 className="student-name-en">{profile.name}</h4>
+                        )}
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
             ))}
           </div>
         </section>

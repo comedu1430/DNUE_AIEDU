@@ -143,10 +143,8 @@ function HomePage({ language, onOpenProtectedProgram, onOpenAnnual }) {
           </div>
           <div className="home-publications-grid">
             <article className="home-publication-card home-publication-card-pinned">
-              <div className="home-publication-year">{annualNotice.tag}</div>
               <div className="home-publication-items">
                 <div className="home-publication-entry home-publication-entry-pinned">
-                  <p className="home-publication-type">{annualNotice.type}</p>
                   <h3>
                     <button type="button" className="home-publication-link-button" onClick={onOpenAnnual}>
                       {annualNotice.title}
@@ -161,7 +159,6 @@ function HomePage({ language, onOpenProtectedProgram, onOpenAnnual }) {
                 <div className="home-publication-year">{item.date}</div>
                 <div className="home-publication-items">
                   <div className="home-publication-entry">
-                    <p className="home-publication-type">{language === "ko" ? "운영 프로그램" : "Program"}</p>
                     <h3>
                       <a
                         href={item.href}

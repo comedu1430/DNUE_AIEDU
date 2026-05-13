@@ -1244,9 +1244,8 @@
 
 .news-notice-item.is-clickable {
   cursor: pointer;
-  padding: 14px 0 18px;
+  padding: 0 0 18px;
   border: 0;
-  border-top: 1px solid rgba(17, 24, 39, 0.18);
   border-bottom: 1px solid rgba(17, 24, 39, 0.12);
   border-radius: 0;
   background: transparent;

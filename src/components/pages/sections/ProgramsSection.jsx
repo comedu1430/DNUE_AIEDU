@@ -97,7 +97,6 @@ function ProgramsPage({ language, sectionKey, onBackToPrograms, onOpenAnnual, in
                 }
               }}
             >
-              <p className="publication-year-tag">{annualNotice.tag}</p>
               <p className="publication-type">{annualNotice.type}</p>
               <h4>
                 <button
@@ -116,7 +115,6 @@ function ProgramsPage({ language, sectionKey, onBackToPrograms, onOpenAnnual, in
             {programItems.map((item) => (
               <article key={`${item.date}-${item.title}`} className="publication-item news-project-item">
                 <p className="publication-year-tag">{item.date}</p>
-                <p className="publication-type">{isKorean ? "운영 프로그램" : "Program"}</p>
                 <h4>
                   <a
                     href={item.href}

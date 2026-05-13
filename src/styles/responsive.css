@@ -120,8 +120,32 @@
 
   .home-publication-card {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 8px;
     min-height: auto;
+    padding: 14px 0 16px;
+  }
+
+  .home-publication-year {
+    font-size: 18px;
+    line-height: 1.02;
+  }
+
+  .home-publication-items {
+    gap: 8px;
+  }
+
+  .home-publication-entry {
+    padding-top: 8px;
+  }
+
+  .home-publication-entry h3 {
+    font-size: 16px;
+  }
+
+  .home-publication-meta {
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 1.45;
   }
 
   .home-publication-empty {

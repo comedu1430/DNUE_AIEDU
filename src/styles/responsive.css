@@ -262,11 +262,7 @@
     padding: 12px 0 14px;
   }
 
-  .student-profile-grid .profile-card:not(:nth-child(6n + 1))::before {
-    content: none;
-  }
-
-  .student-profile-grid .profile-card:not(:nth-child(2n + 1))::before {
+  .student-profile-grid .profile-card::before {
     content: "";
     position: absolute;
     top: 4px;

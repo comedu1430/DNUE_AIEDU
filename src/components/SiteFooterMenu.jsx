@@ -15,7 +15,8 @@ function Footer({ isHome, onNavigate }) {
               </span>
             </button>
             <div className="footer-meta">
-              <p>Daegu National University of Education Graduate School of AI Education © 2026. All rights reserved.</p>
+              <p>Daegu National University of Education Graduate School of AI Education</p>
+              <p>© 2026. All rights reserved.</p>
             </div>
           </div>
         </div>

@@ -6,7 +6,6 @@ function AboutOverview({ sectionKey, language }) {
   const activeSection = sectionKey || "greetings";
   const isContactSection = activeSection === "reservation";
   const overviewSections = ["greetings", "introduction", "history"];
-  const currentTitle = isContactSection ? labels.reservation : language === "ko" ? "전공 개요" : "Overview";
   const contactItems =
     language === "ko"
       ? [
@@ -25,7 +24,6 @@ function AboutOverview({ sectionKey, language }) {
 
   return (
     <div className="about-overview">
-      <h2 className="about-current-title">{currentTitle}</h2>
       {isContactSection ? (
         <div className="about-text-stack">
           {contactItems.map((item, index) => (

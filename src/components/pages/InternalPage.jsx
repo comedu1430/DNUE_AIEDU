@@ -28,6 +28,7 @@ function InternalPage({
   const content = getPageContent(menuKey, sectionKey, language);
   const currentSection = sectionKey || getDefaultSection(menuKey);
   const visibleSections = getVisibleSections(menuKey);
+  const showSectionTabs = visibleSections.length > 0;
   const currentLabel = currentSection ? getSectionLabel(menuKey, currentSection) : "";
   const isAbout = menuKey === "about";
   const showVisual = false;
@@ -58,7 +59,7 @@ function InternalPage({
     <section className="internal-page" id="content">
       <div className="internal-header-block reveal-on-scroll">
         <h1>{content.title}</h1>
-        {visibleSections.length > 0 ? (
+        {showSectionTabs ? (
           <div className="section-tabs" role="tablist" aria-label={`${content.title} sections`}>
             {visibleSections.map((section) => {
               const isProjectSection =
@@ -88,9 +89,9 @@ function InternalPage({
       >
         <article className="internal-copy">
           {isAbout ? <AboutOverview sectionKey={currentSection} language={language} /> : null}
-          {!isAbout && !showPublications && !showLabs && !showPrograms && !showGraduationRequirements && !showAcademicCalendar && !showCurriculum ? <h2>{currentLabel || content.headline}</h2> : null}
-          {!isAbout && !showPublications && !showLabs && !showPrograms && !showGraduationRequirements && !showAcademicCalendar && !showCurriculum && content.subheadline ? <h3>{content.subheadline}</h3> : null}
-          {!isAbout && !showPublications && !showLabs && !showPrograms && !showGraduationRequirements && !showAcademicCalendar && !showCurriculum ? content.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>) : null}
+          {!isAbout && !showProfiles && !showPublications && !showLabs && !showPrograms && !showGraduationRequirements && !showAcademicCalendar && !showCurriculum ? <h2>{currentLabel || content.headline}</h2> : null}
+          {!isAbout && !showProfiles && !showPublications && !showLabs && !showPrograms && !showGraduationRequirements && !showAcademicCalendar && !showCurriculum && content.subheadline ? <h3>{content.subheadline}</h3> : null}
+          {!isAbout && !showProfiles && !showPublications && !showLabs && !showPrograms && !showGraduationRequirements && !showAcademicCalendar && !showCurriculum ? content.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>) : null}
           {showGraduationRequirements ? (
             graduationUnlocked ? <GraduationRequirements language={language} /> : <GraduationPasswordGate language={language} onUnlock={onUnlockGraduation} />
           ) : null}

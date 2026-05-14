@@ -170,6 +170,17 @@
   line-height: 1;
 }
 
+.menu-language-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 22px;
+  padding-right: 42px;
+}
+
+.menu-language-toggle {
+  display: inline-flex;
+}
+
 .menu-group {
   margin-bottom: 14px;
 }
@@ -217,4 +228,3 @@
   line-height: 1.24;
   color: rgba(17, 19, 24, 0.8);
 }
-

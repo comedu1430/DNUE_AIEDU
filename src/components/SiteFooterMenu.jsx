@@ -1,4 +1,5 @@
 import { asset, getVisibleSections, SITE_MAP } from "../siteData";
+import { LanguageToggle } from "./SiteChrome";
 
 function Footer({ isHome, onNavigate }) {
   return (
@@ -15,7 +16,6 @@ function Footer({ isHome, onNavigate }) {
               </span>
             </button>
             <div className="footer-meta">
-              <p>Daegu National University of Education Graduate School of AI Education</p>
               <p>© 2026. All rights reserved.</p>
             </div>
           </div>
@@ -27,13 +27,16 @@ function Footer({ isHome, onNavigate }) {
 
 export { Footer, MenuOverlay };
 
-function MenuOverlay({ expandedMenuKey, onToggleMenu, onSelectSection, onClose }) {
+function MenuOverlay({ expandedMenuKey, onToggleMenu, onSelectSection, onClose, language, onToggleLanguage }) {
   return (
     <aside className="menu-overlay" aria-modal="true" role="dialog">
       <div className="menu-panel">
         <button className="close-button" type="button" aria-label="Close menu" onClick={onClose}>
           ×
         </button>
+        <div className="menu-language-row">
+          <LanguageToggle language={language} onToggleLanguage={onToggleLanguage} className="menu-language-toggle" />
+        </div>
         <div className="menu-list">
           {SITE_MAP.map((menu) => (
             <div key={menu.key} className={`menu-group ${expandedMenuKey === menu.key ? "is-expanded" : ""}`}>

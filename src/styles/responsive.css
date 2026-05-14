@@ -21,11 +21,7 @@
 
   .header-actions {
     margin-left: auto;
-    gap: 14px;
-  }
-
-  .mobile-language-toggle {
-    display: inline-flex;
+    gap: 0;
   }
 
   .language-toggle {
@@ -72,6 +68,11 @@
 
   .brand-text {
     font-size: 12px;
+  }
+
+  .menu-language-row {
+    margin-bottom: 18px;
+    padding-right: 42px;
   }
 
   .landing-copy {

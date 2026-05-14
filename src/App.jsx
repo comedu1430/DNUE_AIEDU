@@ -231,6 +231,8 @@ export default function App() {
           onToggleMenu={toggleMenu}
           onSelectSection={navigateTo}
           onClose={() => setMenuOpen(false)}
+          language={language}
+          onToggleLanguage={() => setLanguage((current) => (current === "en" ? "ko" : "en"))}
         />
       ) : null}
     </div>

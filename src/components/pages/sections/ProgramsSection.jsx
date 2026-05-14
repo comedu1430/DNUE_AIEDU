@@ -83,10 +83,10 @@ function ProgramsPage({ language, sectionKey, onBackToPrograms, onOpenAnnual, in
           ))}
         </div>
       ) : (
-        <div className="publication-list">
+        <div className="publication-list programs-list">
           <>
             <article
-              className="publication-item news-project-item news-notice-item is-clickable"
+              className="publication-item programs-list-item news-project-item news-notice-item is-clickable"
               role="button"
               tabIndex={0}
               onClick={onOpenAnnual}
@@ -97,35 +97,43 @@ function ProgramsPage({ language, sectionKey, onBackToPrograms, onOpenAnnual, in
                 }
               }}
             >
-              <p className="publication-type">{annualNotice.type}</p>
-              <h4>
-                <button
-                  type="button"
-                  className="news-notice-link"
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    onOpenAnnual();
-                  }}
-                >
-                  {annualNotice.title}
-                </button>
-              </h4>
-              <p>{annualNotice.summary}</p>
+              <div className="programs-item-meta">
+                <p className="publication-type">{annualNotice.type}</p>
+              </div>
+              <div className="programs-item-content">
+                <h4>
+                  <button
+                    type="button"
+                    className="news-notice-link"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      onOpenAnnual();
+                    }}
+                  >
+                    {annualNotice.title}
+                  </button>
+                </h4>
+                <p>{annualNotice.summary}</p>
+              </div>
             </article>
             {programItems.map((item) => (
-              <article key={`${item.date}-${item.title}`} className="publication-item news-project-item">
-                <p className="publication-year-tag">{item.date}</p>
-                <h4>
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(event) => handleProjectLinkClick(event, item)}
-                  >
-                    {item.displayTitle}
-                  </a>
-                </h4>
-                <p>{item.displaySummary}</p>
+              <article key={`${item.date}-${item.title}`} className="publication-item programs-list-item news-project-item">
+                <div className="programs-item-meta">
+                  <p className="publication-year-tag">{item.date}</p>
+                </div>
+                <div className="programs-item-content">
+                  <h4>
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(event) => handleProjectLinkClick(event, item)}
+                    >
+                      {item.displayTitle}
+                    </a>
+                  </h4>
+                  <p>{item.displaySummary}</p>
+                </div>
               </article>
             ))}
           </>

@@ -1207,9 +1207,30 @@
   gap: 18px;
 }
 
+.programs-list {
+  gap: 0;
+}
+
 .publication-item {
   padding: 0 0 18px;
   border-bottom: 1px solid rgba(17, 24, 39, 0.12);
+}
+
+.programs-list-item {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  align-items: start;
+  column-gap: 38px;
+  padding: 22px 0 24px;
+}
+
+.programs-item-meta {
+  align-self: start;
+}
+
+.programs-item-content {
+  display: grid;
+  gap: 8px;
 }
 
 .publication-year-tag {
@@ -1296,6 +1317,15 @@
 }
 
 .publication-item p {
+  margin: 0;
+}
+
+.programs-list-item .publication-year-tag,
+.programs-list-item .publication-type {
+  margin: 0;
+}
+
+.programs-list-item h4 {
   margin: 0;
 }
 

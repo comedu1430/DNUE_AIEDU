@@ -199,6 +199,12 @@
     padding-left: 0;
   }
 
+  .programs-list-item {
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+    column-gap: 0;
+  }
+
   .requirement-doc-frame {
     min-height: 680px;
   }

@@ -21,7 +21,15 @@
 
   .header-actions {
     margin-left: auto;
-    gap: 0;
+    gap: 10px;
+  }
+
+  .mobile-language-toggle {
+    display: inline-flex;
+  }
+
+  .mobile-language-toggle .language-globe {
+    display: none;
   }
 
   .language-toggle {
@@ -68,10 +76,6 @@
 
   .brand-text {
     font-size: 12px;
-  }
-
-  .menu-panel-top {
-    margin-bottom: 18px;
   }
 
   .landing-copy {

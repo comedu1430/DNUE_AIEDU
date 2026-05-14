@@ -60,6 +60,7 @@ function Header({ dark, isHome, onHome, onNavigate, onOpenMenu, desktopMenuKey, 
         </ul>
       </nav>
       <div className="header-actions">
+        <LanguageToggle language={language} onToggleLanguage={onToggleLanguage} className="mobile-language-toggle" />
         <button className={`menu-button ${dark ? "is-dark" : "is-light"}`} type="button" aria-label="Open menu" onClick={onOpenMenu}>
           <span />
           <span />

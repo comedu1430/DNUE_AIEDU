@@ -31,11 +31,11 @@ function MenuOverlay({ expandedMenuKey, onToggleMenu, onSelectSection, onClose, 
   return (
     <aside className="menu-overlay" aria-modal="true" role="dialog">
       <div className="menu-panel">
-        <button className="close-button" type="button" aria-label="Close menu" onClick={onClose}>
-          ×
-        </button>
-        <div className="menu-language-row">
+        <div className="menu-panel-top">
           <LanguageToggle language={language} onToggleLanguage={onToggleLanguage} className="menu-language-toggle" />
+          <button className="close-button" type="button" aria-label="Close menu" onClick={onClose}>
+            ×
+          </button>
         </div>
         <div className="menu-list">
           {SITE_MAP.map((menu) => (

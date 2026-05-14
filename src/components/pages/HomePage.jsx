@@ -99,8 +99,7 @@ function HomePage({ language, onOpenProtectedProgram, onOpenAnnual }) {
     : homeProgramItems.slice(0, HOME_PROGRAMS_COLLAPSED_COUNT);
   const hasMorePrograms = homeProgramItems.length > HOME_PROGRAMS_COLLAPSED_COUNT;
   const annualNotice = {
-    tag: language === "ko" ? "공지" : "Notice",
-    type: language === "ko" ? "공지" : "Notice",
+    tag: "NOTICE",
     title: language === "ko" ? "연간 지속 사업" : "Annual Programs",
     summary:
       language === "ko"

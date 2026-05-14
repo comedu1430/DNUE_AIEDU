@@ -163,6 +163,16 @@
   gap: 24px;
 }
 
+.home-publication-card-pinned .home-publication-year {
+  padding-top: 0;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #375d87;
+}
+
 .home-publication-year {
   padding-top: 2px;
   font-size: 20px;

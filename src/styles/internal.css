@@ -1325,6 +1325,10 @@
   margin: 0;
 }
 
+.programs-list-item .publication-year-tag {
+  color: var(--text);
+}
+
 .programs-list-item h4 {
   margin: 0;
 }

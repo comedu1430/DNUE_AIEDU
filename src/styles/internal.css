@@ -993,8 +993,8 @@
 
 .curriculum-section h2 {
   margin: 0 0 20px;
-  font-size: clamp(24px, 2vw, 36px);
-  line-height: 1.08;
+  font-size: clamp(20px, 1.6vw, 28px);
+  line-height: 1.12;
   font-weight: 400;
   letter-spacing: -0.04em;
 }

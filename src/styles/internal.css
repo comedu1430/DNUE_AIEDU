@@ -1280,6 +1280,14 @@
   background: transparent;
 }
 
+.news-notice-item h4 {
+  color: rgba(17, 24, 39, 0.84);
+}
+
+.news-notice-item p {
+  color: rgba(17, 24, 39, 0.66);
+}
+
 .news-notice-link {
   border: 0;
   background: transparent;

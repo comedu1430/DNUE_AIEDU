@@ -218,6 +218,10 @@
   padding-top: 0;
 }
 
+.home-publication-entry-pinned h3 {
+  color: rgba(17, 24, 39, 0.84);
+}
+
 .home-publication-type {
   margin: 0 0 6px;
   font-size: 11px;

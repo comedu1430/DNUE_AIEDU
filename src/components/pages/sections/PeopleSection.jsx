@@ -117,19 +117,18 @@ function LabsShowcase({ onOpenFaculty }) {
     <div className="labs-showcase">
       <div className="labs-scroll" role="list" aria-label="Lab cards">
         {LAB_CARDS.map((lab) => (
-          <article key={lab.title} className="lab-card" role="listitem">
-            <h2>
-              {lab.title.replace(/\s+Lab$/, "")}
-              <span>Lab</span>
-            </h2>
-            <div className="lab-card-tags">
-              {lab.keywords.map((keyword) => (
-                <span key={`${lab.title}-${keyword}`}>{keyword}</span>
-              ))}
-            </div>
-            <p className="lab-card-description">{lab.description}</p>
-            <button type="button" className="lab-card-homepage-button" onClick={onOpenFaculty} aria-label={`Open ${lab.title}`}>
-              <span aria-hidden="true">→</span>
+          <article key={lab.title} className="lab-card-shell" role="listitem">
+            <button type="button" className="lab-card" onClick={onOpenFaculty} aria-label={`Open ${lab.title}`}>
+              <h2>
+                {lab.title.replace(/\s+Lab$/, "")}
+                <span>Lab</span>
+              </h2>
+              <div className="lab-card-tags">
+                {lab.keywords.map((keyword) => (
+                  <span key={`${lab.title}-${keyword}`}>{keyword}</span>
+                ))}
+              </div>
+              <p className="lab-card-description">{lab.description}</p>
             </button>
           </article>
         ))}

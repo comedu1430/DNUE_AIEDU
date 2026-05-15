@@ -150,6 +150,7 @@ function HomePage({ language, onOpenProtectedProgram, onOpenAnnual }) {
                       {annualNotice.title}
                     </button>
                   </h3>
+                  <p className="home-publication-meta">{annualNotice.summary}</p>
                 </div>
               </div>
             </article>
@@ -168,6 +169,7 @@ function HomePage({ language, onOpenProtectedProgram, onOpenAnnual }) {
                         {item.displayTitle}
                       </a>
                     </h3>
+                    <p className="home-publication-meta">{item.displaySummary}</p>
                   </div>
                 </div>
               </article>

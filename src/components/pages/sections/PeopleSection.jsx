@@ -119,10 +119,7 @@ function LabsShowcase({ onOpenFaculty }) {
         {LAB_CARDS.map((lab) => (
           <article key={lab.title} className="lab-card-shell" role="listitem">
             <button type="button" className="lab-card" onClick={onOpenFaculty} aria-label={`Open ${lab.title}`}>
-              <h2>
-                {lab.title.replace(/\s+Lab$/, "")}
-                <span>Lab</span>
-              </h2>
+              <h2>{lab.title}</h2>
               <div className="lab-card-tags">
                 {lab.keywords.map((keyword) => (
                   <span key={`${lab.title}-${keyword}`}>{keyword}</span>

@@ -518,9 +518,9 @@
 .lab-card h2 {
   margin: 0;
   max-width: none;
-  font-size: clamp(28px, 2.65vw, 48px);
+  font-size: clamp(26px, 2.4vw, 44px);
   line-height: 0.98;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.055em;
   font-weight: 500;
   white-space: nowrap;
 }
@@ -1282,6 +1282,10 @@
 
 .news-notice-item h4 {
   color: rgba(17, 24, 39, 0.84);
+}
+
+.news-notice-item .publication-type {
+  color: #375d87;
 }
 
 .news-notice-item p {

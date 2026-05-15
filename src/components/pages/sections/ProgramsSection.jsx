@@ -8,8 +8,8 @@ function ProgramsPage({ language, sectionKey, onBackToPrograms, onOpenAnnual, in
   const programItems = getLocalizedProgramsItems(language);
   const [protectedItem, setProtectedItem] = useState(initialProtectedItem ?? null);
   const annualNotice = {
-    tag: isKorean ? "공지" : "Notice",
-    type: isKorean ? "공지" : "Notice",
+    tag: "NOTICE",
+    type: "NOTICE",
     title: isKorean ? "연간 지속 사업" : "Annual Programs",
     summary: isKorean
       ? "AI교육전공에서 연중 운영하는 정기 프로그램 일정을 확인할 수 있습니다."
